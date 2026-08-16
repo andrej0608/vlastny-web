@@ -4,10 +4,11 @@ import {
   siteConfig,
   emailHref,
   telHref,
-  whatsappHref,
+  buildWhatsAppHref,
   hasDirectContactChannel,
 } from '@/content/site';
 import { Section } from '@/components/ui/Section';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { ContactForm } from './ContactForm';
 import styles from './Contact.module.css';
 
@@ -17,6 +18,9 @@ interface ContactProps {
 }
 
 export function Contact({ locale, dict }: ContactProps) {
+  // Pre-fills the chat in the visitor's own language; they can still edit it.
+  const whatsappHref = buildWhatsAppHref(dict.contact.whatsappMessage);
+
   return (
     <Section id={dict.contact.id} tone="subtle">
       <div className={styles.layout}>
@@ -61,16 +65,28 @@ export function Contact({ locale, dict }: ContactProps) {
                 </li>
               )}
 
+              {/* A plain outbound link. Nothing from WhatsApp or Meta is
+                  loaded into this page; the visitor's browser only contacts
+                  them once this link is deliberately followed. */}
               {whatsappHref && (
                 <li className={styles.contactItem}>
-                  <span className={styles.contactLabel}>WhatsApp</span>
+                  <span className={styles.contactLabel}>
+                    {dict.common.whatsapp}
+                  </span>
                   <a
                     href={whatsappHref}
-                    className={styles.contactValue}
+                    className={[styles.contactValue, styles.whatsappLink].join(' ')}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {siteConfig.contact.whatsapp}
+                    <WhatsAppIcon />
+                    <span>{siteConfig.contact.phone}</span>
+                    {/* Says what the link does, since the visible text is
+                        just a number. */}
+                    <span className="visually-hidden">
+                      {' '}
+                      — {dict.contact.whatsappAction}
+                    </span>
                   </a>
                 </li>
               )}

@@ -4,7 +4,9 @@
 
 .back {
   display: inline-block;
-  margin-bottom: var(--space-6);
+  /* Keeps the tap target comfortable on a phone. */
+  padding-block: var(--space-2);
+  margin-bottom: var(--space-5);
   color: var(--color-text-muted);
   font-size: var(--text-sm);
   text-decoration: none;

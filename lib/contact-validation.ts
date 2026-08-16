@@ -18,6 +18,8 @@ export interface ContactFormValues {
    */
   serviceType: string;
   message: string;
+  /** Whether the privacy-notice acknowledgement box was ticked. */
+  acknowledgement: boolean;
   /** Hidden anti-spam field. Real people never fill this in. */
   website: string;
   /** Timestamp (ms) of when the form was rendered. */
@@ -45,7 +47,11 @@ export function isServiceTypeValue(value: string): value is ServiceTypeValue {
 }
 
 /** Which fields can carry an error message. */
-export type ContactFieldError = 'name' | 'email' | 'message';
+export type ContactFieldError =
+  | 'name'
+  | 'email'
+  | 'message'
+  | 'acknowledgement';
 
 export type ContactErrors = Partial<Record<ContactFieldError, string>>;
 
@@ -56,6 +62,7 @@ export interface ContactErrorMessages {
   emailInvalid: string;
   message: string;
   messageShort: string;
+  acknowledgement: string;
 }
 
 export const MESSAGE_MIN_LENGTH = 10;
@@ -80,7 +87,14 @@ export function isValidEmail(value: string): boolean {
 }
 
 export function validateContactForm(
-  values: Pick<ContactFormValues, 'name' | 'email' | 'message'>,
+  values: Pick<ContactFormValues, 'name' | 'email' | 'message'> & {
+    /**
+     * Confirms the privacy notice was shown and read. This records that the
+     * visitor was informed - it is NOT consent to processing, which is not
+     * the legal basis for answering an enquiry.
+     */
+    acknowledgement: boolean;
+  },
   messages: ContactErrorMessages
 ): ContactErrors {
   const errors: ContactErrors = {};
@@ -88,6 +102,10 @@ export function validateContactForm(
   const name = values.name.trim();
   const email = values.email.trim();
   const message = values.message.trim();
+
+  if (!values.acknowledgement) {
+    errors.acknowledgement = messages.acknowledgement;
+  }
 
   if (name.length === 0) {
     errors.name = messages.name;

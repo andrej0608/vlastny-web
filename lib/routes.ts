@@ -47,6 +47,16 @@ export function projectPath(locale: Locale, slug: string): string {
 }
 
 /**
+ * Privacy notice path.
+ *
+ * "privacy" reads naturally in both languages and is widely understood, so it
+ * stays the same segment in each — /nl/privacy and /en/privacy.
+ */
+export function privacyPath(locale: Locale): string {
+  return `/${locale}/privacy`;
+}
+
+/**
  * Translates the current pathname into another locale, so the language
  * switcher keeps the visitor on the same page instead of dumping them home.
  */

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/content/site';
 import { locales, localeHtmlLang, defaultLocale } from '@/lib/i18n';
-import { getSegment } from '@/lib/routes';
+import { getSegment, privacyPath } from '@/lib/routes';
 import { getProjectsWithDetail } from '@/content/projects';
 
 /**
@@ -33,6 +33,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: alternates({ nl: '/nl', en: '/en' }),
   }));
 
+  /* Legal pages are indexable and internally linked, but carry a low priority:
+     they exist for visitors who look for them, not to rank. */
+  const privacyPages: MetadataRoute.Sitemap = locales.map((locale) => ({
+    url: `${siteConfig.url}${privacyPath(locale)}`,
+    lastModified,
+    changeFrequency: 'yearly',
+    priority: 0.3,
+    alternates: alternates({
+      nl: privacyPath('nl'),
+      en: privacyPath('en'),
+    }),
+  }));
+
   const projectPages: MetadataRoute.Sitemap = getProjectsWithDetail().flatMap(
     (project) => {
       const pathByLocale = Object.fromEntries(
@@ -52,5 +65,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   );
 
-  return [...homepages, ...projectPages];
+  return [...homepages, ...privacyPages, ...projectPages];
 }

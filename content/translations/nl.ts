@@ -24,6 +24,7 @@ export const nl: Dictionary = {
     email: 'E-mail',
     phone: 'Telefoon',
     linkedin: 'LinkedIn',
+    whatsapp: 'WhatsApp',
   },
 
   nav: {
@@ -296,6 +297,9 @@ export const nl: Dictionary = {
     country: 'België',
     // Deliberately not a promise about response times - see README.
     responseNote: 'Elk bericht komt rechtstreeks bij mij terecht.',
+    whatsappMessage:
+      'Hallo Andrej, ik heb uw website bekeken en ik zou graag mijn project met u bespreken.',
+    whatsappAction: 'Start een gesprek op WhatsApp',
     form: {
       heading: 'Stuur een bericht',
       name: { label: 'Naam', placeholder: 'Uw naam' },
@@ -324,12 +328,24 @@ export const nl: Dictionary = {
       submitting: 'Bezig met verzenden…',
       privacyNote:
         'Uw gegevens worden alleen gebruikt om op uw aanvraag te reageren en worden niet gedeeld met derden.',
+      privacyNotice: {
+        before:
+          'Door dit formulier te verzenden, worden uw persoonsgegevens gebruikt om uw aanvraag te beantwoorden. Lees meer over de verwerking van uw gegevens in de ',
+        linkText: 'Privacyverklaring',
+        after: '.',
+      },
+      acknowledgement: {
+        before: 'Ik heb de ',
+        linkText: 'Privacyverklaring',
+        after: ' gelezen.',
+      },
       errors: {
         name: 'Vul uw naam in.',
         email: 'Vul uw e-mailadres in.',
         emailInvalid: 'Vul een geldig e-mailadres in.',
         message: 'Laat weten waarmee ik kan helpen.',
         messageShort: 'Geef wat meer details, minimaal 10 tekens.',
+        acknowledgement: 'Bevestig dat u de Privacyverklaring heeft gelezen.',
         summaryHeading: 'Controleer de volgende velden:',
       },
       success: {
@@ -352,7 +368,140 @@ export const nl: Dictionary = {
     navHeading: 'Navigatie',
     contactHeading: 'Contact',
     languageHeading: 'Taal',
+    legalHeading: 'Juridisch',
     rights: 'Alle rechten voorbehouden.',
+    business: {
+      companyNumber: 'Ondernemingsnummer',
+      vatNumber: 'BTW-nummer',
+    },
+  },
+
+  privacy: {
+    metaTitle: 'Privacyverklaring | Andrej Juriga',
+    metaDescription:
+      'Hoe persoonsgegevens worden verwerkt die via deze website of het contactformulier worden verstuurd.',
+    title: 'Privacyverklaring',
+    intro:
+      'Deze verklaring legt uit welke persoonsgegevens via deze website kunnen worden verwerkt, waarom dat gebeurt en welke rechten u daarbij heeft. De tekst beschrijft wat deze website daadwerkelijk doet.',
+    lastUpdatedLabel: 'Laatst bijgewerkt',
+    backToHome: 'Terug naar de homepage',
+
+    controller: {
+      heading: 'Wie verwerkt uw gegevens?',
+      intro:
+        'De verantwoordelijke voor de verwerking van persoonsgegevens via deze website is:',
+    },
+
+    dataCollected: {
+      heading: 'Welke gegevens kunnen worden verwerkt?',
+      intro:
+        'Als u het contactformulier gebruikt, worden de gegevens verwerkt die u zelf invult. Dat kan gaan om:',
+      formItems: [
+        'naam',
+        'bedrijfsnaam',
+        'e-mailadres',
+        'telefoonnummer, indien ingevuld',
+        'het gekozen type project of dienst, indien ingevuld',
+        'de inhoud van uw bericht',
+      ],
+      technical:
+        'Deze website plaatst geen analytische of marketingcookies en gebruikt geen bezoekersstatistieken of trackingtechnologie. Zoals bij vrijwel elke website kunnen technische gegevens zoals uw IP-adres wel tijdelijk voorkomen in de serverlogs die nodig zijn om de website te leveren en te beveiligen.',
+    },
+
+    purposes: {
+      heading: 'Waarom worden deze gegevens verwerkt?',
+      intro: 'De gegevens die u via het contactformulier verstuurt, worden gebruikt om:',
+      items: [
+        'uw aanvraag te beantwoorden',
+        'contact met u op te nemen',
+        'uw vraag of het mogelijke project te bespreken',
+        'indien relevant, een voorstel of offerte voor te bereiden',
+      ],
+    },
+
+    legalBasis: {
+      heading: 'Rechtsgrond',
+      paragraphs: [
+        'Wanneer u zelf contact opneemt met een vraag of aanvraag, worden de door u verstrekte gegevens verwerkt omdat dit noodzakelijk is om op uw bericht te reageren en, waar van toepassing, om op uw verzoek stappen te zetten voorafgaand aan een mogelijke overeenkomst.',
+        'Voor het beantwoorden van een gewone zakelijke aanvraag is afzonderlijke toestemming dus niet nodig. Als er in de toekomst een verwerking bijkomt die wél op toestemming berust, wordt die toestemming apart en duidelijk gevraagd en kunt u die op elk moment intrekken.',
+      ],
+    },
+
+    retention: {
+      heading: 'Hoe lang worden gegevens bewaard?',
+      paragraphs: [
+        'Persoonsgegevens worden niet langer bewaard dan noodzakelijk voor het doel waarvoor ze zijn ontvangen, tenzij een langere bewaartermijn wettelijk vereist is.',
+        'Leidt uw aanvraag niet tot samenwerking, dan wordt de correspondentie niet onbeperkt bewaard. Leidt uw aanvraag wel tot een opdracht, dan kunnen gegevens langer worden bewaard voor zover dat nodig is voor de uitvoering daarvan of om aan wettelijke verplichtingen te voldoen.',
+      ],
+    },
+
+    sharing: {
+      heading: 'Met wie worden gegevens gedeeld?',
+      intro:
+        'Uw gegevens worden niet verkocht en niet gebruikt voor reclamedoeleinden. Gegevens kunnen wel worden verwerkt door dienstverleners die nodig zijn om de website te laten werken of om communicatie mogelijk te maken.',
+      noEmailProvider:
+        'Op dit moment is er geen externe dienst voor e-mailbezorging aan het contactformulier gekoppeld. Berichten die via het formulier worden verstuurd, worden daardoor niet doorgegeven aan een externe verwerker. Zolang dit het geval is, kunt u mij het snelst bereiken via e-mail of WhatsApp.',
+      emailProvider:
+        'Berichten die via het contactformulier worden verstuurd, worden bezorgd via {provider}. Deze dienst verwerkt de inhoud van uw bericht uitsluitend om het af te leveren.',
+      hostingProvider:
+        'De website wordt gehost door {provider}. Daarbij kunnen technische gegevens zoals IP-adressen worden verwerkt die nodig zijn om de website te leveren en te beveiligen.',
+      hostingUnknown:
+        'De website wordt gehost bij een hostingprovider. Daarbij kunnen technische gegevens zoals IP-adressen worden verwerkt die nodig zijn om de website te leveren en te beveiligen.',
+      serverLogs:
+        'Als u contact opneemt via e-mail of WhatsApp, verloopt die communicatie via de aanbieder van die dienst en gelden daarnaast de voorwaarden en het privacybeleid van die aanbieder.',
+    },
+
+    international: {
+      heading: 'Internationale doorgifte',
+      paragraphs: [
+        'Sommige dienstverleners die nodig zijn om een website te leveren, zijn gevestigd buiten de Europese Economische Ruimte of maken gebruik van infrastructuur daarbuiten. In dat geval kunnen gegevens ook buiten de EER worden verwerkt.',
+        'Als u vragen heeft over welke dienstverleners op dit moment worden gebruikt en waar zij gegevens verwerken, kunt u dat opvragen via het onderstaande e-mailadres.',
+      ],
+    },
+
+    cookies: {
+      heading: 'Cookies',
+      intro:
+        'Deze website gebruikt geen cookies voor analyse, statistieken, advertenties of het volgen van bezoekers.',
+      languageCookie:
+        'Er wordt één functionele cookie geplaatst, genaamd NEXT_LOCALE. Die onthoudt uitsluitend of u de website in het Nederlands of het Engels wilt bekijken, zodat u bij een volgend bezoek meteen in de juiste taal terechtkomt. De cookie bevat alleen een taalcode en wordt na een jaar verwijderd. U kunt cookies altijd verwijderen via de instellingen van uw browser.',
+      noTracking:
+        'Er worden geen externe scripts, advertentienetwerken, sociale-mediawidgets of ingesloten kaarten en video’s geladen. Er wordt ook geen gebruikgemaakt van localStorage of vergelijkbare opslag voor het volgen van bezoekers.',
+    },
+
+    rights: {
+      heading: 'Uw rechten',
+      intro:
+        'Met betrekking tot uw persoonsgegevens kunt u, binnen de grenzen van de wet, de volgende rechten uitoefenen:',
+      items: [
+        'inzage in de gegevens die van u verwerkt worden',
+        'correctie van onjuiste of onvolledige gegevens',
+        'verwijdering van uw gegevens',
+        'beperking van de verwerking',
+        'bezwaar tegen de verwerking, waar dat van toepassing is',
+        'overdraagbaarheid van de gegevens die u zelf heeft verstrekt, waar dat van toepassing is',
+      ],
+      howTo:
+        'U kunt een verzoek indienen via het e-mailadres bovenaan deze pagina. Om misbruik te voorkomen kan er gevraagd worden om uw verzoek te verduidelijken.',
+      complaint:
+        'Bent u niet tevreden over de manier waarop uw gegevens worden verwerkt, dan heeft u het recht een klacht in te dienen bij de bevoegde toezichthoudende autoriteit voor gegevensbescherming, doorgaans die van het land waar u woont of werkt.',
+    },
+
+    security: {
+      heading: 'Beveiliging',
+      paragraphs: [
+        'Er worden redelijke technische en organisatorische maatregelen genomen om persoonsgegevens te beschermen tegen verlies, misbruik en ongeoorloofde toegang. De website wordt bijvoorbeeld via een versleutelde verbinding aangeboden en het aantal personen met toegang tot binnenkomende berichten wordt beperkt gehouden.',
+        'Geen enkele website of vorm van elektronische communicatie is volledig veilig. Er kan daarom geen absolute garantie worden gegeven; wel wordt gewerkt aan passende bescherming.',
+      ],
+    },
+
+    changes: {
+      heading: 'Wijzigingen',
+      paragraphs: [
+        'Deze privacyverklaring kan worden aangepast wanneer de website verandert of wanneer de manier waarop gegevens worden verwerkt wijzigt, bijvoorbeeld als er een nieuwe dienstverlener wordt ingeschakeld.',
+        'De datum hieronder geeft aan wanneer deze verklaring voor het laatst is bijgewerkt.',
+      ],
+    },
   },
 
   notFound: {

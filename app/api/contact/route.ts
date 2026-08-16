@@ -72,6 +72,9 @@ export async function POST(request: Request) {
     serviceType: truncate(payload.serviceType, FIELD_MAX_LENGTHS.serviceType).trim(),
     message: truncate(payload.message, FIELD_MAX_LENGTHS.message).trim(),
     website: truncate(payload.website, 200),
+    /* Re-checked here: the browser can be bypassed, and the record of having
+       shown the privacy notice is only meaningful if the server enforces it. */
+    acknowledgement: payload.acknowledgement === true,
   };
 
   /**

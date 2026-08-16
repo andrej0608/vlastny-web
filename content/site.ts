@@ -1,13 +1,14 @@
 /**
  * Central site configuration.
  *
- * THIS IS THE FILE TO EDIT for your real e-mail address, LinkedIn profile and
- * (optional) phone number. Everything else on the site reads from here, so you
- * only ever change these values in one place.
+ * This is the single place where contact details, business identification and
+ * privacy-notice facts are defined. Everything else on the site reads from
+ * here.
  *
- * Every contact channel below is nullable and starts as `null`. A channel that
- * is not configured is simply not rendered — no dummy address is ever shown to
- * a visitor. Set the ones you want to use.
+ * Optional values are `null` by default. A value that is `null` is not
+ * rendered anywhere and is left out of the structured data and the privacy
+ * notice — nothing is ever shown to a visitor as an empty field or a
+ * placeholder.
  */
 
 export const siteConfig = {
@@ -25,23 +26,9 @@ export const siteConfig = {
     ''
   ),
 
-  /**
-   * -------------------------------------------------------------------------
-   * CONTACT CHANNELS — fill these in before the site goes live.
-   *
-   * Each value is optional. `null` means "not configured yet" and the channel
-   * disappears from the contact section, the footer and the structured data.
-   *
-   * Configure AT LEAST an e-mail address, or set up form delivery (see
-   * .env.example), otherwise a visitor has no way to reach you.
-   * -------------------------------------------------------------------------
-   */
   contact: {
-    /**
-     * Your e-mail address, e.g. 'andrej@yourdomain.be'.
-     * Shown as a mailto: link in the contact section and footer.
-     */
-    email: null as string | null,
+    /** Shown as a mailto: link in the contact section and footer. */
+    email: 'juriga.andrej06@gmail.com' as string | null,
 
     /**
      * Full URL to your LinkedIn profile,
@@ -49,17 +36,17 @@ export const siteConfig = {
      */
     linkedin: null as string | null,
 
-    /** Phone number in international format, e.g. '+32 470 00 00 00'. */
-    phone: null as string | null,
+    /** Phone number as it should be displayed. */
+    phone: '+32 470 45 63 06' as string | null,
 
     /**
-     * WhatsApp number in international format WITHOUT + or spaces,
-     * e.g. '32470000000'.
+     * WhatsApp number in international format WITHOUT +, spaces or other
+     * characters — this is what wa.me links require.
      */
-    whatsapp: null as string | null,
+    whatsapp: '32470456306' as string | null,
   },
 
-  /** Location. Only used in the contact section, never in marketing copy. */
+  /** Location. Only used in the contact section and the privacy notice. */
   location: {
     city: 'Achel',
     countryNl: 'België',
@@ -72,6 +59,78 @@ export const siteConfig = {
 
   /** Countries served, used in structured data. */
   areaServedCountryCodes: ['BE', 'NL'],
+
+  /**
+   * -------------------------------------------------------------------------
+   * BUSINESS IDENTIFICATION
+   *
+   * Empty until a business is actually registered. Belgian businesses are
+   * generally required to show their company number and, where applicable,
+   * their VAT number on their website — fill these in once you have them and
+   * they appear automatically in the footer and the privacy notice.
+   *
+   * Leave anything you do not have as `null`. Nothing here is invented and
+   * nothing renders while unset.
+   * -------------------------------------------------------------------------
+   */
+  business: {
+    /** Official trade name, if it differs from your own name. */
+    legalName: null as string | null,
+
+    /** Ondernemingsnummer / company number, e.g. '0123.456.789'. */
+    companyNumber: null as string | null,
+
+    /** BTW / VAT number, e.g. 'BE 0123.456.789'. */
+    vatNumber: null as string | null,
+
+    /**
+     * Official registered business address, once one exists.
+     * Deliberately separate from `location` above: `location` is only the
+     * general area shown for context, never a street address.
+     */
+    address: null as {
+      street: string;
+      postalCode: string;
+      city: string;
+      country: string;
+    } | null,
+  },
+
+  /**
+   * -------------------------------------------------------------------------
+   * PRIVACY NOTICE FACTS
+   *
+   * These drive the wording of the privacy pages so the notice always matches
+   * what the site actually does. Do not name a provider here until it is
+   * genuinely in use — the notice states plainly when none is configured.
+   * -------------------------------------------------------------------------
+   */
+  privacy: {
+    /**
+     * Shown as "Laatst bijgewerkt" / "Last updated".
+     * A fixed date on purpose: it must reflect when the notice was actually
+     * reviewed, not when the site was last built. Update it by hand whenever
+     * you change the notice or how data is handled.
+     * Format: YYYY-MM-DD.
+     */
+    lastUpdated: '2026-08-16',
+
+    /**
+     * The company hosting the website, once it is deployed,
+     * e.g. 'Vercel Inc.'. Leave null until that is actually the case.
+     */
+    hostingProvider: null as string | null,
+
+    /**
+     * The service delivering contact-form e-mails, e.g. 'Resend'.
+     *
+     * Keep this null until RESEND_API_KEY, CONTACT_FROM_EMAIL and
+     * CONTACT_TO_EMAIL are configured. While it is null the form does not
+     * deliver anywhere, and the privacy notice says so rather than naming a
+     * processor that never receives anything.
+     */
+    emailDeliveryProvider: null as string | null,
+  },
 } as const;
 
 /** Convenience: a `mailto:` href, or null when no address is configured. */
@@ -84,10 +143,22 @@ export const telHref = siteConfig.contact.phone
   ? `tel:${siteConfig.contact.phone.replace(/[^+\d]/g, '')}`
   : null;
 
-/** Convenience: a WhatsApp link, or null when no number is configured. */
-export const whatsappHref = siteConfig.contact.whatsapp
-  ? `https://wa.me/${siteConfig.contact.whatsapp}`
-  : null;
+/**
+ * Builds a wa.me link, optionally with a message already typed into the chat.
+ *
+ * This is a plain outbound URL: nothing from WhatsApp or Meta is loaded into
+ * the page, and the visitor's browser only contacts them once the link is
+ * deliberately clicked.
+ *
+ * @param message Pre-filled text, in the visitor's own language. Encoded here
+ *                so callers can pass it as ordinary text.
+ */
+export function buildWhatsAppHref(message?: string): string | null {
+  if (!siteConfig.contact.whatsapp) return null;
+
+  const base = `https://wa.me/${siteConfig.contact.whatsapp}`;
+  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+}
 
 /**
  * True when at least one direct contact channel is configured.
@@ -100,4 +171,12 @@ export const hasDirectContactChannel = Boolean(
     siteConfig.contact.phone ||
     siteConfig.contact.whatsapp ||
     siteConfig.contact.linkedin
+);
+
+/** True once any official business identification has been filled in. */
+export const hasBusinessIdentification = Boolean(
+  siteConfig.business.legalName ||
+    siteConfig.business.companyNumber ||
+    siteConfig.business.vatNumber ||
+    siteConfig.business.address
 );

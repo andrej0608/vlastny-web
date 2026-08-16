@@ -179,6 +179,51 @@
   overflow: hidden;
 }
 
+.acknowledgeField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+/* 24px so the box itself meets the minimum target size, rather than relying
+   on the label to make up the difference. */
+.checkbox {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  /* Aligns the box with the first line of the label text. */
+  margin-top: 0.15em;
+  accent-color: var(--color-accent-600);
+  cursor: pointer;
+}
+
+.checkbox:disabled {
+  cursor: not-allowed;
+}
+
+.checkboxLabel {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  cursor: pointer;
+}
+
+.privacyLink {
+  color: var(--color-link);
+  text-underline-offset: 0.2em;
+}
+
+.privacyLink:hover {
+  color: var(--color-link-hover);
+}
+
 .submitRow {
   display: flex;
   flex-direction: column;
@@ -189,7 +234,11 @@
 .privacyNote {
   color: var(--color-text-subtle);
   font-size: var(--text-xs);
-  line-height: var(--leading-normal);
+  line-height: var(--leading-relaxed);
+}
+
+.privacyNote .privacyLink {
+  color: var(--color-link);
 }
 
 @media (min-width: 34rem) {

@@ -5,9 +5,11 @@ import {
   siteConfig,
   emailHref,
   telHref,
+  buildWhatsAppHref,
   hasDirectContactChannel,
+  hasBusinessIdentification,
 } from '@/content/site';
-import { homePath, sectionPath } from '@/lib/routes';
+import { homePath, sectionPath, privacyPath } from '@/lib/routes';
 import { Container } from '@/components/ui/Container';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import styles from './Footer.module.css';
@@ -19,6 +21,7 @@ interface FooterProps {
 
 export function Footer({ locale, dict }: FooterProps) {
   const year = new Date().getFullYear();
+  const whatsappHref = buildWhatsAppHref(dict.contact.whatsappMessage);
 
   return (
     <footer className={styles.footer}>
@@ -70,6 +73,18 @@ export function Footer({ locale, dict }: FooterProps) {
                     </a>
                   </li>
                 )}
+                {whatsappHref && (
+                  <li>
+                    <a
+                      href={whatsappHref}
+                      className={styles.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {dict.common.whatsapp}
+                    </a>
+                  </li>
+                )}
                 {siteConfig.contact.linkedin && (
                   <li>
                     <a
@@ -87,6 +102,17 @@ export function Footer({ locale, dict }: FooterProps) {
           )}
 
           <div className={styles.column}>
+            <h2 className={styles.columnHeading}>{dict.footer.legalHeading}</h2>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href={privacyPath(locale)} className={styles.link}>
+                  {dict.privacy.title}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className={styles.column}>
             <h2 className={styles.columnHeading}>{dict.footer.languageHeading}</h2>
             <LanguageSwitcher
               currentLocale={locale}
@@ -100,6 +126,36 @@ export function Footer({ locale, dict }: FooterProps) {
           <p className={styles.copyright}>
             © {year} {siteConfig.name}. {dict.footer.rights}
           </p>
+
+          {/* Belgian businesses must show their company details. Rendered only
+              once they actually exist - never as empty placeholders. */}
+          {hasBusinessIdentification && (
+            <p className={styles.businessDetails}>
+              {siteConfig.business.legalName && (
+                <span>{siteConfig.business.legalName}</span>
+              )}
+              {siteConfig.business.companyNumber && (
+                <span>
+                  {dict.footer.business.companyNumber}:{' '}
+                  {siteConfig.business.companyNumber}
+                </span>
+              )}
+              {siteConfig.business.vatNumber && (
+                <span>
+                  {dict.footer.business.vatNumber}:{' '}
+                  {siteConfig.business.vatNumber}
+                </span>
+              )}
+              {siteConfig.business.address && (
+                <span>
+                  {siteConfig.business.address.street},{' '}
+                  {siteConfig.business.address.postalCode}{' '}
+                  {siteConfig.business.address.city},{' '}
+                  {siteConfig.business.address.country}
+                </span>
+              )}
+            </p>
+          )}
         </div>
       </Container>
     </footer>

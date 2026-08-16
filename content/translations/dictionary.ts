@@ -45,6 +45,19 @@ export interface ServiceTypeOption {
   label: string;
 }
 
+/**
+ * A sentence with a link in the middle of it.
+ *
+ * Split into three parts rather than stored as HTML: the link stays a real
+ * React element, so it is keyboard accessible and correctly localised without
+ * any raw-HTML injection.
+ */
+export interface LinkedText {
+  before: string;
+  linkText: string;
+  after: string;
+}
+
 export interface FaqItem {
   id: string;
   question: string;
@@ -74,6 +87,7 @@ export interface Dictionary {
     email: string;
     phone: string;
     linkedin: string;
+    whatsapp: string;
   };
 
   nav: {
@@ -180,6 +194,13 @@ export interface Dictionary {
     /** Country name shown under the city in the contact block. */
     country: string;
     responseNote: string;
+    /**
+     * Text pre-filled into WhatsApp when the visitor opens a chat, in their
+     * own language. They can still edit or delete it before sending.
+     */
+    whatsappMessage: string;
+    /** Accessible name for the WhatsApp link, e.g. "Chat on WhatsApp". */
+    whatsappAction: string;
     form: {
       heading: string;
       name: { label: string; placeholder: string };
@@ -201,12 +222,26 @@ export interface Dictionary {
       submit: string;
       submitting: string;
       privacyNote: string;
+      /**
+       * Notice shown near the submit button, linking to the privacy page.
+       * Worded as information about processing, NOT as a consent request:
+       * responding to an enquiry does not rely on consent.
+       */
+      privacyNotice: LinkedText;
+      /**
+       * Required tick-box confirming the privacy notice was read.
+       * This is an acknowledgement of having been informed - deliberately not
+       * phrased as consent to processing.
+       */
+      acknowledgement: LinkedText;
       errors: {
         name: string;
         email: string;
         emailInvalid: string;
         message: string;
         messageShort: string;
+        /** Shown when the privacy acknowledgement box is left unticked. */
+        acknowledgement: string;
         /** Heading of the error summary box above the form. */
         summaryHeading: string;
       };
@@ -236,8 +271,83 @@ export interface Dictionary {
     navHeading: string;
     contactHeading: string;
     languageHeading: string;
+    legalHeading: string;
     /** Rendered as "© {year} {name}. {rights}" */
     rights: string;
+    /** Labels for the business identification block, shown only once set. */
+    business: {
+      companyNumber: string;
+      vatNumber: string;
+    };
+  };
+
+  /**
+   * Privacy notice.
+   *
+   * The wording deliberately tracks what the site actually does. Anything that
+   * depends on configuration (which providers are in use, whether form
+   * delivery is switched on) is written as alternatives and chosen at render
+   * time from `siteConfig.privacy` — so the notice cannot drift away from the
+   * implementation.
+   */
+  privacy: {
+    /** Route segment: the same word in both languages, so /nl/privacy works. */
+    metaTitle: string;
+    metaDescription: string;
+    title: string;
+    intro: string;
+    lastUpdatedLabel: string;
+    backToHome: string;
+
+    controller: { heading: string; intro: string };
+
+    dataCollected: {
+      heading: string;
+      intro: string;
+      formItems: string[];
+      technical: string;
+    };
+
+    purposes: { heading: string; intro: string; items: string[] };
+
+    legalBasis: { heading: string; paragraphs: string[] };
+
+    retention: { heading: string; paragraphs: string[] };
+
+    sharing: {
+      heading: string;
+      intro: string;
+      /** Used when no e-mail delivery provider is configured. */
+      noEmailProvider: string;
+      /** Contains a {provider} placeholder. */
+      emailProvider: string;
+      /** Contains a {provider} placeholder. */
+      hostingProvider: string;
+      /** Used before the site is hosted with a named provider. */
+      hostingUnknown: string;
+      serverLogs: string;
+    };
+
+    international: { heading: string; paragraphs: string[] };
+
+    cookies: {
+      heading: string;
+      intro: string;
+      languageCookie: string;
+      noTracking: string;
+    };
+
+    rights: {
+      heading: string;
+      intro: string;
+      items: string[];
+      howTo: string;
+      complaint: string;
+    };
+
+    security: { heading: string; paragraphs: string[] };
+
+    changes: { heading: string; paragraphs: string[] };
   };
 
   notFound: {

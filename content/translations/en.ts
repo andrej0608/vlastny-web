@@ -24,6 +24,7 @@ export const en: Dictionary = {
     email: 'Email',
     phone: 'Phone',
     linkedin: 'LinkedIn',
+    whatsapp: 'WhatsApp',
   },
 
   nav: {
@@ -295,6 +296,9 @@ export const en: Dictionary = {
     country: 'Belgium',
     // Deliberately not a promise about response times - see README.
     responseNote: 'Every message reaches me directly.',
+    whatsappMessage:
+      'Hi Andrej, I visited your website and I would like to discuss my project with you.',
+    whatsappAction: 'Start a conversation on WhatsApp',
     form: {
       heading: 'Send a message',
       name: { label: 'Name', placeholder: 'Your name' },
@@ -323,12 +327,24 @@ export const en: Dictionary = {
       submitting: 'Sending…',
       privacyNote:
         'Your details are only used to respond to your enquiry and are never shared with third parties.',
+      privacyNotice: {
+        before:
+          'By submitting this form, your personal data will be used to respond to your enquiry. Read more about how your data is handled in the ',
+        linkText: 'Privacy Policy',
+        after: '.',
+      },
+      acknowledgement: {
+        before: 'I have read the ',
+        linkText: 'Privacy Policy',
+        after: '.',
+      },
       errors: {
         name: 'Please enter your name.',
         email: 'Please enter your email address.',
         emailInvalid: 'Please enter a valid email address.',
         message: 'Please let me know how I can help.',
         messageShort: 'Please add a little more detail, at least 10 characters.',
+        acknowledgement: 'Please confirm that you have read the Privacy Policy.',
         summaryHeading: 'Please check the following fields:',
       },
       success: {
@@ -351,7 +367,141 @@ export const en: Dictionary = {
     navHeading: 'Navigation',
     contactHeading: 'Contact',
     languageHeading: 'Language',
+    legalHeading: 'Legal',
     rights: 'All rights reserved.',
+    business: {
+      companyNumber: 'Company number',
+      vatNumber: 'VAT number',
+    },
+  },
+
+  privacy: {
+    metaTitle: 'Privacy Policy | Andrej Juriga',
+    metaDescription:
+      'How personal data sent through this website or its contact form is handled.',
+    title: 'Privacy Policy',
+    intro:
+      'This notice explains what personal data may be processed through this website, why that happens and what rights you have. It describes what this website actually does.',
+    lastUpdatedLabel: 'Last updated',
+    backToHome: 'Back to the homepage',
+
+    controller: {
+      heading: 'Who processes your data',
+      intro:
+        'The person responsible for processing personal data through this website is:',
+    },
+
+    dataCollected: {
+      heading: 'What information may be processed',
+      intro:
+        'If you use the contact form, the information you enter yourself is processed. This may include:',
+      formItems: [
+        'name',
+        'company name',
+        'email address',
+        'phone number, if provided',
+        'the type of project or service selected, if provided',
+        'the content of your message',
+      ],
+      technical:
+        'This website sets no analytics or marketing cookies and uses no visitor statistics or tracking technology. As with almost any website, technical information such as your IP address may appear temporarily in the server logs needed to deliver and secure the site.',
+    },
+
+    purposes: {
+      heading: 'Why the information is processed',
+      intro:
+        'The information you send through the contact form is used to:',
+      items: [
+        'respond to your enquiry',
+        'get in touch with you',
+        'discuss your question or the possible project',
+        'prepare a proposal or quotation where relevant',
+      ],
+    },
+
+    legalBasis: {
+      heading: 'Legal basis',
+      paragraphs: [
+        'When you contact me with a question or request, the information you provide is processed because doing so is necessary to respond to your message and, where relevant, to take steps at your request before a possible agreement is entered into.',
+        'Separate consent is therefore not required in order to answer an ordinary business enquiry. If a processing activity is added in future that genuinely does rely on consent, that consent will be requested separately and clearly, and you will be able to withdraw it at any time.',
+      ],
+    },
+
+    retention: {
+      heading: 'How long information is retained',
+      paragraphs: [
+        'Personal data is not kept longer than necessary for the purpose for which it was received, unless a longer retention period is required by law.',
+        'If your enquiry does not lead to working together, the correspondence is not kept indefinitely. If it does lead to an assignment, information may be kept longer to the extent needed to carry out that work or to meet legal obligations.',
+      ],
+    },
+
+    sharing: {
+      heading: 'Who information may be shared with',
+      intro:
+        'Your information is not sold and is not used for advertising. It may, however, be processed by service providers needed to operate the website or to make communication possible.',
+      noEmailProvider:
+        'At present, no external email delivery service is connected to the contact form. Messages sent through the form are therefore not passed to an external processor. While this is the case, email or WhatsApp are the fastest ways to reach me.',
+      emailProvider:
+        'Messages sent through the contact form are delivered using {provider}. That service processes the content of your message solely in order to deliver it.',
+      hostingProvider:
+        'The website is hosted by {provider}. In the course of this, technical information such as IP addresses may be processed as needed to deliver and secure the site.',
+      hostingUnknown:
+        'The website is hosted with a hosting provider. In the course of this, technical information such as IP addresses may be processed as needed to deliver and secure the site.',
+      serverLogs:
+        'If you contact me by email or WhatsApp, that communication travels through the provider of that service, and that provider’s own terms and privacy policy apply in addition to this notice.',
+    },
+
+    international: {
+      heading: 'International transfers',
+      paragraphs: [
+        'Some service providers needed to deliver a website are established outside the European Economic Area, or use infrastructure located outside it. Where that is the case, data may also be processed outside the EEA.',
+        'If you would like to know which service providers are in use at any given moment and where they process data, you can request this using the email address at the top of this page.',
+      ],
+    },
+
+    cookies: {
+      heading: 'Cookies',
+      intro:
+        'This website uses no cookies for analytics, statistics, advertising or tracking visitors.',
+      languageCookie:
+        'One functional cookie is set, named NEXT_LOCALE. It records only whether you want to view the site in Dutch or English, so that you arrive in the right language on your next visit. It contains nothing but a language code and expires after one year. You can delete cookies at any time through your browser settings.',
+      noTracking:
+        'No external scripts, advertising networks, social media widgets or embedded maps and videos are loaded. No use is made of localStorage or similar storage for tracking visitors.',
+    },
+
+    rights: {
+      heading: 'Your rights',
+      intro:
+        'In relation to your personal data you may, within the limits of the law, exercise the following rights:',
+      items: [
+        'access to the data held about you',
+        'correction of inaccurate or incomplete data',
+        'erasure of your data',
+        'restriction of processing',
+        'objection to processing, where applicable',
+        'portability of the data you provided yourself, where applicable',
+      ],
+      howTo:
+        'You can make a request using the email address at the top of this page. To prevent misuse, you may be asked to clarify your request.',
+      complaint:
+        'If you are not satisfied with how your data is handled, you have the right to lodge a complaint with the competent data protection supervisory authority, usually the one in the country where you live or work.',
+    },
+
+    security: {
+      heading: 'Security',
+      paragraphs: [
+        'Reasonable technical and organisational measures are taken to protect personal data against loss, misuse and unauthorised access. For example, the website is served over an encrypted connection, and the number of people with access to incoming messages is kept small.',
+        'No website or form of electronic communication is completely secure, so no absolute guarantee can be given; appropriate protection is, however, actively maintained.',
+      ],
+    },
+
+    changes: {
+      heading: 'Changes to this Privacy Policy',
+      paragraphs: [
+        'This privacy notice may be updated when the website changes or when the way data is handled changes, for example if a new service provider is engaged.',
+        'The date below indicates when this notice was last reviewed.',
+      ],
+    },
   },
 
   notFound: {

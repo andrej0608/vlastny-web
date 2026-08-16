@@ -3,7 +3,9 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import type { Locale } from '@/lib/i18n';
 import type { Dictionary } from '@/content/translations';
+import Link from 'next/link';
 import { siteConfig, emailHref } from '@/content/site';
+import { privacyPath } from '@/lib/routes';
 import { Button } from '@/components/ui/Button';
 import {
   FIELD_MAX_LENGTHS,
@@ -70,6 +72,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
       serviceType: get('serviceType'),
       message: get('message'),
       website: get('website'),
+      acknowledgement: data.get('acknowledgement') === 'on',
     };
   }
 
@@ -325,11 +328,59 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
         </label>
       </div>
 
+      {/*
+        Acknowledgement that the privacy notice was provided — deliberately
+        NOT worded as consent to processing. Answering a business enquiry does
+        not rely on consent, and asking for it here would misstate the basis.
+      */}
+      <div className={styles.acknowledgeField}>
+        <div className={styles.checkboxRow}>
+          <input
+            id={fieldId('acknowledgement')}
+            type="checkbox"
+            name="acknowledgement"
+            className={styles.checkbox}
+            aria-invalid={submitted && Boolean(errors.acknowledgement)}
+            aria-describedby={
+              submitted && errors.acknowledgement
+                ? errorId('acknowledgement')
+                : undefined
+            }
+            onChange={handleInput}
+            disabled={isSubmitting}
+          />
+          <label
+            htmlFor={fieldId('acknowledgement')}
+            className={styles.checkboxLabel}
+          >
+            {t.acknowledgement.before}
+            <Link href={privacyPath(locale)} className={styles.privacyLink}>
+              {t.acknowledgement.linkText}
+            </Link>
+            {t.acknowledgement.after}
+            <span aria-hidden="true"> *</span>
+            <span className="visually-hidden"> ({t.required})</span>
+          </label>
+        </div>
+        {submitted && errors.acknowledgement && (
+          <p id={errorId('acknowledgement')} className={styles.fieldError}>
+            {errors.acknowledgement}
+          </p>
+        )}
+      </div>
+
       <div className={styles.submitRow}>
         <Button type="submit" size="lg" disabled={isSubmitting}>
           {isSubmitting ? t.submitting : t.submit}
         </Button>
-        <p className={styles.privacyNote}>{t.privacyNote}</p>
+
+        <p className={styles.privacyNote}>
+          {t.privacyNotice.before}
+          <Link href={privacyPath(locale)} className={styles.privacyLink}>
+            {t.privacyNotice.linkText}
+          </Link>
+          {t.privacyNotice.after}
+        </p>
       </div>
     </form>
   );

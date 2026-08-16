@@ -321,9 +321,20 @@ Never put these values in the code. `.env.local` is git-ignored; copy
   but that is your call to make, so it is not there by default
   (`contact.responseNote` in the language files).
 - **Cookie consent.** The site sets exactly one cookie, `NEXT_LOCALE`, which
-  remembers the visitor's language. Strictly-necessary cookies of this kind do
-  not require a consent banner under GDPR/ePrivacy. **If you later add
-  analytics or tracking, you will need one.**
+  remembers the visitor's language. Functional cookies of this kind do not
+  require a prior-consent banner, so none is implemented. **If you later add
+  analytics, tracking, embedded maps or videos, that changes** — those must not
+  load before consent, and a banner becomes necessary.
+- **Business identification.** `siteConfig.business` is empty. Once you
+  register a Belgian business, fill in `legalName`, `companyNumber`
+  (ondernemingsnummer), `vatNumber` and `address`; they then appear in the
+  footer and the privacy notice automatically. Nothing renders while unset.
+- **Privacy notice accuracy.** `siteConfig.privacy` drives the wording of the
+  privacy pages. Set `hostingProvider` once the site is deployed and
+  `emailDeliveryProvider` once form delivery is switched on, and update
+  `lastUpdated` whenever you change the notice. While those are `null` the
+  notice states plainly that no such processor is in use — do not leave them
+  stale once that stops being true.
 - **Favicon.** `app/icon.svg` is a simple placeholder monogram; replace it when
   the visual identity is decided.
 

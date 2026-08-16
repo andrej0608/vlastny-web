@@ -91,6 +91,13 @@
   text-decoration: underline;
 }
 
+/* Keeps the icon on the text baseline without changing the row rhythm. */
+.whatsappLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 .responseNote {
   margin-top: var(--space-5);
   color: var(--color-text-subtle);

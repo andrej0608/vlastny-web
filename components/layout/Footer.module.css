@@ -81,6 +81,16 @@
   font-size: var(--text-sm);
 }
 
+/* Company number, VAT number and registered address, once configured. */
+.businessDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin-top: var(--space-2);
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+}
+
 @media (min-width: 40rem) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -92,8 +102,9 @@
 }
 
 @media (min-width: 60rem) {
+  /* Brand, navigation, contact, legal, language. */
   .grid {
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr repeat(4, minmax(0, 1fr));
     gap: var(--space-6);
   }
 
