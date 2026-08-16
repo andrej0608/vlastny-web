@@ -35,12 +35,12 @@
   padding: var(--space-3) var(--space-5);
   background-color: var(--color-accent-600);
   border-radius: var(--radius-md);
-  color: var(--color-neutral-0);
+  color: var(--color-base-0);
   font-weight: var(--weight-medium);
   text-decoration: none;
 }
 
 .link:hover {
   background-color: var(--color-accent-700);
-  color: var(--color-neutral-0);
+  color: var(--color-base-0);
 }

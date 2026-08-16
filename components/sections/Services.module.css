@@ -1,19 +1,75 @@
 .grid {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-5);
   grid-template-columns: 1fr;
 }
 
 .card {
-  padding: var(--space-6);
-  background-color: var(--color-bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.card:hover {
+  background-color: var(--color-surface-raised);
+  border-color: var(--color-base-600);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--color-base-900);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.card:hover .image {
+  transform: scale(1.03);
+}
+
+/*
+ * The illustrations fade into the card at the bottom edge so the picture and
+ * the text read as one surface rather than a photo stuck above a box.
+ */
+.media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 55%,
+    rgb(15 20 31 / 0.75) 100%
+  );
+  pointer-events: none;
+}
+
+.body {
+  padding: var(--space-6);
 }
 
 .title {
   font-size: var(--text-xl);
   font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
 }
 
 .description {
@@ -23,17 +79,20 @@
   text-wrap: pretty;
 }
 
-/* Tablet: two columns. */
-@media (min-width: 40rem) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+/* The lift is decorative; the colour change alone carries the hover state
+   for anyone who has asked for less movement. */
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
+  }
+
+  .card:hover .image {
+    transform: none;
   }
 }
 
-/* Desktop keeps two columns so each description stays comfortable to read
-   rather than being squeezed into four narrow tracks. */
-@media (min-width: 64rem) {
+@media (min-width: 40rem) {
   .grid {
-    gap: var(--space-5);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

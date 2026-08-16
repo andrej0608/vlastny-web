@@ -190,9 +190,9 @@ No component needs to change.
 
 ## Design and styling
 
-The current look is a **deliberately neutral placeholder**, not a final visual
-identity. Colours, typography, spacing, radii and shadows are all defined as
-custom properties in one file:
+The site uses a **dark navy / near-black theme with one electric blue accent**.
+Colours, typography, spacing, radii, shadows and glow are all defined as custom
+properties in one file:
 
 ```
 styles/tokens.css
@@ -201,13 +201,35 @@ styles/tokens.css
 No component hard-codes a colour or a font. To restyle the site, change the
 values in that file.
 
+Two ramps drive everything: `--color-base-*` (950 = page background through to
+0 = white) and `--color-accent-*` (a single blue). Components never reference
+those directly — they use the semantic roles below them (`--color-surface`,
+`--color-text-muted`, `--color-border-input`, and so on), so a palette change
+does not require touching a single component.
+
+### Images
+
+| What | Where | Notes |
+| --- | --- | --- |
+| Portrait | `public/images/about/andrej-juriga.webp` | Path and dimensions in `content/portrait.ts`. Roughly 4:5 works best. |
+| Service illustrations | `public/images/services/*.webp` | Mapped to services by id in `content/service-images.ts`. Keep 4:3. |
+
+All are WebP and served through `next/image`, which converts to AVIF where the
+browser supports it. To replace one, drop in a new file, update the path and
+intrinsic size in the matching content file, and update the `imageAlt` in both
+language files.
+
 A few things there are load-bearing for accessibility rather than taste, and
 are commented as such:
 
-- `--color-neutral-500` is set so muted text clears WCAG AA (4.5:1) on **both**
-  the white and the off-white section backgrounds. A lighter grey fails.
+- `--color-base-400` is the quietest grey that still clears WCAG AA (4.5:1) on
+  the page, section **and** card backgrounds. Anything dimmer fails on cards.
 - `--color-border-input` gives form fields the 3:1 outline contrast they need,
   since a text field is identified by its box alone.
+
+Motion is deliberately restrained: a 1px lift on cards and buttons, a slight
+image scale on service cards, and nothing else. Every transform is disabled
+under `prefers-reduced-motion`, leaving the colour change to carry the state.
 
 Typography currently uses a system font stack — nothing to download, no layout
 shift. When a typeface is chosen, load it with `next/font` in `app/layout.tsx`

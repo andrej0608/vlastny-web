@@ -1,7 +1,23 @@
 .footer {
+  position: relative;
   padding-block: var(--space-9) var(--space-6);
   background-color: var(--color-bg-subtle);
   border-top: 1px solid var(--color-border);
+}
+
+/* A single hairline of accent across the top edge, closing the page the same
+   way the hero opens it. */
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: -1px 0 auto 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(59 130 246 / 0.5),
+    transparent
+  );
 }
 
 .grid {
@@ -67,7 +83,6 @@
 
 .link:hover {
   color: var(--color-link);
-  text-decoration: underline;
 }
 
 .bottom {

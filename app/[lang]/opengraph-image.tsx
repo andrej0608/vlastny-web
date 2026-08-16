@@ -38,7 +38,7 @@ export default async function OpengraphImage({
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '80px',
-          backgroundColor: '#f8f8f7',
+          backgroundColor: '#05070c',
           fontFamily: 'sans-serif',
         }}
       >
@@ -48,7 +48,7 @@ export default async function OpengraphImage({
               fontSize: 26,
               letterSpacing: 2,
               textTransform: 'uppercase',
-              color: '#78786f',
+              color: '#8e99b4',
             }}
           >
             {siteConfig.name}
@@ -59,7 +59,7 @@ export default async function OpengraphImage({
               fontSize: 68,
               lineHeight: 1.15,
               fontWeight: 700,
-              color: '#161614',
+              color: '#f2f5fa',
               maxWidth: 940,
             }}
           >
@@ -73,13 +73,13 @@ export default async function OpengraphImage({
             alignItems: 'center',
             justifyContent: 'space-between',
             paddingTop: 32,
-            borderTop: '2px solid #e4e4e1',
+            borderTop: '1px solid #212a3d',
             fontSize: 28,
-            color: '#57574f',
+            color: '#8e99b4',
           }}
         >
           <span>{dict.meta.tagline}</span>
-          <span style={{ color: '#2f6db3' }}>
+          <span style={{ color: '#60a5fa' }}>
             {locale === 'nl' ? 'België & Nederland' : 'Belgium & the Netherlands'}
           </span>
         </div>

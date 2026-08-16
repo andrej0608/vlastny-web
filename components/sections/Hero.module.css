@@ -1,21 +1,103 @@
 .hero {
-  padding-block: clamp(3rem, 2rem + 6vw, 7rem);
-  background-color: var(--color-bg-subtle);
+  position: relative;
+  /* Sits under the translucent header, so the top padding accounts for it. */
+  padding-block: clamp(4.5rem, 3rem + 8vw, 9rem) clamp(4rem, 3rem + 5vw, 7rem);
+  overflow: hidden;
   border-bottom: 1px solid var(--color-border);
+  isolation: isolate;
+}
+
+/*
+ * Two very soft blue pools of light behind the copy. This is the only ambient
+ * glow on the site — it gives the top of the page depth without turning into
+ * a decorated background. Both are non-interactive and sit behind content.
+ */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero::before {
+  top: -22rem;
+  left: -14rem;
+  width: 48rem;
+  height: 48rem;
+  background: radial-gradient(
+    circle,
+    rgb(37 99 235 / 0.2) 0%,
+    rgb(37 99 235 / 0.06) 42%,
+    transparent 68%
+  );
+}
+
+.hero::after {
+  top: -10rem;
+  right: -20rem;
+  width: 42rem;
+  height: 42rem;
+  background: radial-gradient(
+    circle,
+    rgb(59 130 246 / 0.13) 0%,
+    transparent 65%
+  );
 }
 
 .content {
-  max-width: 46rem;
+  position: relative;
+  max-width: 52rem;
+}
+
+/* Small capsule above the headline naming both halves of the offering. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-accent-950);
+  border: 1px solid var(--color-accent-900);
+  border-radius: var(--radius-full);
+  color: var(--color-accent-300);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+}
+
+.eyebrowDot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-400);
+  border-radius: var(--radius-full);
+  box-shadow: var(--glow-ring);
 }
 
 .headline {
   font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+/* The second half of the headline picks up the accent, so the "automation"
+   half of the positioning is the part the eye lands on. */
+.headlineAccent {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-accent-400) 0%,
+    var(--color-accent-300) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .supporting {
   margin-top: var(--space-5);
-  max-width: 38rem;
+  max-width: 40rem;
   color: var(--color-text-muted);
   font-size: var(--text-xl);
   line-height: var(--leading-relaxed);
@@ -25,12 +107,33 @@
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-4);
   margin-top: var(--space-7);
 }
 
-/* On narrow screens the two buttons stack and fill the width, which is
-   easier to tap than two half-width buttons side by side. */
+/* Short, factual reassurance strip under the actions. */
+.points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  margin-top: var(--space-7);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.point {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+}
+
+.pointIcon {
+  display: inline-flex;
+  color: var(--color-accent-400);
+}
+
 @media (max-width: 30rem) {
   .actions {
     flex-direction: column;

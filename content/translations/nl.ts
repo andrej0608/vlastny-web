@@ -39,11 +39,19 @@ export const nl: Dictionary = {
   },
 
   hero: {
-    headline: 'Professionele websites en slimme automatisering voor uw bedrijf.',
+    // Reads as: "Professionele websites en slimme automatisering voor uw bedrijf."
+    headlineLead: 'Professionele websites en ',
+    headlineAccent: 'slimme automatisering',
+    headlineTail: ' voor uw bedrijf.',
     supporting:
       'Ik help bedrijven in België en Nederland met moderne websites en praktische digitale oplossingen die tijd besparen en processen eenvoudiger maken.',
     primaryCta: 'Bespreek uw project',
     secondaryCta: 'Bekijk mijn werk',
+    points: [
+      'Rechtstreeks contact',
+      'Duidelijk voorstel vooraf',
+      'België & Nederland',
+    ],
   },
 
   services: {
@@ -58,24 +66,32 @@ export const nl: Dictionary = {
         title: 'Websites op maat',
         description:
           'Professionele websites afgestemd op het bedrijf, de diensten en de klanten.',
+        imageAlt:
+          'Illustratie van een website die wordt opgebouwd uit tekst, afbeeldingen en secties.',
       },
       {
         id: 'website-redesign',
         title: 'Website redesign',
         description:
           'Modernisering van bestaande websites die verouderd zijn of niet meer goed aansluiten bij het bedrijf.',
+        imageAlt:
+          'Illustratie van een verouderde website naast een vernieuwde, modernere versie.',
       },
       {
         id: 'bedrijfsautomatisering',
         title: 'Bedrijfsautomatisering',
         description:
           'Praktische digitale oplossingen om terugkerende processen eenvoudiger en efficiënter te maken, zoals klantaanvragen, offertes, bestellingen en administratieve workflows.',
+        imageAlt:
+          'Illustratie van klantaanvragen die automatisch worden verwerkt tot documenten en overzichten.',
       },
       {
         id: 'onderhoud',
         title: 'Onderhoud & aanpassingen',
         description:
           'Ondersteuning bij toekomstige wijzigingen aan teksten, afbeeldingen, diensten, prijzen en andere onderdelen van de website.',
+        imageAlt:
+          'Illustratie van een beheerscherm met instellingen, updates en statusoverzichten.',
       },
     ],
   },

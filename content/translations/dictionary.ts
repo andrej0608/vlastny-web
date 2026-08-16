@@ -16,6 +16,11 @@ export interface ServiceItem {
   id: string;
   title: string;
   description: string;
+  /**
+   * Alt text for the card illustration. Describes what the picture shows, in
+   * the reader's own language.
+   */
+  imageAlt: string;
 }
 
 export interface ProcessStep {
@@ -97,10 +102,22 @@ export interface Dictionary {
   };
 
   hero: {
-    headline: string;
+    /**
+     * The headline, split into three parts purely so the middle one can be
+     * highlighted. Concatenated they must read exactly as the approved
+     * sentence — never change the wording here, only where the split falls.
+     */
+    headlineLead: string;
+    headlineAccent: string;
+    headlineTail: string;
     supporting: string;
     primaryCta: string;
     secondaryCta: string;
+    /**
+     * Three short reassurances under the actions. These restate facts already
+     * stated elsewhere on the page — they are not new claims.
+     */
+    points: string[];
   };
 
   services: {

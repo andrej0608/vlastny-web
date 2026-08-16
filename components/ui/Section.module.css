@@ -31,12 +31,24 @@
 }
 
 .eyebrow {
-  margin-bottom: var(--space-3);
-  color: var(--color-text-subtle);
-  font-size: var(--text-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  color: var(--color-accent-400);
+  font-size: var(--text-xs);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
+}
+
+/* Small accent rule before each section label, giving the page a consistent
+   entry point without adding another box. */
+.eyebrow::before {
+  content: '';
+  width: 1.5rem;
+  height: 1px;
+  background-color: var(--color-accent-500);
 }
 
 .inverse .eyebrow {
@@ -45,6 +57,9 @@
 
 .heading {
   font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
 }
 
 .intro {

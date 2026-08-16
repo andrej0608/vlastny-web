@@ -1,75 +1,93 @@
 /* ===========================================================================
-   DESIGN TOKENS
+   DESIGN TOKENS — dark navy / electric blue
    ---------------------------------------------------------------------------
    This is the single place where the visual identity of the site is defined.
-   Colours, typography, spacing, radii and shadows all live here.
+   Components reference these variables only; none of them hard-codes a colour,
+   a font or a shadow. Change a value here and the whole site follows.
 
-   The current values are a DELIBERATELY NEUTRAL placeholder foundation:
-   a near-black ink colour, a warm off-white page, and one restrained accent.
-   They exist so the structure can be judged without a visual identity getting
-   in the way.
+   The palette is a near-black charcoal with a navy cast, deep navy surfaces,
+   and one vivid blue accent used sparingly for emphasis, links and actions.
 
-   To restyle the whole site later, change the values in this file. Components
-   reference these variables only - none of them hard-code a colour or a font.
+   Several values below are load-bearing for accessibility rather than taste
+   and are commented as such — a lighter grey or a dimmer border fails WCAG on
+   this background. Verify contrast before changing anything marked that way.
    =========================================================================== */
 
 :root {
-  /* --- Brand palette -------------------------------------------------
-     Change these three groups and the entire site follows. */
+  /* --- Base ramp -----------------------------------------------------
+     Darkest is the page itself; each step up is a surface that sits
+     visually closer to the viewer. */
+  --color-base-950: #05070c; /* page background */
+  --color-base-900: #080b12; /* alternating section background */
+  --color-base-850: #0f141f; /* card surface */
+  --color-base-800: #141a28; /* raised card surface */
+  --color-base-750: #1a2130; /* hover surface */
+  --color-base-700: #212a3d; /* hairline border */
+  --color-base-600: #2c3750; /* stronger border */
+  --color-base-500: #445068; /* decorative dividers */
+  --color-base-450: #5c6884; /* form-field outline — needs 3:1, see below */
+  --color-base-400: #78849f; /* quietest text that still passes AA */
+  --color-base-300: #8e99b4; /* muted body text */
+  --color-base-200: #b9c2d6;
+  --color-base-100: #dde3ee;
+  --color-base-50: #f2f5fa; /* headings */
+  --color-base-0: #ffffff;
 
-  /* Neutral ramp. Used for text, borders, surfaces. */
-  --color-neutral-0: #ffffff;
-  --color-neutral-50: #f8f8f7;
-  --color-neutral-100: #f1f1ef;
-  --color-neutral-200: #e4e4e1;
-  --color-neutral-300: #cfcfca;
-  --color-neutral-400: #a3a39d;
-  /* Chosen so "subtle" text clears WCAG AA (4.5:1) on BOTH the white and the
-     off-white section background. A lighter grey here fails by a hair. */
-  --color-neutral-500: #70706a;
-  --color-neutral-600: #57574f;
-  --color-neutral-700: #3d3d37;
-  --color-neutral-800: #262622;
-  --color-neutral-900: #161614;
+  /* --- Accent --------------------------------------------------------
+     One blue, used for actions, links, focus and small highlights.
+     Nothing else on the site introduces a second hue. */
+  --color-accent-200: #bfdbfe;
+  --color-accent-300: #93c5fd;
+  --color-accent-400: #60a5fa; /* links and icons on dark */
+  --color-accent-500: #3b82f6; /* primary accent */
+  --color-accent-600: #2563eb; /* primary button */
+  --color-accent-700: #1d4ed8;
+  --color-accent-900: #10254d; /* tinted surface */
+  --color-accent-950: #0a1730; /* deepest tinted surface */
 
-  /* Accent. One colour, used sparingly for links, focus and primary actions. */
-  --color-accent-50: #eef4fb;
-  --color-accent-100: #d8e6f6;
-  --color-accent-300: #8db4e0;
-  --color-accent-500: #2f6db3;
-  --color-accent-600: #255a95;
-  --color-accent-700: #1d4675;
-
-  /* Feedback colours, used only by the contact form states. */
-  --color-success-bg: #edf7ef;
-  --color-success-border: #b7dcc0;
-  --color-success-text: #1d5c2c;
-  --color-error-bg: #fdeeee;
-  --color-error-border: #eebcbc;
-  --color-error-text: #8c2020;
+  /* --- Feedback ------------------------------------------------------
+     Tuned for the dark background; the light-theme versions were unreadable. */
+  --color-success-bg: #0c2417;
+  --color-success-border: #1f5c3a;
+  --color-success-text: #7ee2a8;
+  --color-error-bg: #2a1013;
+  --color-error-border: #7c2b33;
+  --color-error-text: #ff9ba4;
 
   /* --- Semantic roles ------------------------------------------------
-     Components use THESE, not the raw palette above. */
-  --color-bg: var(--color-neutral-0);
-  --color-bg-subtle: var(--color-neutral-50);
-  --color-bg-muted: var(--color-neutral-100);
-  --color-bg-inverse: var(--color-neutral-900);
+     Components use THESE, not the raw ramps above. */
+  --color-bg: var(--color-base-950);
+  --color-bg-subtle: var(--color-base-900);
+  --color-bg-muted: var(--color-base-850);
+  --color-surface: var(--color-base-850);
+  --color-surface-raised: var(--color-base-800);
+  --color-surface-hover: var(--color-base-750);
+  --color-bg-inverse: var(--color-base-50);
 
-  --color-text: var(--color-neutral-900);
-  --color-text-muted: var(--color-neutral-600);
-  --color-text-subtle: var(--color-neutral-500);
-  --color-text-inverse: var(--color-neutral-0);
-  --color-text-inverse-muted: var(--color-neutral-300);
+  --color-text: var(--color-base-50);
+  --color-text-muted: var(--color-base-300);
+  /* Passes 4.5:1 on the page, section and card backgrounds alike.
+     Anything darker fails on cards. */
+  --color-text-subtle: var(--color-base-400);
+  --color-text-inverse: var(--color-base-950);
+  --color-text-inverse-muted: var(--color-base-500);
 
-  --color-border: var(--color-neutral-200);
-  --color-border-strong: var(--color-neutral-300);
-  /* Form fields are identified by their outline alone, so that outline needs
+  --color-border: var(--color-base-700);
+  --color-border-strong: var(--color-base-600);
+  /* A text field is identified by its outline alone, so that outline needs
      3:1 contrast (WCAG 1.4.11). The decorative borders above do not. */
-  --color-border-input: #8f8f8a;
+  --color-border-input: var(--color-base-450);
 
-  --color-link: var(--color-accent-600);
-  --color-link-hover: var(--color-accent-700);
-  --color-focus: var(--color-accent-500);
+  --color-link: var(--color-accent-400);
+  --color-link-hover: var(--color-accent-300);
+  --color-focus: var(--color-accent-400);
+
+  /* --- Glow ----------------------------------------------------------
+     Used sparingly: primary actions and a handful of hover states. Never as
+     ambient decoration. */
+  --glow-accent-soft: 0 0 0 1px rgb(59 130 246 / 0.18), 0 8px 30px rgb(37 99 235 / 0.18);
+  --glow-accent-strong: 0 0 0 1px rgb(59 130 246 / 0.3), 0 10px 36px rgb(37 99 235 / 0.38);
+  --glow-ring: 0 0 24px rgb(59 130 246 / 0.28);
 
   /* --- Typography ----------------------------------------------------
      A system font stack: nothing to download, no layout shift, no external
@@ -88,10 +106,10 @@
   --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
   --text-xl: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
   --text-2xl: clamp(1.375rem, 1.25rem + 0.6vw, 1.75rem);
-  --text-3xl: clamp(1.625rem, 1.4rem + 1.1vw, 2.25rem);
-  --text-4xl: clamp(2rem, 1.6rem + 1.9vw, 3.25rem);
+  --text-3xl: clamp(1.75rem, 1.5rem + 1.2vw, 2.5rem);
+  --text-4xl: clamp(2.125rem, 1.6rem + 2.3vw, 3.75rem);
 
-  --leading-tight: 1.15;
+  --leading-tight: 1.1;
   --leading-snug: 1.3;
   --leading-normal: 1.6;
   --leading-relaxed: 1.75;
@@ -101,9 +119,9 @@
   --weight-semibold: 600;
   --weight-bold: 700;
 
-  --tracking-tight: -0.02em;
+  --tracking-tight: -0.025em;
   --tracking-normal: 0;
-  --tracking-wide: 0.08em;
+  --tracking-wide: 0.1em;
 
   /* --- Spacing scale -------------------------------------------------- */
   --space-1: 0.25rem;
@@ -118,35 +136,38 @@
   --space-10: 5rem;
 
   /* Vertical rhythm between page sections, tighter on small screens. */
-  --section-padding-y: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+  --section-padding-y: clamp(4rem, 3rem + 5vw, 7.5rem);
 
   /* --- Layout --------------------------------------------------------- */
   --container-max: 72rem;
   --container-narrow: 46rem;
   --container-padding: clamp(1.25rem, 0.9rem + 1.6vw, 2.5rem);
-  --header-height: 4.25rem;
+  --header-height: 4.5rem;
 
   /* --- Radii ----------------------------------------------------------- */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
   --radius-full: 999px;
 
-  /* --- Elevation ------------------------------------------------------- */
-  --shadow-sm: 0 1px 2px rgb(22 22 20 / 0.06);
-  --shadow-md: 0 2px 8px rgb(22 22 20 / 0.07);
-  --shadow-lg: 0 8px 28px rgb(22 22 20 / 0.1);
+  /* --- Elevation -------------------------------------------------------
+     Shadows on a near-black background read as depth only when they are
+     genuinely dark; the light-theme values were invisible here. */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
+  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.45);
+  --shadow-lg: 0 18px 48px rgb(0 0 0 / 0.55);
 
   /* --- Motion ----------------------------------------------------------
-     Kept minimal on purpose. See globals.css for the reduced-motion guard. */
-  --transition-fast: 120ms ease;
-  --transition-base: 200ms ease;
+     Restrained by design. See globals.css for the reduced-motion guard. */
+  --transition-fast: 140ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 240ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* --- Focus ring ------------------------------------------------------ */
-  --focus-ring-width: 3px;
+  /* --- Focus ------------------------------------------------------------ */
+  --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
 
-  /* --- Stacking -------------------------------------------------------- */
+  /* --- Stacking --------------------------------------------------------- */
   --z-header: 100;
   --z-mobile-nav: 200;
   --z-skip-link: 300;

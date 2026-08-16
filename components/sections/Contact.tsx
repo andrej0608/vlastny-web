@@ -9,6 +9,7 @@ import {
 } from '@/content/site';
 import { Section } from '@/components/ui/Section';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
+import { MailIcon, PhoneIcon, LinkedInIcon } from '@/components/ui/ContactIcons';
 import { ContactForm } from './ContactForm';
 import styles from './Contact.module.css';
 
@@ -49,18 +50,18 @@ export function Contact({ locale, dict }: ContactProps) {
             <ul className={styles.contactList} hidden={!hasDirectContactChannel}>
               {emailHref && (
                 <li className={styles.contactItem}>
-                  <span className={styles.contactLabel}>{dict.common.email}</span>
-                  <a href={emailHref} className={styles.contactValue}>
-                    {siteConfig.contact.email}
-                  </a>
-                </li>
-              )}
-
-              {telHref && (
-                <li className={styles.contactItem}>
-                  <span className={styles.contactLabel}>{dict.common.phone}</span>
-                  <a href={telHref} className={styles.contactValue}>
-                    {siteConfig.contact.phone}
+                  <a href={emailHref} className={styles.contactRow}>
+                    <span className={styles.contactIcon} aria-hidden="true">
+                      <MailIcon />
+                    </span>
+                    <span className={styles.contactText}>
+                      <span className={styles.contactLabel}>
+                        {dict.common.email}
+                      </span>
+                      <span className={styles.contactValue}>
+                        {siteConfig.contact.email}
+                      </span>
+                    </span>
                   </a>
                 </li>
               )}
@@ -70,22 +71,50 @@ export function Contact({ locale, dict }: ContactProps) {
                   them once this link is deliberately followed. */}
               {whatsappHref && (
                 <li className={styles.contactItem}>
-                  <span className={styles.contactLabel}>
-                    {dict.common.whatsapp}
-                  </span>
                   <a
                     href={whatsappHref}
-                    className={[styles.contactValue, styles.whatsappLink].join(' ')}
+                    className={styles.contactRow}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <WhatsAppIcon />
-                    <span>{siteConfig.contact.phone}</span>
+                    <span
+                      className={[styles.contactIcon, styles.whatsappIcon].join(
+                        ' '
+                      )}
+                      aria-hidden="true"
+                    >
+                      <WhatsAppIcon size={20} />
+                    </span>
+                    <span className={styles.contactText}>
+                      <span className={styles.contactLabel}>
+                        {dict.common.whatsapp}
+                      </span>
+                      <span className={styles.contactValue}>
+                        {siteConfig.contact.phone}
+                      </span>
+                    </span>
                     {/* Says what the link does, since the visible text is
                         just a number. */}
                     <span className="visually-hidden">
-                      {' '}
                       — {dict.contact.whatsappAction}
+                    </span>
+                  </a>
+                </li>
+              )}
+
+              {telHref && (
+                <li className={styles.contactItem}>
+                  <a href={telHref} className={styles.contactRow}>
+                    <span className={styles.contactIcon} aria-hidden="true">
+                      <PhoneIcon />
+                    </span>
+                    <span className={styles.contactText}>
+                      <span className={styles.contactLabel}>
+                        {dict.common.phone}
+                      </span>
+                      <span className={styles.contactValue}>
+                        {siteConfig.contact.phone}
+                      </span>
                     </span>
                   </a>
                 </li>
@@ -93,16 +122,23 @@ export function Contact({ locale, dict }: ContactProps) {
 
               {siteConfig.contact.linkedin && (
                 <li className={styles.contactItem}>
-                  <span className={styles.contactLabel}>
-                    {dict.common.linkedin}
-                  </span>
                   <a
                     href={siteConfig.contact.linkedin}
-                    className={styles.contactValue}
+                    className={styles.contactRow}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {dict.common.linkedin}
+                    <span className={styles.contactIcon} aria-hidden="true">
+                      <LinkedInIcon />
+                    </span>
+                    <span className={styles.contactText}>
+                      <span className={styles.contactLabel}>
+                        {dict.common.linkedin}
+                      </span>
+                      <span className={styles.contactValue}>
+                        {siteConfig.name}
+                      </span>
+                    </span>
                   </a>
                 </li>
               )}

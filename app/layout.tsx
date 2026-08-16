@@ -28,7 +28,9 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   // Zooming is never disabled - pinch-to-zoom is an accessibility requirement.
-  themeColor: '#ffffff',
+  // Matches --color-base-950 so mobile browser chrome blends into the page.
+  themeColor: '#05070c',
+  colorScheme: 'dark',
 };
 
 export default function RootLayout({

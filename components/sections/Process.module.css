@@ -7,9 +7,14 @@
 
 .step {
   padding: var(--space-5);
-  background-color: var(--color-bg);
+  background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
+  transition: border-color var(--transition-base);
+}
+
+.step:hover {
+  border-color: var(--color-accent-900);
 }
 
 .number {

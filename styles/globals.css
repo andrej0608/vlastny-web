@@ -21,6 +21,9 @@ html {
   scroll-behavior: smooth;
   /* Anchor targets clear the sticky header instead of hiding underneath it. */
   scroll-padding-top: calc(var(--header-height) + var(--space-4));
+  /* Tells the browser to render its own UI (scrollbars, form controls) dark. */
+  color-scheme: dark;
+  background-color: var(--color-bg);
 }
 
 body {
@@ -33,6 +36,12 @@ body {
   font-weight: var(--weight-normal);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Selection picks up the accent instead of the browser default blue. */
+::selection {
+  background-color: var(--color-accent-600);
+  color: var(--color-base-0);
 }
 
 /* Images never overflow their container and never cause layout shift. */
@@ -147,11 +156,11 @@ ol {
   left: var(--space-2);
   z-index: var(--z-skip-link);
   padding: var(--space-3) var(--space-4);
-  background-color: var(--color-bg);
+  background-color: var(--color-surface-raised);
   color: var(--color-text);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   font-weight: var(--weight-medium);
   text-decoration: none;
   transform: translateY(-200%);

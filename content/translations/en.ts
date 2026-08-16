@@ -39,11 +39,19 @@ export const en: Dictionary = {
   },
 
   hero: {
-    headline: 'Professional websites and smart automation for your business.',
+    // Reads as: "Professional websites and smart automation for your business."
+    headlineLead: 'Professional websites and ',
+    headlineAccent: 'smart automation',
+    headlineTail: ' for your business.',
     supporting:
       'I help businesses in Belgium and the Netherlands with modern websites and practical digital solutions that save time and simplify everyday processes.',
     primaryCta: 'Discuss your project',
     secondaryCta: 'View my work',
+    points: [
+      'Work directly with me',
+      'Clear proposal upfront',
+      'Belgium & the Netherlands',
+    ],
   },
 
   services: {
@@ -58,24 +66,32 @@ export const en: Dictionary = {
         title: 'Custom websites',
         description:
           'Professional websites tailored to the business, its services and its customers.',
+        imageAlt:
+          'Illustration of a website being assembled from text, images and sections.',
       },
       {
         id: 'website-redesign',
         title: 'Website redesign',
         description:
           'Modernisation of existing websites that are outdated or no longer properly represent the business.',
+        imageAlt:
+          'Illustration of an outdated website next to a renewed, more modern version.',
       },
       {
         id: 'bedrijfsautomatisering',
         title: 'Business automation',
         description:
           'Practical digital solutions that simplify repetitive business processes such as customer enquiries, quotations, orders and administrative workflows.',
+        imageAlt:
+          'Illustration of customer enquiries being processed automatically into documents and overviews.',
       },
       {
         id: 'onderhoud',
         title: 'Maintenance & updates',
         description:
           'Support with future changes to text, images, services, prices and other website content.',
+        imageAlt:
+          'Illustration of a maintenance screen showing settings, updates and status overviews.',
       },
     ],
   },

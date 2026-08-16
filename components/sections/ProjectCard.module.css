@@ -2,9 +2,27 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: var(--color-bg);
+  background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.card:hover {
+  background-color: var(--color-surface-raised);
+  border-color: var(--color-base-600);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
+  }
 }
 
 /* Fixed aspect ratio reserves the space before the image loads, so nothing
@@ -28,8 +46,8 @@
   height: 100%;
   background-image: repeating-linear-gradient(
     45deg,
-    var(--color-neutral-100) 0 10px,
-    var(--color-neutral-200) 10px 20px
+    var(--color-base-900) 0 10px,
+    var(--color-base-850) 10px 20px
   );
 }
 
@@ -60,15 +78,15 @@
 }
 
 .statusConcept {
-  background-color: var(--color-neutral-100);
-  border-color: var(--color-neutral-300);
-  color: var(--color-neutral-700);
+  background-color: var(--color-base-900);
+  border-color: var(--color-base-600);
+  color: var(--color-text-muted);
 }
 
 .statusClient {
-  background-color: var(--color-accent-50);
-  border-color: var(--color-accent-300);
-  color: var(--color-accent-700);
+  background-color: var(--color-accent-950);
+  border-color: var(--color-accent-900);
+  color: var(--color-accent-300);
 }
 
 .type {
