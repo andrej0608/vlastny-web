@@ -6,10 +6,11 @@ import type { Dictionary } from './dictionary';
  */
 export const nl: Dictionary = {
   meta: {
-    title: 'Andrej Juriga — Websites en bedrijfsautomatisering in België en Nederland',
-    ogTitle: 'Een professionele website die past bij uw bedrijf',
+    title:
+      'Andrej Juriga — Websites en bedrijfsautomatisering voor bedrijven in België en Nederland',
+    ogTitle: 'Professionele websites en slimme automatisering voor uw bedrijf',
     description:
-      'Professionele websites en praktische bedrijfsautomatisering voor kleine en middelgrote bedrijven in Belgisch Limburg, de Kempen en Zuid-Nederland. Rechtstreeks contact, duidelijke afspraken.',
+      'Moderne websites en praktische automatisering voor kleine en middelgrote bedrijven in Belgisch Limburg, de Kempen en Zuid-Nederland. Digitale oplossingen die tijd besparen en processen eenvoudiger maken.',
     tagline: 'Websiteontwikkeling & bedrijfsautomatisering',
   },
 
@@ -37,11 +38,11 @@ export const nl: Dictionary = {
   },
 
   hero: {
-    headline: 'Een professionele website die past bij uw bedrijf.',
+    headline: 'Professionele websites en slimme automatisering voor uw bedrijf.',
     supporting:
-      'Moderne, snelle en gebruiksvriendelijke websites en digitale oplossingen voor bedrijven in België en Nederland.',
-    primaryCta: 'Bekijk mijn werk',
-    secondaryCta: 'Neem contact op',
+      'Ik help bedrijven in België en Nederland met moderne websites en praktische digitale oplossingen die tijd besparen en processen eenvoudiger maken.',
+    primaryCta: 'Bespreek uw project',
+    secondaryCta: 'Bekijk mijn werk',
   },
 
   services: {
@@ -80,15 +81,59 @@ export const nl: Dictionary = {
 
   whyWebsite: {
     eyebrow: 'Waarom een professionele website',
-    headline: 'Uw website is vaak de eerste indruk van uw bedrijf.',
-    text: 'Potentiële klanten zoeken vaak online voordat ze contact opnemen. Een duidelijke en professionele website helpt hen snel begrijpen wat u aanbiedt, waar ze de juiste informatie kunnen vinden en hoe ze u kunnen bereiken.',
+    headline: 'Een website die werkt voor uw bedrijf.',
+    text: 'Een goede website moet niet alleen professioneel ogen. Ze moet klanten helpen snel te begrijpen wat u aanbiedt en het eenvoudig maken om de volgende stap te zetten.',
     benefits: [
-      'Professionele eerste indruk',
-      'Duidelijk op mobiel, tablet en computer',
-      'Eenvoudige contactmogelijkheden',
-      'Overzichtelijke presentatie van diensten',
-      'Integratie met telefoon, e-mail, WhatsApp of Google Maps waar relevant',
+      {
+        title: 'Duidelijk voor uw klanten',
+        description:
+          'Bezoekers begrijpen snel welke diensten u aanbiedt en waarom ze bij uw bedrijf moeten zijn.',
+      },
+      {
+        title: 'Gemakkelijk contact',
+        description:
+          'Maak bellen, e-mailen, WhatsApp gebruiken of een aanvraag sturen zo eenvoudig mogelijk.',
+      },
+      {
+        title: 'Professionele uitstraling',
+        description:
+          'Een moderne website helpt uw bedrijf betrouwbaar en professioneel over te komen.',
+      },
+      {
+        title: 'Minder onnodige vragen',
+        description:
+          'Duidelijke informatie over diensten, locatie, openingsuren en werkwijze kan terugkerende vragen verminderen.',
+      },
     ],
+  },
+
+  automation: {
+    id: 'automatisering',
+    eyebrow: 'Bedrijfsautomatisering',
+    headline: 'Wat kan automatisering voor uw bedrijf betekenen?',
+    intro:
+      'Veel bedrijven besteden dagelijks tijd aan terugkerende taken die gedeeltelijk geautomatiseerd kunnen worden. Een eenvoudige digitale oplossing kan helpen om informatie sneller te verwerken, fouten te verminderen en tijd vrij te maken voor belangrijker werk.',
+    useCases: [
+      {
+        id: 'klantaanvragen',
+        title: 'Klantaanvragen',
+        description:
+          'Informatie uit aanvragen kan automatisch worden verzameld, gestructureerd en voorbereid voor verdere verwerking.',
+      },
+      {
+        id: 'offertes',
+        title: 'Offertes',
+        description:
+          'Gegevens van klanten en aanvragen kunnen worden gebruikt om sneller en consistenter offertes voor te bereiden.',
+      },
+      {
+        id: 'bestellingen',
+        title: 'Bestellingen & administratie',
+        description:
+          'Terugkerende stappen rond bestellingen, gegevensverwerking en administratieve taken kunnen eenvoudiger worden gemaakt.',
+      },
+    ],
+    cta: 'Bespreek wat mogelijk is',
   },
 
   work: {
@@ -106,6 +151,7 @@ export const nl: Dictionary = {
     statusLabel: 'Status',
     typeLabel: 'Type',
     noLiveUrl: 'Nog niet online',
+    valueLabel: 'Wat het oplevert',
   },
 
   process: {
@@ -147,11 +193,9 @@ export const nl: Dictionary = {
     eyebrow: 'Over mij',
     headline: 'Hallo, ik ben Andrej.',
     paragraphs: [
-      'Ik ontwerp en bouw moderne websites en digitale oplossingen voor bedrijven in België en Nederland. Mijn focus ligt op duidelijke, snelle en professionele websites zonder onnodige complexiteit.',
-      'Sinds 2022 werk ik binnen een hightechbedrijf, waar ik dagelijks in aanraking kom met technologie, processen en probleemoplossing. Vanaf 2025 ben ik me actief gaan verdiepen in artificiële intelligentie — niet alleen in het gebruik ervan, maar ook in hoe AI-systemen werken, informatie verwerken en praktisch kunnen worden ingezet binnen bedrijven.',
-      'Naast websites richt ik me daarom ook steeds meer op bedrijfsautomatisering. Denk bijvoorbeeld aan het automatisch verwerken van klantaanvragen, het opstellen van offertes op basis van ingevoerde gegevens, het verwerken van bestellingen of het vereenvoudigen van andere terugkerende administratieve processen.',
-      'Mijn doel is niet om technologie ingewikkelder te maken, maar juist om ze praktisch in te zetten om bedrijven tijd te besparen en processen eenvoudiger te maken.',
-      'U heeft rechtstreeks contact met de persoon die uw website of oplossing ontwerpt en bouwt, waardoor communicatie eenvoudig en persoonlijk blijft.',
+      'Ik ontwerp en bouw moderne websites en digitale oplossingen voor bedrijven in België en Nederland. Sinds 2022 werk ik binnen een hightechomgeving, waar technologie, processen en probleemoplossing deel uitmaken van mijn dagelijkse werk.',
+      'Vanaf 2025 ben ik me actief gaan verdiepen in artificiële intelligentie en vooral in hoe AI-systemen informatie verwerken en praktisch kunnen worden ingezet binnen bedrijven. Vanuit die interesse ben ik me naast websites ook gaan richten op automatisering van bijvoorbeeld klantaanvragen, offertes, bestellingen en andere terugkerende processen.',
+      'Mijn doel is om technologie praktisch te gebruiken: duidelijke oplossingen die tijd besparen en processen eenvoudiger maken. U heeft rechtstreeks contact met de persoon die uw website of oplossing ontwerpt en bouwt.',
     ],
   },
 
@@ -188,6 +232,18 @@ export const nl: Dictionary = {
           'De prijs hangt af van de grootte, inhoud en gewenste functionaliteiten. Na een korte kennismaking ontvangt u een duidelijke en vrijblijvende offerte.',
       },
       {
+        id: 'duur',
+        question: 'Hoe lang duurt het om een website te maken?',
+        answer:
+          'Dit hangt af van de grootte en complexiteit van het project. Tijdens de eerste bespreking kunnen we de inhoud, wensen en een realistische planning bepalen.',
+      },
+      {
+        id: 'aanleveren',
+        question: 'Wat moet ik zelf aanleveren?',
+        answer:
+          "Dit verschilt per project. Denk bijvoorbeeld aan bedrijfsinformatie, diensten, logo, foto's en contactgegevens. Als bepaalde inhoud nog ontbreekt, kunnen we samen bekijken wat nodig is.",
+      },
+      {
         id: 'redesign',
         question: 'Kan mijn bestaande website vernieuwd worden?',
         answer:
@@ -198,6 +254,12 @@ export const nl: Dictionary = {
         question: 'Kan ik later wijzigingen laten uitvoeren?',
         answer:
           'Ja. Ook na oplevering kunnen teksten, afbeeldingen, diensten, prijzen en andere onderdelen aangepast worden.',
+      },
+      {
+        id: 'eigendom',
+        question: 'Is de website na oplevering van mij?',
+        answer:
+          'De afspraken hierover worden vooraf duidelijk besproken en opgenomen in het voorstel, zodat u precies weet wat inbegrepen is.',
       },
       {
         id: 'domein-hosting',
@@ -215,6 +277,12 @@ export const nl: Dictionary = {
         question: 'Wat kan er geautomatiseerd worden binnen mijn bedrijf?',
         answer:
           'Dit hangt af van uw processen. Voorbeelden zijn het verwerken van klantaanvragen, het automatisch voorbereiden van offertes, het verwerken van bestellingen of het vereenvoudigen van terugkerende administratieve taken.',
+      },
+      {
+        id: 'vrijblijvend',
+        question: 'Kunnen we eerst vrijblijvend bespreken wat mijn bedrijf nodig heeft?',
+        answer:
+          'Ja. Een eerste gesprek is bedoeld om te begrijpen wat uw bedrijf nodig heeft en welke oplossing daarbij past.',
       },
     ],
   },
@@ -234,8 +302,18 @@ export const nl: Dictionary = {
       company: { label: 'Bedrijf', placeholder: 'Naam van uw bedrijf' },
       email: { label: 'E-mail', placeholder: 'u@bedrijf.be' },
       phone: { label: 'Telefoonnummer', placeholder: '+32 470 00 00 00' },
+      serviceType: {
+        label: 'Waarmee kan ik u helpen?',
+        placeholder: 'Maak een keuze',
+        options: [
+          { value: 'new-website', label: 'Nieuwe website' },
+          { value: 'website-redesign', label: 'Bestaande website vernieuwen' },
+          { value: 'automation', label: 'Bedrijfsautomatisering' },
+          { value: 'other', label: 'Anders' },
+        ],
+      },
       message: {
-        label: 'Waarmee kan ik helpen?',
+        label: 'Vertel kort over uw project',
         placeholder:
           'Vertel kort over uw bedrijf en wat u zoekt. Een paar zinnen volstaat.',
       },
@@ -260,9 +338,9 @@ export const nl: Dictionary = {
       },
       failure: {
         heading: 'Het bericht kon niet verzonden worden.',
-        text: 'Er ging iets mis bij het verzenden. Probeer het later opnieuw of stuur een e-mail.',
-        notConfigured:
-          'Het verzenden via het formulier is nog niet actief. Stuur uw bericht voorlopig rechtstreeks per e-mail.',
+        text: 'Er ging iets mis bij het verzenden. Probeer het later opnieuw.',
+        notConfigured: 'Het verzenden via het formulier is nog niet actief.',
+        emailFallback: 'U kunt uw bericht rechtstreeks per e-mail sturen:',
       },
     },
   },

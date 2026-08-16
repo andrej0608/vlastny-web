@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import type { Locale } from '@/lib/i18n';
 import type { Dictionary } from '@/content/translations';
-import { siteConfig } from '@/content/site';
+import { siteConfig, emailHref } from '@/content/site';
 import { Button } from '@/components/ui/Button';
 import {
   FIELD_MAX_LENGTHS,
@@ -67,6 +67,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
       company: get('company'),
       email: get('email'),
       phone: get('phone'),
+      serviceType: get('serviceType'),
       message: get('message'),
       website: get('website'),
     };
@@ -181,10 +182,16 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
             <p className={styles.feedbackText}>
               {failureReason === 'not-configured'
                 ? t.failure.notConfigured
-                : t.failure.text}{' '}
-              <a href={`mailto:${siteConfig.contact.email}`}>
-                {siteConfig.contact.email}
-              </a>
+                : t.failure.text}
+              {/* Only offer the e-mail fallback when an address actually
+                  exists, so nobody is sent to a dead mailbox. */}
+              {emailHref && (
+                <>
+                  {' '}
+                  {t.failure.emailFallback}{' '}
+                  <a href={emailHref}>{siteConfig.contact.email}</a>
+                </>
+              )}
             </p>
           </div>
         )}
@@ -250,6 +257,28 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
           onInput={handleInput}
           disabled={isSubmitting}
         />
+      </div>
+
+      {/* Optional: helps route the enquiry, but never blocks sending it. */}
+      <div className={styles.field}>
+        <label htmlFor={fieldId('serviceType')} className={styles.label}>
+          {t.serviceType.label}
+          <span className={styles.optional}> ({t.optional})</span>
+        </label>
+        <select
+          id={fieldId('serviceType')}
+          name="serviceType"
+          className={[styles.input, styles.select].join(' ')}
+          defaultValue=""
+          disabled={isSubmitting}
+        >
+          <option value="">{t.serviceType.placeholder}</option>
+          {t.serviceType.options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className={styles.field}>

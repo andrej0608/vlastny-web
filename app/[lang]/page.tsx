@@ -6,6 +6,7 @@ import { buildPageMetadata } from '@/lib/seo';
 import { buildStructuredData } from '@/lib/structured-data';
 import { Hero } from '@/components/sections/Hero';
 import { Services } from '@/components/sections/Services';
+import { Automation } from '@/components/sections/Automation';
 import { WhyWebsite } from '@/components/sections/WhyWebsite';
 import { Work } from '@/components/sections/Work';
 import { Process } from '@/components/sections/Process';
@@ -54,6 +55,10 @@ export default async function HomePage({ params }: PageProps) {
 
       <Hero locale={locale} dict={dict} />
       <Services dict={dict} />
+      {/* Automation sits directly after the services overview: it is the part
+          of the offering that needs explaining, and it comes before the
+          portfolio so the concept projects land in context. */}
+      <Automation locale={locale} dict={dict} />
       <WhyWebsite dict={dict} />
       <Work locale={locale} dict={dict} />
       <Process dict={dict} />

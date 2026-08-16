@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import {
   FIELD_MAX_LENGTHS,
   hasErrors,
+  isServiceTypeValue,
   looksLikeSpam,
   validateContactForm,
 } from '@/lib/contact-validation';
@@ -68,9 +69,25 @@ export async function POST(request: Request) {
     company: truncate(payload.company, FIELD_MAX_LENGTHS.company).trim(),
     email: truncate(payload.email, FIELD_MAX_LENGTHS.email).trim(),
     phone: truncate(payload.phone, FIELD_MAX_LENGTHS.phone).trim(),
+    serviceType: truncate(payload.serviceType, FIELD_MAX_LENGTHS.serviceType).trim(),
     message: truncate(payload.message, FIELD_MAX_LENGTHS.message).trim(),
     website: truncate(payload.website, 200),
   };
+
+  /**
+   * The selector is optional, but an unrecognised value is dropped rather
+   * than forwarded - the browser is not trusted to send only valid keys.
+   */
+  const serviceTypeKey = isServiceTypeValue(values.serviceType)
+    ? values.serviceType
+    : null;
+
+  /* Translated back into words so the notification e-mail reads naturally
+     instead of showing an internal key such as "website-redesign". */
+  const serviceTypeLabel =
+    dict.contact.form.serviceType.options.find(
+      (option) => option.value === serviceTypeKey
+    )?.label ?? '—';
 
   // Never trust the browser: everything is validated again here.
   const errors = validateContactForm(values, dict.contact.form.errors);
@@ -107,8 +124,15 @@ export async function POST(request: Request) {
     );
   }
 
+  // Leading with the enquiry type makes the inbox scannable at a glance.
   const subject = sanitiseHeaderValue(
-    `Website enquiry — ${values.name}${values.company ? ` (${values.company})` : ''}`
+    [
+      'Website enquiry',
+      serviceTypeKey ? serviceTypeLabel : null,
+      `${values.name}${values.company ? ` (${values.company})` : ''}`,
+    ]
+      .filter(Boolean)
+      .join(' — ')
   );
 
   const lines = [
@@ -116,6 +140,7 @@ export async function POST(request: Request) {
     ['Company', values.company || '—'],
     ['Email', values.email],
     ['Phone', values.phone || '—'],
+    ['Enquiry about', serviceTypeLabel],
     ['Language', locale],
   ] as const;
 

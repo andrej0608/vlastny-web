@@ -12,9 +12,11 @@ export function WhyWebsite({ dict }: { dict: Dictionary }) {
           <p className={styles.text}>{dict.whyWebsite.text}</p>
         </div>
 
+        {/* Each benefit names an outcome and then explains it, rather than
+            listing a feature on its own. */}
         <ul className={styles.benefits}>
           {dict.whyWebsite.benefits.map((benefit) => (
-            <li key={benefit} className={styles.benefit}>
+            <li key={benefit.title} className={styles.benefit}>
               <span className={styles.check} aria-hidden="true">
                 <svg viewBox="0 0 20 20" width="14" height="14" fill="none">
                   <path
@@ -26,7 +28,10 @@ export function WhyWebsite({ dict }: { dict: Dictionary }) {
                   />
                 </svg>
               </span>
-              <span>{benefit}</span>
+              <div className={styles.benefitBody}>
+                <h3 className={styles.benefitTitle}>{benefit.title}</h3>
+                <p className={styles.benefitText}>{benefit.description}</p>
+              </div>
             </li>
           ))}
         </ul>

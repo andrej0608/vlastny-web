@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import type { Locale } from '@/lib/i18n';
 import type { Dictionary } from '@/content/translations';
-import { siteConfig, telHref } from '@/content/site';
+import {
+  siteConfig,
+  emailHref,
+  telHref,
+  hasDirectContactChannel,
+} from '@/content/site';
 import { homePath, sectionPath } from '@/lib/routes';
 import { Container } from '@/components/ui/Container';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -43,36 +48,43 @@ export function Footer({ locale, dict }: FooterProps) {
             </ul>
           </div>
 
-          <div className={styles.column}>
-            <h2 className={styles.columnHeading}>{dict.footer.contactHeading}</h2>
-            <ul className={styles.linkList}>
-              <li>
-                <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className={styles.link}
-                >
-                  {siteConfig.contact.email}
-                </a>
-              </li>
-              {telHref && (
-                <li>
-                  <a href={telHref} className={styles.link}>
-                    {siteConfig.contact.phone}
-                  </a>
-                </li>
-              )}
-              <li>
-                <a
-                  href={siteConfig.contact.linkedin}
-                  className={styles.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {dict.common.linkedin}
-                </a>
-              </li>
-            </ul>
-          </div>
+          {/* Dropped entirely when no contact channel is configured, rather
+              than leaving a heading above an empty list. */}
+          {hasDirectContactChannel && (
+            <div className={styles.column}>
+              <h2 className={styles.columnHeading}>
+                {dict.footer.contactHeading}
+              </h2>
+              <ul className={styles.linkList}>
+                {emailHref && (
+                  <li>
+                    <a href={emailHref} className={styles.link}>
+                      {siteConfig.contact.email}
+                    </a>
+                  </li>
+                )}
+                {telHref && (
+                  <li>
+                    <a href={telHref} className={styles.link}>
+                      {siteConfig.contact.phone}
+                    </a>
+                  </li>
+                )}
+                {siteConfig.contact.linkedin && (
+                  <li>
+                    <a
+                      href={siteConfig.contact.linkedin}
+                      className={styles.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {dict.common.linkedin}
+                    </a>
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
 
           <div className={styles.column}>
             <h2 className={styles.columnHeading}>{dict.footer.languageHeading}</h2>

@@ -6,10 +6,11 @@ import type { Dictionary } from './dictionary';
  */
 export const en: Dictionary = {
   meta: {
-    title: 'Andrej Juriga — Websites and business automation in Belgium and the Netherlands',
-    ogTitle: 'A professional website that fits your business',
+    title:
+      'Andrej Juriga — Websites and business automation for businesses in Belgium and the Netherlands',
+    ogTitle: 'Professional websites and smart automation for your business',
     description:
-      'Professional websites and practical business automation for small and medium-sized businesses across Belgian Limburg, the Kempen region and the south of the Netherlands. Work directly with the person building it.',
+      'Modern websites and practical automation for small and medium-sized businesses across Belgian Limburg, the Kempen region and the south of the Netherlands. Digital solutions that save time and simplify everyday processes.',
     tagline: 'Website development & business automation',
   },
 
@@ -37,11 +38,11 @@ export const en: Dictionary = {
   },
 
   hero: {
-    headline: 'A professional website that fits your business.',
+    headline: 'Professional websites and smart automation for your business.',
     supporting:
-      'Modern, fast and user-friendly websites and digital solutions for businesses in Belgium and the Netherlands.',
-    primaryCta: 'View my work',
-    secondaryCta: 'Contact me',
+      'I help businesses in Belgium and the Netherlands with modern websites and practical digital solutions that save time and simplify everyday processes.',
+    primaryCta: 'Discuss your project',
+    secondaryCta: 'View my work',
   },
 
   services: {
@@ -80,15 +81,59 @@ export const en: Dictionary = {
 
   whyWebsite: {
     eyebrow: 'Why a professional website',
-    headline: 'Your website is often the first impression of your business.',
-    text: 'Potential customers often search online before making contact. A clear and professional website helps them quickly understand what you offer, find the information they need and get in touch with you.',
+    headline: 'A website that works for your business.',
+    text: 'A good website should do more than look professional. It should help customers quickly understand what you offer and make it easy to take the next step.',
     benefits: [
-      'Professional first impression',
-      'Clear on mobile, tablet and desktop',
-      'Easy ways to get in touch',
-      'Clear presentation of services',
-      'Integration with phone, email, WhatsApp or Google Maps where relevant',
+      {
+        title: 'Clear for your customers',
+        description:
+          'Visitors quickly understand what you offer and why they should choose your business.',
+      },
+      {
+        title: 'Easy contact',
+        description:
+          'Make calling, emailing, WhatsApp or sending an enquiry as simple as possible.',
+      },
+      {
+        title: 'Professional presence',
+        description:
+          'A modern website helps your business appear professional and trustworthy.',
+      },
+      {
+        title: 'Fewer unnecessary questions',
+        description:
+          'Clear information about services, location, opening hours and your process can reduce repetitive questions.',
+      },
     ],
+  },
+
+  automation: {
+    id: 'automation',
+    eyebrow: 'Business automation',
+    headline: 'What can automation do for your business?',
+    intro:
+      'Many businesses spend time every day on repetitive tasks that can be partly automated. A practical digital solution can help process information faster, reduce errors and free up time for more important work.',
+    useCases: [
+      {
+        id: 'klantaanvragen',
+        title: 'Customer enquiries',
+        description:
+          'Information from enquiries can be automatically collected, structured and prepared for further processing.',
+      },
+      {
+        id: 'offertes',
+        title: 'Quotations',
+        description:
+          'Customer and enquiry information can be used to prepare quotations faster and more consistently.',
+      },
+      {
+        id: 'bestellingen',
+        title: 'Orders & administration',
+        description:
+          'Repetitive steps around orders, information processing and administrative tasks can be simplified.',
+      },
+    ],
+    cta: 'Discuss what is possible',
   },
 
   work: {
@@ -106,6 +151,7 @@ export const en: Dictionary = {
     statusLabel: 'Status',
     typeLabel: 'Type',
     noLiveUrl: 'Not online yet',
+    valueLabel: 'What it achieves',
   },
 
   process: {
@@ -146,11 +192,9 @@ export const en: Dictionary = {
     eyebrow: 'About me',
     headline: "Hi, I'm Andrej.",
     paragraphs: [
-      'I design and build modern websites and digital solutions for businesses in Belgium and the Netherlands. My focus is on creating clear, fast and professional websites without unnecessary complexity.',
-      'Since 2022, I have been working within a high-tech company, where I am exposed to technology, processes and problem-solving on a daily basis. In 2025, I started actively exploring artificial intelligence — not only how to use it, but also how AI systems work, process information and can be applied in practical business environments.',
-      'Alongside website development, I am therefore increasingly focused on business automation. This can include automatically processing customer enquiries, generating quotations based on provided information, handling orders or simplifying other repetitive administrative processes.',
-      'My goal is not to make technology more complicated, but to use it practically to save businesses time and simplify their processes.',
-      'You work directly with the person designing and building your website or solution, keeping communication simple and personal.',
+      'I design and build modern websites and digital solutions for businesses in Belgium and the Netherlands. Since 2022, I have worked in a high-tech environment where technology, processes and problem-solving are part of my daily work.',
+      'In 2025, I started actively exploring artificial intelligence, with a particular interest in how AI systems process information and how they can be applied practically in businesses. This led me to focus not only on websites, but also on automating processes such as customer enquiries, quotations, orders and other repetitive tasks.',
+      'My goal is to use technology in a practical way: creating clear solutions that save time and simplify processes. You work directly with the person designing and building your website or solution.',
     ],
   },
 
@@ -187,6 +231,18 @@ export const en: Dictionary = {
           'The price depends on the size, content and required functionality. After a short introduction, you will receive a clear, no-obligation quotation.',
       },
       {
+        id: 'duur',
+        question: 'How long does it take to build a website?',
+        answer:
+          'This depends on the size and complexity of the project. During the first discussion, we can determine the content, requirements and a realistic timeline.',
+      },
+      {
+        id: 'aanleveren',
+        question: 'What do I need to provide?',
+        answer:
+          'This depends on the project. Typical items include business information, services, logo, photos and contact details. If some content is still missing, we can determine together what is needed.',
+      },
+      {
         id: 'redesign',
         question: 'Can my existing website be redesigned?',
         answer: 'Yes. Existing websites can be redesigned and modernised.',
@@ -196,6 +252,12 @@ export const en: Dictionary = {
         question: 'Can changes be made later?',
         answer:
           'Yes. Text, images, services, prices and other website content can also be updated after launch.',
+      },
+      {
+        id: 'eigendom',
+        question: 'Will the website belong to me after completion?',
+        answer:
+          'The arrangements are clearly discussed beforehand and included in the proposal, so you know exactly what is included.',
       },
       {
         id: 'domein-hosting',
@@ -213,6 +275,13 @@ export const en: Dictionary = {
         question: 'What can be automated within my business?',
         answer:
           'This depends on your processes. Examples include processing customer enquiries, automatically preparing quotations, handling orders or simplifying repetitive administrative tasks.',
+      },
+      {
+        id: 'vrijblijvend',
+        question:
+          'Can we first discuss what my business needs without obligation?',
+        answer:
+          'Yes. The first conversation is intended to understand what your business needs and which solution would be appropriate.',
       },
     ],
   },
@@ -232,8 +301,18 @@ export const en: Dictionary = {
       company: { label: 'Company', placeholder: 'Your company name' },
       email: { label: 'Email', placeholder: 'you@company.com' },
       phone: { label: 'Phone', placeholder: '+32 470 00 00 00' },
-      message: {
+      serviceType: {
         label: 'How can I help?',
+        placeholder: 'Please choose',
+        options: [
+          { value: 'new-website', label: 'New website' },
+          { value: 'website-redesign', label: 'Website redesign' },
+          { value: 'automation', label: 'Business automation' },
+          { value: 'other', label: 'Something else' },
+        ],
+      },
+      message: {
+        label: 'Tell me briefly about your project',
         placeholder:
           'Tell me briefly about your business and what you are looking for. A few sentences is enough.',
       },
@@ -258,9 +337,9 @@ export const en: Dictionary = {
       },
       failure: {
         heading: 'Your message could not be sent.',
-        text: 'Something went wrong while sending. Please try again later or send an email.',
-        notConfigured:
-          'Sending through the form is not active yet. Please send your message directly by email for now.',
+        text: 'Something went wrong while sending. Please try again later.',
+        notConfigured: 'Sending through the form is not active yet.',
+        emailFallback: 'You can send your message directly by email:',
       },
     },
   },

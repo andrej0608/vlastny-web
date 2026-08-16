@@ -66,6 +66,14 @@ export function ProjectCard({
         <h3 className={styles.name}>{project.name}</h3>
         <p className={styles.description}>{project.description[locale]}</p>
 
+        {/* Closing line: what the project actually achieves for a business. */}
+        {project.value && (
+          <p className={styles.value}>
+            <span className="visually-hidden">{dict.work.valueLabel}: </span>
+            {project.value[locale]}
+          </p>
+        )}
+
         <div className={styles.actions}>
           {project.url ? (
             <a

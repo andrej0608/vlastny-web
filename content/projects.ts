@@ -7,6 +7,14 @@ import type { Locale } from '@/lib/i18n';
  * Nothing else needs to change - the Work section and the optional detail
  * pages both read from this file.
  *
+ * Each card is written to answer three questions in order:
+ *   1. `type`        - what kind of business or problem is this?
+ *   2. `description` - what was created?
+ *   3. `value`       - what does it actually achieve?
+ *
+ * Describe the outcome, not the tooling. The `technologies` field exists for
+ * your own notes and is deliberately never rendered.
+ *
  * Be honest with `status`:
  *   'concept' -> a self-initiated demo or study. NOT a paid engagement.
  *   'client'  -> real, paid work delivered for a real client.
@@ -40,11 +48,17 @@ export interface Project {
   /** Project or business name shown on the card. */
   name: string;
 
-  /** One or two sentences, per language. */
+  /** What was created. One or two sentences, per language. */
   description: Record<Locale, string>;
 
   /** Business category, e.g. "Restaurant", per language. */
   type: Record<Locale, string>;
+
+  /**
+   * Optional. What the project achieves for the business, in one short line.
+   * Rendered as the closing line of the card.
+   */
+  value?: Record<Locale, string>;
 
   status: ProjectStatus;
 
@@ -69,46 +83,43 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: 'garage-demo',
-    name: 'Garage & autoservice — conceptontwerp',
+    slug: 'automotive-service-website',
+    name: 'Automotive Service Website',
+    type: { nl: 'Website concept', en: 'Website concept' },
     description: {
-      nl: 'Conceptwebsite voor een lokaal autobedrijf, met duidelijke presentatie van diensten, openingstijden en een eenvoudige weg naar een afspraakaanvraag.',
-      en: 'Concept website for a local automotive business, with a clear presentation of services, opening hours and a simple path to requesting an appointment.',
+      nl: 'Een conceptwebsite voor een garage- of servicebedrijf. Het concept laat zien hoe diensten, bedrijfsinformatie, locatie en contactmogelijkheden overzichtelijk kunnen worden gepresenteerd, met een indeling die even goed werkt op de telefoon als op de computer.',
+      en: 'A concept website for a garage or service company. It shows how services, company information, location and contact options can be presented clearly, with a layout that works as well on a phone as on a computer.',
     },
-    type: { nl: 'Automotive', en: 'Automotive' },
+    value: {
+      nl: 'Bezoekers zien meteen wat het bedrijf doet en kunnen in één stap contact opnemen.',
+      en: 'Visitors immediately see what the business does and can get in touch in a single step.',
+    },
     status: 'concept',
+    // No screenshot configured yet - the card shows a neutral placeholder.
     image: null,
+    // Not published, so no link is shown. Never point this at someone
+    // else's website.
     url: null,
     technologies: ['Next.js'],
     order: 1,
   },
   {
-    slug: 'restaurant-demo',
-    name: 'Restaurant — conceptontwerp',
+    slug: 'automated-quotation-tool',
+    name: 'Automated Quotation Tool',
+    type: { nl: 'Bedrijfsautomatisering', en: 'Business automation' },
     description: {
-      nl: 'Conceptwebsite voor een restaurant met menukaart, openingstijden, routebeschrijving en directe contactmogelijkheden vanaf de telefoon.',
-      en: 'Concept website for a restaurant with a menu, opening hours, directions and direct ways to get in touch straight from a phone.',
+      nl: 'Een praktische toepassing waarmee klantgegevens en aanvragen kunnen worden verwerkt om sneller en consistenter offertes voor te bereiden. Het project laat zien hoe terugkerende administratieve processen binnen een bedrijf kunnen worden vereenvoudigd.',
+      en: 'A practical application that processes customer information and enquiries to help prepare quotations faster and more consistently. The project demonstrates how repetitive administrative processes within a business can be simplified.',
     },
-    type: { nl: 'Horeca', en: 'Hospitality' },
+    value: {
+      nl: 'Minder handmatig overtypen, minder fouten en offertes die er elke keer hetzelfde uitzien.',
+      en: 'Less manual re-typing, fewer mistakes, and quotations that look the same every time.',
+    },
     status: 'concept',
     image: null,
     url: null,
     technologies: ['Next.js'],
     order: 2,
-  },
-  {
-    slug: 'bouwbedrijf-demo',
-    name: 'Bouwbedrijf — conceptontwerp',
-    description: {
-      nl: 'Conceptwebsite voor een bouw- en renovatiebedrijf, met een overzicht van werkzaamheden, uitgevoerde projecten en een aanvraagformulier voor offertes.',
-      en: 'Concept website for a construction and renovation company, showing the type of work carried out, completed projects and a quotation request form.',
-    },
-    type: { nl: 'Bouw', en: 'Construction' },
-    status: 'concept',
-    image: null,
-    url: null,
-    technologies: ['Next.js'],
-    order: 3,
   },
 ];
 

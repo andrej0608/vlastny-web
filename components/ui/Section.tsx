@@ -16,6 +16,11 @@ interface SectionProps {
   width?: 'default' | 'narrow';
   /** Centres the heading block. */
   align?: 'start' | 'center';
+  /**
+   * Draws a hairline above the section. Only needed when two sections share
+   * the same background and would otherwise read as one block.
+   */
+  divider?: boolean;
   children: ReactNode;
 }
 
@@ -27,6 +32,7 @@ export function Section({
   tone = 'default',
   width = 'default',
   align = 'start',
+  divider = false,
   children,
 }: SectionProps) {
   const headingId = id ? `${id}-heading` : undefined;
@@ -34,7 +40,9 @@ export function Section({
   return (
     <section
       id={id}
-      className={[styles.section, styles[tone]].join(' ')}
+      className={[styles.section, styles[tone], divider && styles.divider]
+        .filter(Boolean)
+        .join(' ')}
       aria-labelledby={headingId}
     >
       <Container width={width}>

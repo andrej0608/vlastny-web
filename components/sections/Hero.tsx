@@ -20,11 +20,13 @@ export function Hero({ locale, dict }: HeroProps) {
           <p className={styles.supporting}>{dict.hero.supporting}</p>
 
           <div className={styles.actions}>
-            <ButtonLink href={sectionPath(locale, dict.work.id)} size="lg">
+            {/* Primary action is starting a conversation; the portfolio is
+                the supporting step for visitors who want proof first. */}
+            <ButtonLink href={sectionPath(locale, dict.contact.id)} size="lg">
               {dict.hero.primaryCta}
             </ButtonLink>
             <ButtonLink
-              href={sectionPath(locale, dict.contact.id)}
+              href={sectionPath(locale, dict.work.id)}
               variant="secondary"
               size="lg"
             >

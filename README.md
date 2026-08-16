@@ -49,23 +49,26 @@ content/
 
 ### 1. Your real e-mail, LinkedIn and phone number
 
-Open **`content/site.ts`** and replace the placeholders:
+Open **`content/site.ts`**. Every contact channel starts as `null`:
 
 ```ts
 contact: {
-  email: 'hello@example.com',                              // ← your address
-  linkedin: 'https://www.linkedin.com/in/your-profile',    // ← your profile
-  phone: null,      // ← e.g. '+32 470 00 00 00', or leave null to hide it
-  whatsapp: null,   // ← e.g. '32470000000', or leave null to hide it
+  email: null,      // ← e.g. 'andrej@yourdomain.be'
+  linkedin: null,   // ← e.g. 'https://www.linkedin.com/in/andrej-juriga'
+  phone: null,      // ← e.g. '+32 470 00 00 00'
+  whatsapp: null,   // ← e.g. '32470000000' (no + or spaces)
 },
 ```
 
-`phone` and `whatsapp` are opt-in: while they are `null`, no phone or WhatsApp
-line appears anywhere on the site. Set a value and the links appear in the
-contact section and the footer automatically.
+**All four are opt-in.** A channel that is `null` is not rendered at all — no
+dummy address is ever shown to a visitor, and nothing is written into the
+site's structured data. Set a value and the link appears in the contact
+section and footer automatically. Set none and the contact block collapses,
+leaving the form to carry the section on its own.
 
-Until you replace the LinkedIn placeholder, it is deliberately left out of the
-site's structured data so search engines are never given a fake profile URL.
+> ⚠️ **Set at least an e-mail address before going live**, or configure form
+> delivery (below). With neither, a visitor has no way to reach you: the form
+> tells them sending is not active, and there is no address to fall back to.
 
 ### 2. Page text
 
@@ -88,6 +91,12 @@ Add an entry to the `projects` array in **`content/projects.ts`**:
   },
   type: { nl: 'Lokale winkel', en: 'Local shop' },
 
+  // Optional closing line: what the project achieves for the business.
+  value: {
+    nl: 'Klanten bestellen online in plaats van telefonisch.',
+    en: 'Customers order online instead of by phone.',
+  },
+
   status: 'client',                 // 'client' = real paid work
                                     // 'concept' = your own demo project
 
@@ -108,6 +117,11 @@ Add an entry to the `projects` array in **`content/projects.ts`**:
 
 Only `slug`, `name`, `description`, `type`, `status`, `image`, `url` and
 `order` are required. Set `image: null` to show a neutral placeholder instead.
+
+Each card is written to answer three questions in order — `type` (what kind of
+business or problem), `description` (what was created) and `value` (what it
+achieves). Describe outcomes, not tooling: the `technologies` field exists for
+your own notes and is deliberately never rendered.
 
 **About `status`:** please keep this honest. `concept` marks a project you built
 yourself as a demonstration; `client` marks real work delivered for a real
@@ -131,11 +145,12 @@ detail: {
 },
 ```
 
-### 4. FAQ, services, process steps, locations
+### 4. FAQ, services, automation examples, process steps, locations
 
-All four live inside the language files (`nl.ts` / `en.ts`) under `faq.items`,
-`services.items`, `process.steps` and `areas.locations`. Add or remove entries
-and the page follows — no component changes.
+All of these live inside the language files (`nl.ts` / `en.ts`) under
+`faq.items`, `services.items`, `automation.useCases`, `process.steps` and
+`areas.locations`. Add or remove entries and the page follows — no component
+changes.
 
 ---
 
@@ -212,6 +227,12 @@ switch delivery on, see *Before deploying* below.
 
 How it is built:
 
+- **An optional service-type selector** lets the visitor say what the enquiry
+  is about (new website / redesign / automation / something else). It is never
+  required, so nobody is blocked by a category that does not quite fit. The
+  submitted value is a stable, language-independent key; the server rejects
+  anything it does not recognise and translates the valid ones back into words
+  for the notification e-mail and its subject line.
 - **Validation runs twice.** `lib/contact-validation.ts` is shared by the
   browser and the server, so the two can never disagree. The server re-checks
   everything, because client-side validation can be bypassed.
@@ -260,8 +281,9 @@ structured data policies.
    links are all built from it. Until it is set they point at
    `https://www.example.com`, the placeholder in `content/site.ts`.
 
-3. **Replace the placeholders in `content/site.ts`** — e-mail and LinkedIn at
-   minimum.
+3. **Fill in `content/site.ts`** — an e-mail address at minimum. Every contact
+   channel starts as `null` and stays hidden until you set it, so right now the
+   contact section shows the form and nothing else.
 
 ### To make the contact form actually deliver mail
 
@@ -287,9 +309,12 @@ Never put these values in the code. `.env.local` is git-ignored; copy
 
 ### Worth knowing
 
-- **Replace the placeholder projects.** `content/projects.ts` ships with three
-  clearly-labelled concept entries so the section is not empty. They are
-  examples, not claims of real work.
+- **The portfolio holds two concept entries.** `content/projects.ts` contains
+  an automotive service website concept and an automated quotation tool, both
+  labelled `concept` and neither claiming a client or a live URL. Add a
+  screenshot (`image`) and a link (`url`) to each as they become available —
+  cards with real screenshots are considerably more persuasive than the
+  neutral placeholder.
 - **No response-time promise is made.** The contact section deliberately says
   only that messages reach you directly. If you are happy to commit to
   something like "a reply within one working day", it is a good line to add —
@@ -323,7 +348,9 @@ app/
 
 components/
 ├── layout/                     Header, Footer, LanguageSwitcher
-├── sections/                   One file per homepage section
+├── sections/                   One file per homepage section, in page order:
+│                               Hero, Services, Automation, WhyWebsite, Work,
+│                               Process, About, Areas, Faq, Contact
 └── ui/                         Container, Section, Button, Accordion
 
 content/                        ← all editable text and data (see above)

@@ -12,11 +12,36 @@ export interface ContactFormValues {
   company: string;
   email: string;
   phone: string;
+  /**
+   * What kind of work the enquiry is about. Optional, so a visitor is never
+   * blocked by a category that does not quite fit.
+   */
+  serviceType: string;
   message: string;
   /** Hidden anti-spam field. Real people never fill this in. */
   website: string;
   /** Timestamp (ms) of when the form was rendered. */
   renderedAt: number;
+}
+
+/**
+ * Accepted values for the service-type selector.
+ *
+ * Language-independent on purpose: the visitor sees a translated label, but
+ * what is submitted and stored is always one of these stable keys. Anything
+ * else is discarded server-side rather than trusted.
+ */
+export const SERVICE_TYPE_VALUES = [
+  'new-website',
+  'website-redesign',
+  'automation',
+  'other',
+] as const;
+
+export type ServiceTypeValue = (typeof SERVICE_TYPE_VALUES)[number];
+
+export function isServiceTypeValue(value: string): value is ServiceTypeValue {
+  return (SERVICE_TYPE_VALUES as readonly string[]).includes(value);
 }
 
 /** Which fields can carry an error message. */
@@ -40,6 +65,7 @@ export const FIELD_MAX_LENGTHS = {
   company: 160,
   email: 254,
   phone: 40,
+  serviceType: 40,
   message: 4000,
 } as const;
 

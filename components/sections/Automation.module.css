@@ -1,0 +1,40 @@
+/* Mirrors the Services grid so the two sections read as a matched pair. */
+.grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+.card {
+  padding: var(--space-6);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+}
+
+.description {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  text-wrap: pretty;
+}
+
+.actions {
+  margin-top: var(--space-6);
+}
+
+/*
+ * Three columns only once there is genuinely room for them. At tablet width
+ * three tracks leave each card around 220px wide, which turns short
+ * paragraphs into tall narrow ribbons; full-width cards read better there.
+ */
+@media (min-width: 60rem) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

@@ -4,14 +4,14 @@
   grid-template-columns: 1fr;
 }
 
+/*
+ * `auto-fit` rather than a fixed column count: the number of projects will
+ * change over time, and a fixed 3-column grid leaves an obvious empty slot
+ * whenever the count is not a multiple of three. This fills the row with
+ * however many projects exist, up to three per row on a wide screen.
+ */
 @media (min-width: 40rem) {
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 64rem) {
-  .grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   }
 }

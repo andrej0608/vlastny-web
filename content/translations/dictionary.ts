@@ -25,6 +25,26 @@ export interface ProcessStep {
   description: string;
 }
 
+/** A named benefit with a short explanation of the outcome it produces. */
+export interface BenefitItem {
+  title: string;
+  description: string;
+}
+
+/** One example of what automation can do, shown in the automation section. */
+export interface AutomationUseCase {
+  id: string;
+  title: string;
+  description: string;
+}
+
+/** One option in the contact form's "how can I help" selector. */
+export interface ServiceTypeOption {
+  /** Stable, language-independent value submitted with the form. */
+  value: string;
+  label: string;
+}
+
 export interface FaqItem {
   id: string;
   question: string;
@@ -81,7 +101,21 @@ export interface Dictionary {
     eyebrow: string;
     headline: string;
     text: string;
-    benefits: string[];
+    benefits: BenefitItem[];
+  };
+
+  /**
+   * Business automation gets its own section rather than living only as one
+   * service card - it is the main thing that sets this offering apart.
+   */
+  automation: {
+    id: string;
+    eyebrow: string;
+    headline: string;
+    intro: string;
+    useCases: AutomationUseCase[];
+    /** Leads to the contact section. */
+    cta: string;
   };
 
   work: {
@@ -101,6 +135,8 @@ export interface Dictionary {
     typeLabel: string;
     /** Shown when a project has no live URL yet. */
     noLiveUrl: string;
+    /** Screen-reader prefix for a project's outcome line. */
+    valueLabel: string;
   };
 
   process: {
@@ -150,6 +186,13 @@ export interface Dictionary {
       company: { label: string; placeholder: string };
       email: { label: string; placeholder: string };
       phone: { label: string; placeholder: string };
+      /** Selector letting the visitor say what kind of work they need. */
+      serviceType: {
+        label: string;
+        /** Shown as the unselected first option. */
+        placeholder: string;
+        options: ServiceTypeOption[];
+      };
       message: { label: string; placeholder: string };
       optional: string;
       required: string;
@@ -177,6 +220,12 @@ export interface Dictionary {
         text: string;
         /** Shown when no e-mail provider is configured yet. */
         notConfigured: string;
+        /**
+         * Appended only when an e-mail address is configured in site.ts.
+         * Without it the visitor is never pointed at an address that does
+         * not exist.
+         */
+        emailFallback: string;
       };
     };
   };

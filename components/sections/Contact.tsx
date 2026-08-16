@@ -1,6 +1,12 @@
 import type { Locale } from '@/lib/i18n';
 import type { Dictionary } from '@/content/translations';
-import { siteConfig, telHref, whatsappHref } from '@/content/site';
+import {
+  siteConfig,
+  emailHref,
+  telHref,
+  whatsappHref,
+  hasDirectContactChannel,
+} from '@/content/site';
 import { Section } from '@/components/ui/Section';
 import { ContactForm } from './ContactForm';
 import styles from './Contact.module.css';
@@ -32,16 +38,19 @@ export function Contact({ locale, dict }: ContactProps) {
               </span>
             </address>
 
-            <ul className={styles.contactList}>
-              <li className={styles.contactItem}>
-                <span className={styles.contactLabel}>{dict.common.email}</span>
-                <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className={styles.contactValue}
-                >
-                  {siteConfig.contact.email}
-                </a>
-              </li>
+            {/* Only configured channels are rendered - a visitor is never
+                shown a placeholder address that does not work. With none
+                configured, the list collapses and the form carries the
+                section on its own. */}
+            <ul className={styles.contactList} hidden={!hasDirectContactChannel}>
+              {emailHref && (
+                <li className={styles.contactItem}>
+                  <span className={styles.contactLabel}>{dict.common.email}</span>
+                  <a href={emailHref} className={styles.contactValue}>
+                    {siteConfig.contact.email}
+                  </a>
+                </li>
+              )}
 
               {telHref && (
                 <li className={styles.contactItem}>
@@ -66,19 +75,21 @@ export function Contact({ locale, dict }: ContactProps) {
                 </li>
               )}
 
-              <li className={styles.contactItem}>
-                <span className={styles.contactLabel}>
-                  {dict.common.linkedin}
-                </span>
-                <a
-                  href={siteConfig.contact.linkedin}
-                  className={styles.contactValue}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {dict.common.linkedin}
-                </a>
-              </li>
+              {siteConfig.contact.linkedin && (
+                <li className={styles.contactItem}>
+                  <span className={styles.contactLabel}>
+                    {dict.common.linkedin}
+                  </span>
+                  <a
+                    href={siteConfig.contact.linkedin}
+                    className={styles.contactValue}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {dict.common.linkedin}
+                  </a>
+                </li>
+              )}
             </ul>
 
             <p className={styles.responseNote}>{dict.contact.responseNote}</p>

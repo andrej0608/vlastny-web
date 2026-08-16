@@ -19,10 +19,11 @@ const WEBSITE_ID = `${siteConfig.url}/#website`;
 export function buildStructuredData(locale: Locale, dict: Dictionary) {
   const localeUrl = `${siteConfig.url}/${locale}`;
 
-  const sameAs = [siteConfig.contact.linkedin].filter(
-    // Drop the placeholder so a fake profile URL is never published.
-    (url) => !url.includes('your-profile')
-  );
+  /* Unconfigured channels are omitted rather than published as placeholders:
+     structured data must describe only what actually exists. */
+  const sameAs = siteConfig.contact.linkedin
+    ? [siteConfig.contact.linkedin]
+    : [];
 
   const person = {
     '@type': 'Person',
@@ -30,7 +31,9 @@ export function buildStructuredData(locale: Locale, dict: Dictionary) {
     name: siteConfig.name,
     url: localeUrl,
     jobTitle: dict.meta.tagline,
-    email: `mailto:${siteConfig.contact.email}`,
+    ...(siteConfig.contact.email && {
+      email: `mailto:${siteConfig.contact.email}`,
+    }),
     ...(siteConfig.contact.phone && { telephone: siteConfig.contact.phone }),
     ...(sameAs.length > 0 && { sameAs }),
     address: {
@@ -49,7 +52,9 @@ export function buildStructuredData(locale: Locale, dict: Dictionary) {
     description: dict.meta.description,
     url: localeUrl,
     founder: { '@id': PERSON_ID },
-    email: `mailto:${siteConfig.contact.email}`,
+    ...(siteConfig.contact.email && {
+      email: `mailto:${siteConfig.contact.email}`,
+    }),
     ...(siteConfig.contact.phone && { telephone: siteConfig.contact.phone }),
     address: {
       '@type': 'PostalAddress',

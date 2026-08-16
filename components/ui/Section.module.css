@@ -15,6 +15,11 @@
   color: var(--color-text-inverse);
 }
 
+/* Separates two consecutive sections that share a background. */
+.divider {
+  border-top: 1px solid var(--color-border);
+}
+
 .header {
   max-width: 42rem;
   margin-bottom: var(--space-7);

@@ -16,4 +16,12 @@ export function getDictionary(locale: Locale): Dictionary {
 }
 
 export type { Dictionary } from './dictionary';
-export type { NavItem, ServiceItem, ProcessStep, FaqItem } from './dictionary';
+export type {
+  NavItem,
+  ServiceItem,
+  ProcessStep,
+  FaqItem,
+  BenefitItem,
+  AutomationUseCase,
+  ServiceTypeOption,
+} from './dictionary';
