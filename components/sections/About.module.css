@@ -1,0 +1,32 @@
+.eyebrow {
+  margin-bottom: var(--space-3);
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.headline {
+  font-size: var(--text-3xl);
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  text-wrap: pretty;
+}
+
+/* The closing line carries the personal positioning, so it gets a little
+   more presence than the body copy. */
+.prose p:last-child {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+}

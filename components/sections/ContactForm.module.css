@@ -1,0 +1,182 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.formHeading {
+  font-size: var(--text-xl);
+}
+
+.requiredNote {
+  margin-top: calc(var(--space-2) * -1);
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+}
+
+/* Empty until there is something to announce; adds no spacing when idle. */
+.liveRegion:empty {
+  display: none;
+}
+
+.row {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.optional {
+  color: var(--color-text-subtle);
+  font-weight: var(--weight-normal);
+}
+
+.input {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--text-base);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+/* Placeholders are still text, so they meet the same contrast bar as the rest.
+   Entered values remain near-black, so the two never look alike. */
+.input::placeholder {
+  color: var(--color-text-subtle);
+  opacity: 1;
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--color-neutral-600);
+}
+
+.input:focus {
+  border-color: var(--color-accent-500);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-accent-100);
+}
+
+/* Keep the standard ring for keyboard users on top of the focus style. */
+.input:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+.input:disabled {
+  background-color: var(--color-bg-muted);
+  cursor: not-allowed;
+}
+
+.textarea {
+  min-height: 9rem;
+  resize: vertical;
+  line-height: var(--leading-normal);
+}
+
+/* Errors are marked by colour AND an explicit message, never colour alone. */
+.inputError {
+  border-color: var(--color-error-text);
+}
+
+.inputError:focus {
+  border-color: var(--color-error-text);
+  box-shadow: 0 0 0 3px var(--color-error-border);
+}
+
+.fieldError {
+  color: var(--color-error-text);
+  font-size: var(--text-sm);
+}
+
+.errorBox {
+  padding: var(--space-4);
+  background-color: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  border-radius: var(--radius-md);
+  color: var(--color-error-text);
+}
+
+.errorList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.errorList a {
+  color: inherit;
+}
+
+.success {
+  padding: var(--space-7) var(--space-6);
+  background-color: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-success-text);
+}
+
+.feedbackHeading {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+}
+
+.feedbackText {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.feedbackText a {
+  color: inherit;
+}
+
+/* Hidden from sighted users and from screen readers, but still submitted.
+   `display: none` is avoided because some bots skip such fields. */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.submitRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.privacyNote {
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+@media (min-width: 34rem) {
+  .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

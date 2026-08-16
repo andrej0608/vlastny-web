@@ -1,0 +1,153 @@
+/* ===========================================================================
+   DESIGN TOKENS
+   ---------------------------------------------------------------------------
+   This is the single place where the visual identity of the site is defined.
+   Colours, typography, spacing, radii and shadows all live here.
+
+   The current values are a DELIBERATELY NEUTRAL placeholder foundation:
+   a near-black ink colour, a warm off-white page, and one restrained accent.
+   They exist so the structure can be judged without a visual identity getting
+   in the way.
+
+   To restyle the whole site later, change the values in this file. Components
+   reference these variables only - none of them hard-code a colour or a font.
+   =========================================================================== */
+
+:root {
+  /* --- Brand palette -------------------------------------------------
+     Change these three groups and the entire site follows. */
+
+  /* Neutral ramp. Used for text, borders, surfaces. */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f8f8f7;
+  --color-neutral-100: #f1f1ef;
+  --color-neutral-200: #e4e4e1;
+  --color-neutral-300: #cfcfca;
+  --color-neutral-400: #a3a39d;
+  /* Chosen so "subtle" text clears WCAG AA (4.5:1) on BOTH the white and the
+     off-white section background. A lighter grey here fails by a hair. */
+  --color-neutral-500: #70706a;
+  --color-neutral-600: #57574f;
+  --color-neutral-700: #3d3d37;
+  --color-neutral-800: #262622;
+  --color-neutral-900: #161614;
+
+  /* Accent. One colour, used sparingly for links, focus and primary actions. */
+  --color-accent-50: #eef4fb;
+  --color-accent-100: #d8e6f6;
+  --color-accent-300: #8db4e0;
+  --color-accent-500: #2f6db3;
+  --color-accent-600: #255a95;
+  --color-accent-700: #1d4675;
+
+  /* Feedback colours, used only by the contact form states. */
+  --color-success-bg: #edf7ef;
+  --color-success-border: #b7dcc0;
+  --color-success-text: #1d5c2c;
+  --color-error-bg: #fdeeee;
+  --color-error-border: #eebcbc;
+  --color-error-text: #8c2020;
+
+  /* --- Semantic roles ------------------------------------------------
+     Components use THESE, not the raw palette above. */
+  --color-bg: var(--color-neutral-0);
+  --color-bg-subtle: var(--color-neutral-50);
+  --color-bg-muted: var(--color-neutral-100);
+  --color-bg-inverse: var(--color-neutral-900);
+
+  --color-text: var(--color-neutral-900);
+  --color-text-muted: var(--color-neutral-600);
+  --color-text-subtle: var(--color-neutral-500);
+  --color-text-inverse: var(--color-neutral-0);
+  --color-text-inverse-muted: var(--color-neutral-300);
+
+  --color-border: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-300);
+  /* Form fields are identified by their outline alone, so that outline needs
+     3:1 contrast (WCAG 1.4.11). The decorative borders above do not. */
+  --color-border-input: #8f8f8a;
+
+  --color-link: var(--color-accent-600);
+  --color-link-hover: var(--color-accent-700);
+  --color-focus: var(--color-accent-500);
+
+  /* --- Typography ----------------------------------------------------
+     A system font stack: nothing to download, no layout shift, no external
+     request. When the final typeface is chosen, load it with `next/font` in
+     app/layout.tsx and point --font-sans at the generated CSS variable. */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-heading: var(--font-sans);
+
+  /* Fluid type scale. Each step grows smoothly between mobile and desktop,
+     so there are no jarring jumps at breakpoints. */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --text-xl: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
+  --text-2xl: clamp(1.375rem, 1.25rem + 0.6vw, 1.75rem);
+  --text-3xl: clamp(1.625rem, 1.4rem + 1.1vw, 2.25rem);
+  --text-4xl: clamp(2rem, 1.6rem + 1.9vw, 3.25rem);
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;
+
+  /* --- Spacing scale -------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-9: 4rem;
+  --space-10: 5rem;
+
+  /* Vertical rhythm between page sections, tighter on small screens. */
+  --section-padding-y: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+
+  /* --- Layout --------------------------------------------------------- */
+  --container-max: 72rem;
+  --container-narrow: 46rem;
+  --container-padding: clamp(1.25rem, 0.9rem + 1.6vw, 2.5rem);
+  --header-height: 4.25rem;
+
+  /* --- Radii ----------------------------------------------------------- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+
+  /* --- Elevation ------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgb(22 22 20 / 0.06);
+  --shadow-md: 0 2px 8px rgb(22 22 20 / 0.07);
+  --shadow-lg: 0 8px 28px rgb(22 22 20 / 0.1);
+
+  /* --- Motion ----------------------------------------------------------
+     Kept minimal on purpose. See globals.css for the reduced-motion guard. */
+  --transition-fast: 120ms ease;
+  --transition-base: 200ms ease;
+
+  /* --- Focus ring ------------------------------------------------------ */
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+
+  /* --- Stacking -------------------------------------------------------- */
+  --z-header: 100;
+  --z-mobile-nav: 200;
+  --z-skip-link: 300;
+}

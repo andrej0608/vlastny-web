@@ -1,0 +1,55 @@
+.section {
+  padding-block: var(--section-padding-y);
+}
+
+.default {
+  background-color: var(--color-bg);
+}
+
+.subtle {
+  background-color: var(--color-bg-subtle);
+}
+
+.inverse {
+  background-color: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+}
+
+.header {
+  max-width: 42rem;
+  margin-bottom: var(--space-7);
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: var(--space-3);
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.inverse .eyebrow {
+  color: var(--color-text-inverse-muted);
+}
+
+.heading {
+  font-size: var(--text-3xl);
+}
+
+.intro {
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  text-wrap: pretty;
+}
+
+.inverse .intro {
+  color: var(--color-text-inverse-muted);
+}

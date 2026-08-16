@@ -1,0 +1,21 @@
+# Normalise line endings in the repository to LF.
+#
+# Windows checkouts still get CRLF locally, but what is stored in git — and what
+# Vercel builds on Linux — is always LF. Without this, every file would show up
+# as fully changed when edited on a different operating system.
+* text=auto eol=lf
+
+# Windows launcher must keep CRLF, or cmd.exe can misparse it.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binary files: never touch these.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff binary
+*.woff2 binary

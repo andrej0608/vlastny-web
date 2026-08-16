@@ -1,0 +1,103 @@
+.footer {
+  padding-block: var(--space-9) var(--space-6);
+  background-color: var(--color-bg-subtle);
+  border-top: 1px solid var(--color-border);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: 1fr;
+}
+
+.brandColumn {
+  max-width: 24rem;
+}
+
+.brand {
+  display: inline-block;
+  color: var(--color-text);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+}
+
+.tagline {
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.description {
+  margin-top: var(--space-4);
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.column {
+  min-width: 0;
+}
+
+.columnHeading {
+  margin-bottom: var(--space-3);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Padding rather than list gap: it grows the tap target itself, not just the
+   space around it, which is what matters on a phone. */
+.link {
+  display: inline-block;
+  padding-block: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.link:hover {
+  color: var(--color-link);
+  text-decoration: underline;
+}
+
+.bottom {
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.copyright {
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 40rem) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .brandColumn {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 60rem) {
+  .grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .brandColumn {
+    grid-column: auto;
+  }
+}

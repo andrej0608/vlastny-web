@@ -1,0 +1,15 @@
+/* Keeps the footer at the bottom on short pages. */
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.main {
+  flex: 1;
+}
+
+/* The skip link focuses <main>; it should not draw its own outline. */
+.main:focus {
+  outline: none;
+}
