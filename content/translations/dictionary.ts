@@ -43,6 +43,21 @@ export interface AutomationUseCase {
   description: string;
 }
 
+/**
+ * A worked example, told as problem -> solution -> result.
+ *
+ * The `result` line is deliberately modest: it describes how the work changes,
+ * never a percentage or a time saving, because no such figure has been
+ * measured for any real client.
+ */
+export interface WorkedExample {
+  id: string;
+  title: string;
+  problem: string;
+  solution: string;
+  result: string;
+}
+
 /** One option in the contact form's "how can I help" selector. */
 export interface ServiceTypeOption {
   /** Stable, language-independent value submitted with the form. */
@@ -147,6 +162,42 @@ export interface Dictionary {
     useCases: AutomationUseCase[];
     /** Leads to the contact section. */
     cta: string;
+  };
+
+  /**
+   * Context section: how quickly AI use is spreading among EU businesses.
+   *
+   * The figures themselves live in `content/ai-adoption.ts` so the chart and
+   * this copy cannot drift apart.
+   */
+  aiAdoption: {
+    id: string;
+    eyebrow: string;
+    headline: string;
+    intro: string;
+    /** Accessible name for the chart as a whole. */
+    chartLabel: string;
+    /** Heading of the screen-reader table that mirrors the chart. */
+    chartTableHeading: string;
+    yearColumn: string;
+    shareColumn: string;
+    /** Axis caption, e.g. "Share of EU enterprises". */
+    axisLabel: string;
+    source: string;
+  };
+
+  /** Practical worked examples, shown as a grid of problem/solution/result. */
+  examples: {
+    id: string;
+    eyebrow: string;
+    headline: string;
+    intro: string;
+    labels: {
+      problem: string;
+      solution: string;
+      result: string;
+    };
+    items: WorkedExample[];
   };
 
   work: {

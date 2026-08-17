@@ -153,6 +153,77 @@ export const nl: Dictionary = {
     cta: 'Bespreek wat mogelijk is',
   },
 
+  aiAdoption: {
+    id: 'ai-in-bedrijven',
+    eyebrow: 'AI in bedrijven',
+    headline: 'AI wordt steeds normaler in het bedrijfsleven.',
+    intro:
+      'In 2025 gebruikte 20% van de EU-bedrijven met 10 of meer werknemers minstens één AI-technologie. In 2023 was dit nog 8,1%. Dat laat zien hoe snel de toepassing groeit — en hoeveel ruimte er nog is voor praktische inzet binnen dagelijkse processen.',
+    chartLabel:
+      'Grafiek: aandeel EU-bedrijven met 10 of meer werknemers dat minstens één AI-technologie gebruikt, van 2021 tot 2025.',
+    chartTableHeading: 'De gegevens uit de grafiek',
+    yearColumn: 'Jaar',
+    shareColumn: 'Aandeel bedrijven',
+    axisLabel: 'Aandeel EU-bedrijven',
+    source:
+      'Bron: Eurostat — enterprises with 10 or more persons employed (isoc_eb_ai)',
+  },
+
+  examples: {
+    id: 'voorbeelden',
+    eyebrow: 'Praktische voorbeelden',
+    headline: 'Hoe kan dit er in de praktijk uitzien?',
+    intro:
+      'Niet elke oplossing hoeft complex te zijn. Vaak begint het met één terugkerend proces dat vandaag nog handmatig gebeurt, maar slimmer ingericht kan worden.',
+    labels: {
+      problem: 'Probleem',
+      solution: 'Oplossing',
+      result: 'Resultaat',
+    },
+    items: [
+      {
+        id: 'offertes',
+        title: 'Offertes voorbereiden',
+        problem:
+          'Een klantaanvraag komt binnen via e-mail of website. Iemand moet de gegevens lezen, structureren, prijzen opzoeken en de offerte handmatig beginnen.',
+        solution:
+          'De aanvraag wordt gestructureerd verwerkt, zodat de juiste gegevens meteen beschikbaar zijn en er sneller een eerste voorstel of offerte voorbereid kan worden.',
+        result:
+          'De medewerker begint niet telkens opnieuw vanaf nul, maar werkt verder op voorbereide informatie en een duidelijker proces.',
+      },
+      {
+        id: 'aanvragen',
+        title: 'Nieuwe klantaanvragen',
+        problem:
+          'Nieuwe vragen komen binnen via verschillende kanalen en moeten handmatig gesorteerd, opgevolgd en beantwoord worden.',
+        solution:
+          'Een systeem kan de aanvraag categoriseren, de belangrijkste informatie verzamelen, een bevestiging voorbereiden en de juiste volgende stap klaarzetten.',
+        result:
+          'Elke nieuwe aanvraag krijgt een duidelijk vervolg en de kans dat een bericht blijft liggen wordt kleiner.',
+      },
+      {
+        id: 'bestellingen',
+        title: 'Bestellingen verwerken',
+        problem:
+          'Bestellingen komen op verschillende manieren binnen en iemand moet de informatie daarna handmatig overnemen of tussen systemen verplaatsen.',
+        solution:
+          'Bestelgegevens kunnen automatisch verzameld, gecontroleerd en voorbereid worden in de structuur die het bedrijf nodig heeft voor verdere verwerking.',
+        result:
+          'Er is minder handmatig overtypen nodig en het proces van ontvangst tot verdere verwerking wordt consistenter.',
+      },
+      {
+        id: 'afspraken',
+        title: 'Service- of afspraakaanvragen',
+        problem:
+          'Klanten bellen of sturen berichten over afspraken, maar de nodige informatie ontbreekt vaak nog en moet later opnieuw worden opgevraagd.',
+        solution:
+          'De website of een digitaal formulier verzamelt vooraf de belangrijkste informatie, zoals type aanvraag, contactgegevens en voorkeuren.',
+        result:
+          'De aanvraag komt vanaf het begin vollediger binnen en er is minder heen-en-weer communicatie nodig.',
+      },
+    ],
+  },
+
   work: {
     id: 'werk',
     eyebrow: 'Werk',

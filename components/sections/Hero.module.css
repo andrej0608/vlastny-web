@@ -46,8 +46,11 @@
   );
 }
 
+/* Above the floating objects (z-index 0) and the ambient glow (-1), so the
+   copy is never competing with the decoration. */
 .content {
   position: relative;
+  z-index: 1;
   max-width: 52rem;
 }
 

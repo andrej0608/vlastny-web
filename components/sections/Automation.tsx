@@ -24,8 +24,6 @@ export function Automation({ locale, dict }: AutomationProps) {
       eyebrow={dict.automation.eyebrow}
       heading={dict.automation.headline}
       intro={dict.automation.intro}
-      // Shares a background with the services section above it.
-      divider
     >
       <ul className={styles.grid}>
         {dict.automation.useCases.map((useCase) => (

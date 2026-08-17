@@ -1,0 +1,247 @@
+.figure {
+  margin: 0;
+}
+
+.chart {
+  padding: clamp(var(--space-5), 3vw, var(--space-7));
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+/* --- Plot box --- */
+
+.plotArea {
+  position: relative;
+  /* Leaves room on the left for the axis values. */
+  padding-left: 2.75rem;
+}
+
+.plot {
+  position: relative;
+  height: clamp(11rem, 26vw, 17rem);
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* --- Gridlines --- */
+
+.gridline {
+  position: absolute;
+  left: 2.75rem;
+  right: 0;
+  height: 1px;
+  background-color: var(--color-base-700);
+  /* Aligned to the plot box, which starts below the value labels. */
+  transform: translateY(0.5px);
+}
+
+/* The baseline reads as an axis rather than another gridline. */
+.gridline:last-child {
+  background-color: var(--color-base-600);
+}
+
+.gridValue {
+  position: absolute;
+  left: 0;
+  width: 2.25rem;
+  transform: translateY(50%);
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* --- Points --- */
+
+.point {
+  position: absolute;
+  transform: translate(-50%, 50%);
+}
+
+.dot {
+  display: block;
+  width: 11px;
+  height: 11px;
+  background-color: var(--color-accent-400);
+  border: 2px solid var(--color-base-950);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 0 3px rgb(59 130 246 / 0.22);
+}
+
+.value {
+  position: absolute;
+  bottom: calc(100% + var(--space-3));
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px var(--space-2);
+  background-color: var(--color-base-900);
+  border: 1px solid var(--color-base-700);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* The last point is the headline number, so it carries the accent. */
+.point:last-child .dot {
+  box-shadow: 0 0 0 4px rgb(59 130 246 / 0.28), var(--glow-ring);
+}
+
+.point:last-child .value {
+  background-color: var(--color-accent-600);
+  border-color: var(--color-accent-500);
+  color: var(--color-base-0);
+}
+
+/* --- Axes --- */
+
+.xAxis {
+  position: relative;
+  height: 1.5rem;
+  margin-top: var(--space-3);
+  margin-left: 2.75rem;
+}
+
+.year {
+  position: absolute;
+  transform: translateX(-50%);
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Keeps the outermost year labels inside the card. */
+.year:first-child {
+  transform: translateX(-25%);
+}
+
+.year:last-child {
+  transform: translateX(-75%);
+}
+
+.axisLabel {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.source {
+  margin-top: var(--space-4);
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  text-wrap: pretty;
+}
+
+/* ===========================================================================
+   Reveal
+   The line draws itself once the chart scrolls into view, then the points and
+   their values arrive in sequence behind it.
+   =========================================================================== */
+
+.line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.area {
+  opacity: 0;
+}
+
+.point {
+  opacity: 0;
+}
+
+.revealed .line {
+  animation: draw-line 1100ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.revealed .area {
+  animation: fade-in 900ms ease-out 450ms forwards;
+}
+
+.revealed .point {
+  animation: point-in 420ms cubic-bezier(0.34, 1.4, 0.64, 1) var(--reveal-delay)
+    forwards;
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes point-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 50%) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 50%) scale(1);
+  }
+}
+
+/*
+ * With reduced motion the chart is simply present on arrival: no drawing, no
+ * staggering. The information is identical either way.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .area,
+  .point {
+    animation: none !important;
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+/*
+ * Without scripting the observer never runs, so the reveal class is never
+ * added. Show the finished chart rather than an empty box.
+ */
+@media (scripting: none) {
+  .line,
+  .area,
+  .point {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --- Small screens --- */
+
+@media (max-width: 30rem) {
+  .plotArea {
+    padding-left: 2.25rem;
+  }
+
+  .gridline {
+    left: 2.25rem;
+  }
+
+  .xAxis {
+    margin-left: 2.25rem;
+  }
+}

@@ -153,6 +153,77 @@ export const en: Dictionary = {
     cta: 'Discuss what is possible',
   },
 
+  aiAdoption: {
+    id: 'ai-in-business',
+    eyebrow: 'AI in business',
+    headline: 'AI is becoming part of everyday business.',
+    intro:
+      'In 2025, 20% of EU businesses with 10 or more employees used at least one AI technology. In 2023, this was still 8.1%. This shows how quickly adoption is growing — and how much room there still is for practical use in everyday processes.',
+    chartLabel:
+      'Chart: share of EU enterprises with 10 or more employees using at least one AI technology, from 2021 to 2025.',
+    chartTableHeading: 'The data behind the chart',
+    yearColumn: 'Year',
+    shareColumn: 'Share of enterprises',
+    axisLabel: 'Share of EU enterprises',
+    source:
+      'Source: Eurostat — enterprises with 10 or more persons employed (isoc_eb_ai)',
+  },
+
+  examples: {
+    id: 'examples',
+    eyebrow: 'Practical examples',
+    headline: 'What could this look like in practice?',
+    intro:
+      'Not every solution needs to be complex. In many cases, it starts with one recurring process that is still handled manually today, but could be set up more intelligently.',
+    labels: {
+      problem: 'Problem',
+      solution: 'Solution',
+      result: 'Result',
+    },
+    items: [
+      {
+        id: 'offertes',
+        title: 'Preparing quotations',
+        problem:
+          'A customer enquiry arrives by email or through the website. Someone has to read the information, structure it, look up pricing and manually start the quotation.',
+        solution:
+          'The enquiry is processed in a structured way, so the right information is immediately available and a first proposal or quotation can be prepared faster.',
+        result:
+          'Instead of starting from scratch every time, the employee works with prepared information and a clearer process.',
+      },
+      {
+        id: 'aanvragen',
+        title: 'New customer enquiries',
+        problem:
+          'New enquiries come in through different channels and need to be manually sorted, followed up and answered.',
+        solution:
+          'A system can categorise the enquiry, collect the key information, prepare a confirmation and set up the correct next step.',
+        result:
+          'Each new enquiry has a clearer follow-up and the chance of messages being missed is reduced.',
+      },
+      {
+        id: 'bestellingen',
+        title: 'Processing orders',
+        problem:
+          'Orders come in through different channels and someone then has to manually transfer the information or move it between systems.',
+        solution:
+          'Order details can be automatically collected, checked and prepared in the structure the business needs for further processing.',
+        result:
+          'Less manual copying is needed and the process from order intake to further processing becomes more consistent.',
+      },
+      {
+        id: 'afspraken',
+        title: 'Service or appointment requests',
+        problem:
+          'Customers call or send messages about appointments, but key information is often missing and has to be requested later.',
+        solution:
+          'The website or a digital form collects the most important information in advance, such as the request type, contact details and preferences.',
+        result:
+          'The request is more complete from the start and less back-and-forth communication is needed.',
+      },
+    ],
+  },
+
   work: {
     id: 'work',
     eyebrow: 'Work',

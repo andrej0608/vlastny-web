@@ -20,6 +20,8 @@ export function Work({ locale, dict }: WorkProps) {
       heading={dict.work.headline}
       intro={dict.work.intro}
       tone="default"
+      // Shares a background with the examples section above it.
+      divider
     >
       <ul className={styles.grid}>
         {projects.map((project, index) => (

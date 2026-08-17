@@ -3,6 +3,7 @@ import type { Dictionary } from '@/content/translations';
 import { sectionPath } from '@/lib/routes';
 import { Container } from '@/components/ui/Container';
 import { ButtonLink } from '@/components/ui/Button';
+import { HeroFloaters } from './HeroFloaters';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -13,6 +14,9 @@ interface HeroProps {
 export function Hero({ locale, dict }: HeroProps) {
   return (
     <section className={styles.hero}>
+      {/* Purely decorative; sits behind the copy and takes no pointer events. */}
+      <HeroFloaters />
+
       <Container>
         <div className={styles.content}>
           <p className={styles.eyebrow}>

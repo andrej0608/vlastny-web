@@ -7,6 +7,8 @@ import { buildStructuredData } from '@/lib/structured-data';
 import { Hero } from '@/components/sections/Hero';
 import { Services } from '@/components/sections/Services';
 import { Automation } from '@/components/sections/Automation';
+import { AiAdoption } from '@/components/sections/AiAdoption';
+import { Examples } from '@/components/sections/Examples';
 import { WhyWebsite } from '@/components/sections/WhyWebsite';
 import { Work } from '@/components/sections/Work';
 import { Process } from '@/components/sections/Process';
@@ -55,11 +57,20 @@ export default async function HomePage({ params }: PageProps) {
 
       <Hero locale={locale} dict={dict} />
       <Services dict={dict} />
-      {/* Automation sits directly after the services overview: it is the part
-          of the offering that needs explaining, and it comes before the
-          portfolio so the concept projects land in context. */}
-      <Automation locale={locale} dict={dict} />
+
+      {/*
+        The middle of the page runs as one argument:
+          what I offer            -> Services
+          why a website matters   -> WhyWebsite
+          why automation matters  -> Automation
+          that this is happening  -> AiAdoption
+          what it looks like      -> Examples
+          what I have built       -> Work
+      */}
       <WhyWebsite dict={dict} />
+      <Automation locale={locale} dict={dict} />
+      <AiAdoption locale={locale} dict={dict} />
+      <Examples dict={dict} />
       <Work locale={locale} dict={dict} />
       <Process dict={dict} />
       <About dict={dict} />
