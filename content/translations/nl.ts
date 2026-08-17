@@ -240,6 +240,15 @@ export const nl: Dictionary = {
     typeLabel: 'Type',
     noLiveUrl: 'Nog niet online',
     valueLabel: 'Wat het oplevert',
+    detail: {
+      showsHeading: 'Wat dit project laat zien',
+      screenshotsHeading: 'Screenshots',
+      videoHeading: 'Korte demo',
+      outcomeHeading: 'Resultaat',
+      videoUnsupported:
+        'Uw browser kan deze video niet afspelen. U kunt het bestand rechtstreeks openen.',
+      viewRepository: 'Bekijk de broncode',
+    },
   },
 
   process: {

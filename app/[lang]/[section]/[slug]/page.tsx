@@ -76,6 +76,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const { locale, project } = resolved;
   const dict = getDictionary(locale);
   const detail = project.detail!;
+  const t = dict.work.detail;
 
   const statusLabel =
     project.status === 'client'
@@ -100,16 +101,21 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <h1 className={styles.title}>{project.name}</h1>
         <p className={styles.lead}>{project.description[locale]}</p>
 
-        {project.image && (
-          <Image
-            src={project.image.src}
-            alt={project.image.alt[locale]}
-            width={project.image.width}
-            height={project.image.height}
-            className={styles.image}
-            sizes="(min-width: 46rem) 46rem, 100vw"
-            priority
-          />
+        {/* The featured image is usually the same shot that leads the gallery
+            below, so it is only shown on its own when there is no gallery to
+            open the case study instead. */}
+        {project.image && !detail.gallery?.length && (
+          <figure className={styles.feature}>
+            <Image
+              src={project.image.src}
+              alt={project.image.alt[locale]}
+              width={project.image.width}
+              height={project.image.height}
+              className={styles.image}
+              sizes="(min-width: 46rem) 46rem, 100vw"
+              priority
+            />
+          </figure>
         )}
 
         <div className={styles.prose}>
@@ -119,18 +125,111 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </div>
 
         {detail.highlights && (
-          <ul className={styles.highlights}>
-            {detail.highlights[locale].map((highlight) => (
-              <li key={highlight}>{highlight}</li>
-            ))}
-          </ul>
+          <section className={styles.block}>
+            <h2 className={styles.blockHeading}>{t.showsHeading}</h2>
+            <ul className={styles.highlights}>
+              {detail.highlights[locale].map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
+          </section>
         )}
 
-        {project.url && (
+        {/* Screenshots. The first is shown full width and the rest share a
+            row, so the gallery has a focal point instead of three equals. */}
+        {detail.gallery && detail.gallery.length > 0 && (
+          <section className={styles.block}>
+            <h2 className={styles.blockHeading}>{t.screenshotsHeading}</h2>
+            <div className={styles.gallery}>
+              {detail.gallery.map((shot, index) => (
+                <figure
+                  key={shot.src}
+                  className={[styles.shot, index === 0 && styles.shotLead]
+                    .filter(Boolean)
+                    .join(' ')}
+                >
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt[locale]}
+                    width={shot.width}
+                    height={shot.height}
+                    className={styles.shotImage}
+                    sizes={
+                      index === 0
+                        ? '(min-width: 46rem) 46rem, 100vw'
+                        : '(min-width: 46rem) 23rem, 100vw'
+                    }
+                    /* The lead shot is the first thing worth seeing here. */
+                    priority={index === 0}
+                  />
+                  {shot.caption && (
+                    <figcaption className={styles.shotCaption}>
+                      {shot.caption[locale]}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/*
+          Demo recording. `preload="metadata"` fetches only enough to size the
+          player — the file itself is downloaded when someone presses play.
+          The poster means the player is never an empty black rectangle.
+        */}
+        {detail.video && (
+          <section className={styles.block}>
+            <h2 className={styles.blockHeading}>{t.videoHeading}</h2>
+            <figure className={styles.videoFigure}>
+              <video
+                className={styles.video}
+                controls
+                preload="metadata"
+                playsInline
+                poster={detail.video.poster}
+                width={detail.video.width}
+                height={detail.video.height}
+              >
+                <source src={detail.video.src} type="video/mp4" />
+                {/* Reached only if the browser cannot play MP4 at all. */}
+                {t.videoUnsupported}
+              </video>
+              {/* The recording is silent, so this caption is how the content
+                  reaches anyone who cannot or does not watch it. */}
+              <figcaption className={styles.videoCaption}>
+                {detail.video.description[locale]}
+              </figcaption>
+            </figure>
+          </section>
+        )}
+
+        {detail.outcome && (
+          <section className={[styles.block, styles.outcome].join(' ')}>
+            <h2 className={styles.outcomeHeading}>{t.outcomeHeading}</h2>
+            <p className={styles.outcomeText}>{detail.outcome[locale]}</p>
+          </section>
+        )}
+
+        {/* Links appear only when a real URL is configured — never as a
+            disabled or dead button. */}
+        {(project.url || project.repositoryUrl) && (
           <div className={styles.actions}>
-            <ButtonLink href={project.url} external size="lg">
-              {dict.work.viewWebsite}
-            </ButtonLink>
+            {project.url && (
+              <ButtonLink href={project.url} external size="lg">
+                {dict.work.viewWebsite}
+              </ButtonLink>
+            )}
+            {project.repositoryUrl && (
+              <ButtonLink
+                href={project.repositoryUrl}
+                external
+                size="lg"
+                variant="secondary"
+              >
+                {t.viewRepository}
+              </ButtonLink>
+            )}
           </div>
         )}
       </Container>

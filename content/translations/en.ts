@@ -240,6 +240,15 @@ export const en: Dictionary = {
     typeLabel: 'Type',
     noLiveUrl: 'Not online yet',
     valueLabel: 'What it achieves',
+    detail: {
+      showsHeading: 'What this project shows',
+      screenshotsHeading: 'Screenshots',
+      videoHeading: 'Short demo',
+      outcomeHeading: 'Result',
+      videoUnsupported:
+        'Your browser cannot play this video. You can open the file directly.',
+      viewRepository: 'View the source code',
+    },
   },
 
   process: {

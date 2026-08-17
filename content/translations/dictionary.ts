@@ -219,6 +219,17 @@ export interface Dictionary {
     noLiveUrl: string;
     /** Screen-reader prefix for a project's outcome line. */
     valueLabel: string;
+    /** Headings and labels used on a project's case-study page. */
+    detail: {
+      showsHeading: string;
+      screenshotsHeading: string;
+      videoHeading: string;
+      outcomeHeading: string;
+      /** Shown by browsers that cannot play the video at all. */
+      videoUnsupported: string;
+      /** Only rendered when a project has a real repository URL. */
+      viewRepository: string;
+    };
   };
 
   process: {

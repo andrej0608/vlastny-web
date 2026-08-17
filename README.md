@@ -128,6 +128,35 @@ yourself as a demonstration; `client` marks real work delivered for a real
 client. The badge on each card shows this to visitors, and the whole site
 depends on that distinction being true.
 
+**Case-study media.** A `detail` block can also carry a screenshot gallery and
+a short demo recording. Both are optional; a project renders whatever it has.
+
+```ts
+gallery: [
+  {
+    src: '/projects/<name>/hero.webp',
+    width: 1600, height: 776,
+    alt: { nl: '…', en: '…' },        // required, describes the screenshot
+    caption: { nl: 'Startsectie', en: 'Hero section' },  // optional
+  },
+  // …the first image spans the full width, the rest share the row below it
+],
+video: {
+  src: '/projects/<name>/demo.mp4',
+  poster: '/projects/<name>/demo-poster.webp',
+  width: 1440, height: 684,
+  description: { nl: '…', en: '…' },  // visible caption, see below
+},
+outcome: { nl: '…', en: '…' },        // closing "Result" block
+```
+
+Media lives under `public/projects/<project-name>/`. Encode screenshots as
+WebP around 1600px wide, and the video as H.264 MP4 with
+`-movflags +faststart` so it streams rather than downloading whole. Strip the
+audio track unless the recording genuinely has narration — the `video.description`
+is what carries the content for anyone who cannot or does not watch it, so keep
+it accurate rather than decorative.
+
 **Optional detail page.** Add a `detail` block to a project and it
 automatically gets its own page at `/nl/werk/<slug>` and `/en/work/<slug>`, a
 link appears on its card, and it is added to the sitemap:
