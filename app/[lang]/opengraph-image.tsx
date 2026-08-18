@@ -13,7 +13,7 @@ import { siteConfig } from '@/content/site';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const alt = 'Andrej Juriga — website development & business automation';
+export const alt = 'Andrej Juriga — websites & business automation';
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));

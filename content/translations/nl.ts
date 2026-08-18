@@ -3,15 +3,20 @@ import type { Dictionary } from './dictionary';
 /**
  * Dutch content - the primary language of the site.
  * Edit the text here; no component changes are needed.
+ *
+ * Huisstijl: geschreven voor een ondernemer die niet met techniek bezig is -
+ * een poetsbedrijf, een garage, een aannemer, een restaurant. Zeg wat er
+ * gebeurt en wat het oplevert, niet hoe de techniek heet. Zou de zaakvoerder
+ * van een garage deze zin meteen begrijpen? Zo niet, dan moet hij eenvoudiger.
  */
 export const nl: Dictionary = {
   meta: {
     title:
-      'Andrej Juriga — Websites en bedrijfsautomatisering voor bedrijven in België en Nederland',
-    ogTitle: 'Professionele websites en slimme automatisering voor uw bedrijf',
+      'Andrej Juriga — Websites en slimme automatisering voor bedrijven in België en Nederland',
+    ogTitle: 'Websites die uw bedrijf helpen groeien',
     description:
-      'Moderne websites en praktische automatisering voor kleine en middelgrote bedrijven in Belgisch Limburg, de Kempen en Zuid-Nederland. Digitale oplossingen die tijd besparen en processen eenvoudiger maken.',
-    tagline: 'Websiteontwikkeling & bedrijfsautomatisering',
+      'Professionele websites en eenvoudige tools voor kleine en middelgrote bedrijven in Belgisch Limburg, de Kempen en Zuid-Nederland. Meer klanten bereiken en minder tijd verliezen aan werk dat elke dag terugkomt.',
+    tagline: 'Websites & bedrijfsautomatisering',
   },
 
   common: {
@@ -39,16 +44,17 @@ export const nl: Dictionary = {
   },
 
   hero: {
-    // Reads as: "Professionele websites en slimme automatisering voor uw bedrijf."
-    headlineLead: 'Professionele websites en ',
-    headlineAccent: 'slimme automatisering',
-    headlineTail: ' voor uw bedrijf.',
+    // Reads as: "Websites die uw bedrijf helpen groeien. Slimme automatisering
+    // die u tijd bespaart."
+    headlineLead: 'Websites die uw bedrijf helpen groeien. ',
+    headlineAccent: 'Slimme automatisering',
+    headlineTail: ' die u tijd bespaart.',
     supporting:
-      'Ik help bedrijven in België en Nederland met moderne websites en praktische digitale oplossingen die tijd besparen en processen eenvoudiger maken.',
-    primaryCta: 'Bespreek uw project',
+      'Ik bouw professionele websites en eenvoudige tools waarmee bedrijven meer klanten kunnen bereiken en minder tijd kwijt zijn aan terugkerend werk.',
+    primaryCta: 'Vertel wat u nodig heeft',
     secondaryCta: 'Bekijk mijn werk',
     points: [
-      'Rechtstreeks contact',
+      'U werkt rechtstreeks met mij',
       'Duidelijk voorstel vooraf',
       'België & Nederland',
     ],
@@ -59,13 +65,13 @@ export const nl: Dictionary = {
     eyebrow: 'Diensten',
     headline: 'Waarmee ik u kan helpen',
     intro:
-      'Van een volledig nieuwe website tot het vereenvoudigen van processen die nu nog handmatig gebeuren.',
+      'Van een volledig nieuwe website tot het overnemen van werk dat u nu nog elke dag met de hand doet.',
     items: [
       {
         id: 'websites-op-maat',
         title: 'Websites op maat',
         description:
-          'Professionele websites afgestemd op het bedrijf, de diensten en de klanten.',
+          'Een professionele website waarop klanten meteen zien wat u doet en hoe ze u kunnen bereiken.',
         imageAlt:
           'Illustratie van een website die wordt opgebouwd uit tekst, afbeeldingen en secties.',
       },
@@ -73,7 +79,7 @@ export const nl: Dictionary = {
         id: 'website-redesign',
         title: 'Website redesign',
         description:
-          'Modernisering van bestaande websites die verouderd zijn of niet meer goed aansluiten bij het bedrijf.',
+          'Heeft u al een website die er verouderd uitziet of lastig werkt? Ik geef uw website een moderne, professionele uitstraling.',
         imageAlt:
           'Illustratie van een verouderde website naast een vernieuwde, modernere versie.',
       },
@@ -81,7 +87,7 @@ export const nl: Dictionary = {
         id: 'bedrijfsautomatisering',
         title: 'Bedrijfsautomatisering',
         description:
-          'Praktische digitale oplossingen om terugkerende processen eenvoudiger en efficiënter te maken, zoals klantaanvragen, offertes, bestellingen en administratieve workflows.',
+          'Bespaar tijd op werk dat elke dag terugkomt — offertes, klantaanvragen, afspraken, bestellingen en administratie.',
         imageAlt:
           'Illustratie van klantaanvragen die automatisch worden verwerkt tot documenten en overzichten.',
       },
@@ -89,7 +95,7 @@ export const nl: Dictionary = {
         id: 'onderhoud',
         title: 'Onderhoud & aanpassingen',
         description:
-          'Ondersteuning bij toekomstige wijzigingen aan teksten, afbeeldingen, diensten, prijzen en andere onderdelen van de website.',
+          "Later prijzen, foto's, diensten of teksten aanpassen? Dat regel ik voor u.",
         imageAlt:
           'Illustratie van een beheerscherm met instellingen, updates en statusoverzichten.',
       },
@@ -98,28 +104,28 @@ export const nl: Dictionary = {
 
   whyWebsite: {
     eyebrow: 'Waarom een professionele website',
-    headline: 'Een website die werkt voor uw bedrijf.',
-    text: 'Een goede website moet niet alleen professioneel ogen. Ze moet klanten helpen snel te begrijpen wat u aanbiedt en het eenvoudig maken om de volgende stap te zetten.',
+    headline: 'Wat levert een goede website uw bedrijf op?',
+    text: 'Een website moet meer doen dan er mooi uitzien. Ze moet u klanten opleveren en het hen gemakkelijk maken om u te bereiken.',
     benefits: [
       {
-        title: 'Duidelijk voor uw klanten',
+        title: 'Nieuwe klanten bereiken',
         description:
-          'Bezoekers begrijpen snel welke diensten u aanbiedt en waarom ze bij uw bedrijf moeten zijn.',
+          'Mensen die zoeken naar wat u aanbiedt, vinden uw bedrijf online.',
       },
       {
-        title: 'Gemakkelijk contact',
+        title: 'Eenvoudig contact opnemen',
         description:
-          'Maak bellen, e-mailen, WhatsApp gebruiken of een aanvraag sturen zo eenvoudig mogelijk.',
+          'Klanten kunnen u snel bellen, een bericht sturen, een offerte aanvragen of een afspraak maken.',
       },
       {
-        title: 'Professionele uitstraling',
+        title: 'Vertrouwen opbouwen',
         description:
-          'Een moderne website helpt uw bedrijf betrouwbaar en professioneel over te komen.',
+          'Een professionele website laat uw bedrijf betrouwbaar en gevestigd overkomen.',
       },
       {
-        title: 'Minder onnodige vragen',
+        title: 'Zet bezoekers om in klanten',
         description:
-          'Duidelijke informatie over diensten, locatie, openingsuren en werkwijze kan terugkerende vragen verminderen.',
+          'Een duidelijke website helpt bezoekers om contact op te nemen, een offerte aan te vragen of een afspraak te maken.',
       },
     ],
   },
@@ -127,30 +133,41 @@ export const nl: Dictionary = {
   automation: {
     id: 'automatisering',
     eyebrow: 'Bedrijfsautomatisering',
-    headline: 'Wat kan automatisering voor uw bedrijf betekenen?',
+    headline: 'Doet u elke dag nog hetzelfde werk handmatig?',
     intro:
-      'Veel bedrijven besteden dagelijks tijd aan terugkerende taken die gedeeltelijk geautomatiseerd kunnen worden. Een eenvoudige digitale oplossing kan helpen om informatie sneller te verwerken, fouten te verminderen en tijd vrij te maken voor belangrijker werk.',
+      'Veel terugkerende taken hoeven uw tijd niet te kosten. Ik kan eenvoudige tools maken die een deel van dat werk voor u overnemen.',
     useCases: [
-      {
-        id: 'klantaanvragen',
-        title: 'Klantaanvragen',
-        description:
-          'Informatie uit aanvragen kan automatisch worden verzameld, gestructureerd en voorbereid voor verdere verwerking.',
-      },
       {
         id: 'offertes',
         title: 'Offertes',
         description:
-          'Gegevens van klanten en aanvragen kunnen worden gebruikt om sneller en consistenter offertes voor te bereiden.',
+          'De klant stuurt de gegevens door. De offerte wordt automatisch voorbereid, in plaats van alles opnieuw in te typen.',
+      },
+      {
+        id: 'afspraken',
+        title: 'Afspraken',
+        description:
+          'Laat klanten zelf een moment aanvragen of vastleggen, zonder heen en weer te bellen of berichten te sturen.',
+      },
+      {
+        id: 'klantaanvragen',
+        title: 'Klantaanvragen',
+        description:
+          'Verzamel alles wat u van een klant nodig heeft op één plek, in plaats van te zoeken in e-mails en WhatsApp-berichten.',
       },
       {
         id: 'bestellingen',
-        title: 'Bestellingen & administratie',
+        title: 'Bestellingen',
         description:
-          'Terugkerende stappen rond bestellingen, gegevensverwerking en administratieve taken kunnen eenvoudiger worden gemaakt.',
+          'Houd bestellingen en klantgegevens overzichtelijk, zonder dezelfde gegevens van de ene plek naar de andere over te typen.',
+      },
+      {
+        id: 'planning',
+        title: 'Personeelsplanning',
+        description: 'Zie in één duidelijk overzicht wie waar en wanneer werkt.',
       },
     ],
-    cta: 'Bespreek wat mogelijk is',
+    cta: 'Vertel wat u veel tijd kost',
   },
 
   aiAdoption: {
@@ -158,7 +175,7 @@ export const nl: Dictionary = {
     eyebrow: 'AI in bedrijven',
     headline: 'AI wordt steeds normaler in het bedrijfsleven.',
     intro:
-      'In 2025 gebruikte 20% van de EU-bedrijven met 10 of meer werknemers minstens één AI-technologie. In 2023 was dit nog 8,1%. Dat laat zien hoe snel de toepassing groeit — en hoeveel ruimte er nog is voor praktische inzet binnen dagelijkse processen.',
+      'In 2025 gebruikte 20% van de EU-bedrijven met 10 of meer werknemers minstens één AI-technologie. In 2023 was dat nog 8,1%. U hoeft de techniek niet te begrijpen. De vraag die telt, is waar ze u tijd kan besparen of het werk gemakkelijker kan maken.',
     chartLabel:
       'Grafiek: aandeel EU-bedrijven met 10 of meer werknemers dat minstens één AI-technologie gebruikt, van 2021 tot 2025.',
     chartTableHeading: 'De gegevens uit de grafiek',
@@ -172,9 +189,9 @@ export const nl: Dictionary = {
   examples: {
     id: 'voorbeelden',
     eyebrow: 'Praktische voorbeelden',
-    headline: 'Hoe kan dit er in de praktijk uitzien?',
+    headline: 'Hoe ziet dit er in de praktijk uit?',
     intro:
-      'Niet elke oplossing hoeft complex te zijn. Vaak begint het met één terugkerend proces dat vandaag nog handmatig gebeurt, maar slimmer ingericht kan worden.',
+      'Het begint meestal met één klus die elke week terugkomt en nog altijd met de hand gebeurt.',
     labels: {
       problem: 'Probleem',
       solution: 'Oplossing',
@@ -185,41 +202,41 @@ export const nl: Dictionary = {
         id: 'offertes',
         title: 'Offertes voorbereiden',
         problem:
-          'Een klantaanvraag komt binnen via e-mail of website. Iemand moet de gegevens lezen, structureren, prijzen opzoeken en de offerte handmatig beginnen.',
+          'Een klant vraagt een prijs. Iemand leest de mail door, zoekt de prijzen op en typt de offerte helemaal opnieuw.',
         solution:
-          'De aanvraag wordt gestructureerd verwerkt, zodat de juiste gegevens meteen beschikbaar zijn en er sneller een eerste voorstel of offerte voorbereid kan worden.',
+          'De klant stuurt de gegevens één keer door. Die worden automatisch geordend, zodat de offerte bijna klaar is om te versturen.',
         result:
-          'De medewerker begint niet telkens opnieuw vanaf nul, maar werkt verder op voorbereide informatie en een duidelijker proces.',
+          'Offertes gaan sneller de deur uit en zien er elke keer hetzelfde uit, zonder dezelfde gegevens opnieuw te typen.',
       },
       {
         id: 'aanvragen',
         title: 'Nieuwe klantaanvragen',
         problem:
-          'Nieuwe vragen komen binnen via verschillende kanalen en moeten handmatig gesorteerd, opgevolgd en beantwoord worden.',
+          'Aanvragen komen binnen via telefoon, e-mail en WhatsApp. Sommige worden laat beantwoord en andere blijven liggen.',
         solution:
-          'Een systeem kan de aanvraag categoriseren, de belangrijkste informatie verzamelen, een bevestiging voorbereiden en de juiste volgende stap klaarzetten.',
+          'Elke aanvraag komt op één plek binnen, met de gegevens die u nodig heeft er al bij.',
         result:
-          'Elke nieuwe aanvraag krijgt een duidelijk vervolg en de kans dat een bericht blijft liggen wordt kleiner.',
+          'Er gaat niets verloren tussen de mailboxen en u kunt antwoorden zolang de klant nog geïnteresseerd is.',
       },
       {
         id: 'bestellingen',
         title: 'Bestellingen verwerken',
         problem:
-          'Bestellingen komen op verschillende manieren binnen en iemand moet de informatie daarna handmatig overnemen of tussen systemen verplaatsen.',
+          'Dezelfde bestelgegevens worden telkens opnieuw overgetypt in een lijst, een document en een factuur.',
         solution:
-          'Bestelgegevens kunnen automatisch verzameld, gecontroleerd en voorbereid worden in de structuur die het bedrijf nodig heeft voor verdere verwerking.',
+          'De gegevens worden één keer ingevoerd en verschijnen overal waar ze nodig zijn.',
         result:
-          'Er is minder handmatig overtypen nodig en het proces van ontvangst tot verdere verwerking wordt consistenter.',
+          'Minder typewerk, minder fouten en een duidelijk overzicht van wat er nog loopt.',
       },
       {
         id: 'afspraken',
-        title: 'Service- of afspraakaanvragen',
+        title: 'Afspraken inplannen',
         problem:
-          'Klanten bellen of sturen berichten over afspraken, maar de nodige informatie ontbreekt vaak nog en moet later opnieuw worden opgevraagd.',
+          'Klanten bellen voor een afspraak en achteraf ontbreekt nog de helft van de informatie die u nodig heeft.',
         solution:
-          'De website of een digitaal formulier verzamelt vooraf de belangrijkste informatie, zoals type aanvraag, contactgegevens en voorkeuren.',
+          'Klanten kiezen zelf een moment en vullen vooraf in wat u moet weten.',
         result:
-          'De aanvraag komt vanaf het begin vollediger binnen en er is minder heen-en-weer communicatie nodig.',
+          'Minder heen en weer bellen en elke afspraak is meteen volledig.',
       },
     ],
   },
@@ -229,7 +246,7 @@ export const nl: Dictionary = {
     eyebrow: 'Werk',
     headline: 'Mijn werk',
     intro:
-      'Een overzicht van projecten. Bij elk project staat duidelijk vermeld of het om een conceptproject of een klantproject gaat.',
+      'Een blik op wat ik gebouwd heb. Bij elk project staat duidelijk of het voor een klant is gemaakt of een eigen concept is.',
     viewWebsite: 'Bekijk website',
     viewDetails: 'Meer over dit project',
     status: {
@@ -254,33 +271,33 @@ export const nl: Dictionary = {
   process: {
     id: 'werkwijze',
     eyebrow: 'Werkwijze',
-    headline: 'Van idee tot website in vier eenvoudige stappen',
+    headline: 'Van eerste gesprek tot afgewerkt project, in vier stappen',
     intro:
       'Een duidelijk traject, zonder verrassingen. U weet op elk moment waar we staan.',
     steps: [
       {
         number: '01',
-        title: 'Kennismaking',
+        title: 'Vertel wat u nodig heeft',
         description:
-          'We bespreken uw bedrijf, uw wensen en wat de website of digitale oplossing moet bereiken.',
+          'We bespreken uw bedrijf, wat u wilt verbeteren en wat u nu te veel tijd kost. U hoeft niet te weten welke technische oplossing u nodig heeft.',
       },
       {
         number: '02',
-        title: 'Voorstel',
+        title: 'Duidelijk voorstel',
         description:
-          'U ontvangt een duidelijk voorstel voor de inhoud, structuur en aanpak.',
+          'U ontvangt een duidelijk voorstel: wat ik maak, wat het kost en wanneer het klaar is.',
       },
       {
         number: '03',
-        title: 'Ontwikkeling',
+        title: 'Ik bouw het',
         description:
-          'De website of oplossing wordt gebouwd en aangepast op basis van uw feedback.',
+          'Ik bouw de website of de tool en laat u tussentijds meekijken, zodat u onderweg dingen kunt laten aanpassen.',
       },
       {
         number: '04',
-        title: 'Online',
+        title: 'Online en klaar voor gebruik',
         description:
-          'Na goedkeuring wordt de website op uw eigen domein gepubliceerd en klaar gemaakt voor gebruik.',
+          'Zodra u akkoord bent, gaat alles online op uw eigen domein en is het klaar voor gebruik.',
       },
     ],
   },
@@ -290,16 +307,17 @@ export const nl: Dictionary = {
     eyebrow: 'Over mij',
     headline: 'Hallo, ik ben Andrej.',
     paragraphs: [
-      'Ik ontwerp en bouw moderne websites en digitale oplossingen voor bedrijven in België en Nederland. Sinds 2022 werk ik binnen een hightechomgeving, waar technologie, processen en probleemoplossing deel uitmaken van mijn dagelijkse werk.',
-      'Vanaf 2025 ben ik me actief gaan verdiepen in artificiële intelligentie en vooral in hoe AI-systemen informatie verwerken en praktisch kunnen worden ingezet binnen bedrijven. Vanuit die interesse ben ik me naast websites ook gaan richten op automatisering van bijvoorbeeld klantaanvragen, offertes, bestellingen en andere terugkerende processen.',
-      'Mijn doel is om technologie praktisch te gebruiken: duidelijke oplossingen die tijd besparen en processen eenvoudiger maken. U heeft rechtstreeks contact met de persoon die uw website of oplossing ontwerpt en bouwt.',
+      'Ik bouw websites en eenvoudige digitale tools voor bedrijven in België en Nederland.',
+      'Mijn doel is eenvoudig: uw bedrijf professioneel online zetten, u helpen meer klanten te bereiken en minder tijd te verliezen aan werk dat elke dag terugkomt.',
+      'U werkt rechtstreeks met mij, van het eerste gesprek tot het afgewerkte project — geen bureau en geen ingewikkeld traject.',
+      'Sinds 2022 werk ik daarnaast in een hightechomgeving, waar problemen oplossen en werk eenvoudiger maken deel uitmaken van mijn dagelijkse job.',
     ],
   },
 
   areas: {
     eyebrow: 'Werkgebied',
     headline: 'Actief in België en Nederland',
-    text: 'Websites en digitale oplossingen voor bedrijven in Belgisch Limburg, de Kempen en Zuid-Nederland.',
+    text: 'Websites en eenvoudige tools voor bedrijven in Belgisch Limburg, de Kempen en Zuid-Nederland.',
     locations: [
       'Pelt',
       'Lommel',
@@ -326,60 +344,67 @@ export const nl: Dictionary = {
         id: 'prijs',
         question: 'Hoeveel kost een website?',
         answer:
-          'De prijs hangt af van de grootte, inhoud en gewenste functionaliteiten. Na een korte kennismaking ontvangt u een duidelijke en vrijblijvende offerte.',
+          'De prijs hangt af van hoe groot de website is en wat ze moet kunnen. Na een kort gesprek krijgt u een duidelijke prijs, volledig vrijblijvend.',
       },
       {
         id: 'duur',
         question: 'Hoe lang duurt het om een website te maken?',
         answer:
-          'Dit hangt af van de grootte en complexiteit van het project. Tijdens de eerste bespreking kunnen we de inhoud, wensen en een realistische planning bepalen.',
+          'Dat hangt af van de grootte van het project. Tijdens het eerste gesprek overlopen we wat u nodig heeft en krijgt u een realistische datum.',
       },
       {
         id: 'aanleveren',
         question: 'Wat moet ik zelf aanleveren?',
         answer:
-          "Dit verschilt per project. Denk bijvoorbeeld aan bedrijfsinformatie, diensten, logo, foto's en contactgegevens. Als bepaalde inhoud nog ontbreekt, kunnen we samen bekijken wat nodig is.",
+          "Meestal uw bedrijfsgegevens, uw diensten, een logo, enkele foto's en uw contactgegevens. Ontbreekt er iets, dan bekijken we samen wat nodig is.",
       },
       {
         id: 'redesign',
         question: 'Kan mijn bestaande website vernieuwd worden?',
         answer:
-          'Ja. Een bestaande website kan opnieuw ontworpen en gemoderniseerd worden.',
+          'Ja. Een bestaande website kan een moderne, professionele uitstraling krijgen.',
       },
       {
         id: 'wijzigingen',
         question: 'Kan ik later wijzigingen laten uitvoeren?',
         answer:
-          'Ja. Ook na oplevering kunnen teksten, afbeeldingen, diensten, prijzen en andere onderdelen aangepast worden.',
+          "Ja. Ook nadat de website online staat, kunnen prijzen, foto's, diensten en teksten aangepast worden.",
       },
       {
         id: 'eigendom',
         question: 'Is de website na oplevering van mij?',
         answer:
-          'De afspraken hierover worden vooraf duidelijk besproken en opgenomen in het voorstel, zodat u precies weet wat inbegrepen is.',
+          'Dat spreken we vooraf af en het staat in het voorstel, zodat u precies weet wat inbegrepen is.',
       },
       {
         id: 'domein-hosting',
         question: 'Kunt u ook helpen met domein en hosting?',
         answer:
-          'Ja. Indien gewenst kan ik helpen met het domein, hosting en het online publiceren van de website.',
+          'Ja. Als u dat wilt, regel ik het webadres, de hosting en het online zetten van de website.',
       },
       {
         id: 'meertalig',
         question: 'Kan de website in meerdere talen gemaakt worden?',
-        answer: 'Ja. Websites kunnen indien nodig in meerdere talen worden opgebouwd.',
+        answer: 'Ja. Een website kan in meerdere talen gemaakt worden.',
       },
       {
         id: 'automatisering',
         question: 'Wat kan er geautomatiseerd worden binnen mijn bedrijf?',
         answer:
-          'Dit hangt af van uw processen. Voorbeelden zijn het verwerken van klantaanvragen, het automatisch voorbereiden van offertes, het verwerken van bestellingen of het vereenvoudigen van terugkerende administratieve taken.',
+          'Dat hangt af van hoe u werkt. Veelvoorkomende voorbeelden zijn offertes voorbereiden, klantaanvragen opvolgen, afspraken inplannen, bestellingen verwerken en terugkerend papierwerk.',
+      },
+      {
+        id: 'automatisering-hulp',
+        question: 'Ik weet niet wat ik kan automatiseren. Kunt u daarbij helpen?',
+        answer:
+          'Ja. U hoeft niet te weten welke techniek u nodig heeft. Vertel gewoon hoe u nu werkt en welke taken u veel tijd kosten. Ik bekijk waar het eenvoudiger kan.',
       },
       {
         id: 'vrijblijvend',
-        question: 'Kunnen we eerst vrijblijvend bespreken wat mijn bedrijf nodig heeft?',
+        question:
+          'Kunnen we eerst vrijblijvend bespreken wat mijn bedrijf nodig heeft?',
         answer:
-          'Ja. Een eerste gesprek is bedoeld om te begrijpen wat uw bedrijf nodig heeft en welke oplossing daarbij past.',
+          'Ja. Een eerste gesprek dient om te begrijpen wat uw bedrijf nodig heeft en waarmee u het meest geholpen bent.',
       },
     ],
   },
@@ -387,8 +412,8 @@ export const nl: Dictionary = {
   contact: {
     id: 'contact',
     eyebrow: 'Contact',
-    headline: 'Laten we uw project bespreken',
-    text: 'Heeft u een nieuwe website nodig, wilt u uw huidige website vernieuwen of denkt u dat bepaalde processen binnen uw bedrijf efficiënter kunnen? Stuur me gerust een bericht.',
+    headline: 'Vertel me over uw bedrijf.',
+    text: 'Heeft u een website nodig of bent u te veel tijd kwijt aan werk dat elke dag terugkomt? Stuur me een bericht en vertel hoe u nu werkt. Ik bekijk waar ik kan helpen.',
     detailsHeading: 'Contactgegevens',
     country: 'België',
     // Deliberately not a promise about response times - see README.
@@ -413,14 +438,14 @@ export const nl: Dictionary = {
         ],
       },
       message: {
-        label: 'Vertel kort over uw project',
+        label: 'Vertel kort wat u nodig heeft',
         placeholder:
-          'Vertel kort over uw bedrijf en wat u zoekt. Een paar zinnen volstaat.',
+          'Vertel kort wat uw bedrijf doet en wat u te veel tijd kost. Een paar zinnen volstaat.',
       },
       optional: 'optioneel',
       required: 'verplicht',
       requiredNote: 'Velden met * zijn verplicht.',
-      submit: 'Vraag een vrijblijvende offerte aan',
+      submit: 'Stuur mij een bericht',
       submitting: 'Bezig met verzenden…',
       privacyNote:
         'Uw gegevens worden alleen gebruikt om op uw aanvraag te reageren en worden niet gedeeld met derden.',
@@ -446,7 +471,7 @@ export const nl: Dictionary = {
       },
       success: {
         heading: 'Bedankt voor uw bericht.',
-        text: 'Uw aanvraag is verzonden. Ik neem zo snel mogelijk contact met u op.',
+        text: 'Uw bericht is verzonden. Ik neem zo snel mogelijk contact met u op.',
       },
       failure: {
         heading: 'Het bericht kon niet verzonden worden.',
@@ -460,9 +485,9 @@ export const nl: Dictionary = {
   },
 
   footer: {
-    tagline: 'Websiteontwikkeling & bedrijfsautomatisering',
+    tagline: 'Websites & bedrijfsautomatisering',
     description:
-      'Websites en digitale oplossingen voor bedrijven in België en Nederland.',
+      'Websites en slimme automatisering voor bedrijven in België en Nederland.',
     navHeading: 'Navigatie',
     contactHeading: 'Contact',
     languageHeading: 'Taal',

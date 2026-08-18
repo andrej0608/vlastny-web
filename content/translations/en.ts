@@ -3,15 +3,20 @@ import type { Dictionary } from './dictionary';
 /**
  * English content.
  * Every key here is manually written - no machine translation is used anywhere.
+ *
+ * House style: this is written for a business owner who is not comfortable with
+ * technology - a cleaning company, a garage, a builder, a restaurant. Say what
+ * happens and what it is worth to them; never name the technology for its own
+ * sake. If a sentence would puzzle that reader, it is the wrong sentence.
  */
 export const en: Dictionary = {
   meta: {
     title:
-      'Andrej Juriga — Websites and business automation for businesses in Belgium and the Netherlands',
-    ogTitle: 'Professional websites and smart automation for your business',
+      'Andrej Juriga — Websites and simple automation for businesses in Belgium and the Netherlands',
+    ogTitle: 'Websites that help your business grow',
     description:
-      'Modern websites and practical automation for small and medium-sized businesses across Belgian Limburg, the Kempen region and the south of the Netherlands. Digital solutions that save time and simplify everyday processes.',
-    tagline: 'Website development & business automation',
+      'Professional websites and simple tools for small and medium-sized businesses in Belgian Limburg, the Kempen region and the south of the Netherlands. Get more customers and spend less time on work that repeats every day.',
+    tagline: 'Websites & business automation',
   },
 
   common: {
@@ -39,17 +44,18 @@ export const en: Dictionary = {
   },
 
   hero: {
-    // Reads as: "Professional websites and smart automation for your business."
-    headlineLead: 'Professional websites and ',
-    headlineAccent: 'smart automation',
-    headlineTail: ' for your business.',
+    // Reads as: "Websites that help your business grow. Simple automation that
+    // saves you time."
+    headlineLead: 'Websites that help your business grow. ',
+    headlineAccent: 'Simple automation',
+    headlineTail: ' that saves you time.',
     supporting:
-      'I help businesses in Belgium and the Netherlands with modern websites and practical digital solutions that save time and simplify everyday processes.',
-    primaryCta: 'Discuss your project',
-    secondaryCta: 'View my work',
+      'I build professional websites and simple tools that help businesses get more customers and spend less time on repetitive work.',
+    primaryCta: 'Tell me what you need',
+    secondaryCta: 'See my work',
     points: [
-      'Work directly with me',
-      'Clear proposal upfront',
+      'You work directly with me',
+      'Clear proposal before we start',
       'Belgium & the Netherlands',
     ],
   },
@@ -59,13 +65,13 @@ export const en: Dictionary = {
     eyebrow: 'Services',
     headline: 'How I can help',
     intro:
-      'From a completely new website to simplifying processes that are still handled manually today.',
+      'From a brand-new website to taking over work you still do by hand every day.',
     items: [
       {
         id: 'websites-op-maat',
         title: 'Custom websites',
         description:
-          'Professional websites tailored to the business, its services and its customers.',
+          'A professional website where customers can quickly see what you do and how to contact you.',
         imageAlt:
           'Illustration of a website being assembled from text, images and sections.',
       },
@@ -73,7 +79,7 @@ export const en: Dictionary = {
         id: 'website-redesign',
         title: 'Website redesign',
         description:
-          'Modernisation of existing websites that are outdated or no longer properly represent the business.',
+          'Already have a website that looks old or is difficult to use? I can give it a modern, professional look.',
         imageAlt:
           'Illustration of an outdated website next to a renewed, more modern version.',
       },
@@ -81,7 +87,7 @@ export const en: Dictionary = {
         id: 'bedrijfsautomatisering',
         title: 'Business automation',
         description:
-          'Practical digital solutions that simplify repetitive business processes such as customer enquiries, quotations, orders and administrative workflows.',
+          'Save time on work you repeat every day — quotations, customer requests, bookings, orders and administration.',
         imageAlt:
           'Illustration of customer enquiries being processed automatically into documents and overviews.',
       },
@@ -89,7 +95,7 @@ export const en: Dictionary = {
         id: 'onderhoud',
         title: 'Maintenance & updates',
         description:
-          'Support with future changes to text, images, services, prices and other website content.',
+          'Need to change prices, photos, services or text later? I can take care of it for you.',
         imageAlt:
           'Illustration of a maintenance screen showing settings, updates and status overviews.',
       },
@@ -98,28 +104,28 @@ export const en: Dictionary = {
 
   whyWebsite: {
     eyebrow: 'Why a professional website',
-    headline: 'A website that works for your business.',
-    text: 'A good website should do more than look professional. It should help customers quickly understand what you offer and make it easy to take the next step.',
+    headline: 'What does a good website actually do for your business?',
+    text: 'A website should do more than look nice. It should bring you customers and make it easy for them to reach you.',
     benefits: [
       {
-        title: 'Clear for your customers',
+        title: 'Bring in new customers',
         description:
-          'Visitors quickly understand what you offer and why they should choose your business.',
+          'People searching for your service can find your business online.',
       },
       {
-        title: 'Easy contact',
+        title: 'Make contacting you easy',
         description:
-          'Make calling, emailing, WhatsApp or sending an enquiry as simple as possible.',
+          'Customers can quickly call, message you, request a quote or make a booking.',
       },
       {
-        title: 'Professional presence',
+        title: 'Build trust',
         description:
-          'A modern website helps your business appear professional and trustworthy.',
+          'A professional website makes your business look established and reliable.',
       },
       {
-        title: 'Fewer unnecessary questions',
+        title: 'Turn visitors into customers',
         description:
-          'Clear information about services, location, opening hours and your process can reduce repetitive questions.',
+          'A clear website guides visitors towards contacting you, requesting a quote or making a booking.',
       },
     ],
   },
@@ -127,30 +133,41 @@ export const en: Dictionary = {
   automation: {
     id: 'automation',
     eyebrow: 'Business automation',
-    headline: 'What can automation do for your business?',
+    headline: 'Still doing the same work manually every day?',
     intro:
-      'Many businesses spend time every day on repetitive tasks that can be partly automated. A practical digital solution can help process information faster, reduce errors and free up time for more important work.',
+      'Many everyday tasks do not need to take up your time. I can build simple tools that handle part of the work for you.',
     useCases: [
-      {
-        id: 'klantaanvragen',
-        title: 'Customer enquiries',
-        description:
-          'Information from enquiries can be automatically collected, structured and prepared for further processing.',
-      },
       {
         id: 'offertes',
         title: 'Quotations',
         description:
-          'Customer and enquiry information can be used to prepare quotations faster and more consistently.',
+          'The customer sends the information. The quotation can be prepared automatically instead of typing everything again.',
+      },
+      {
+        id: 'afspraken',
+        title: 'Bookings',
+        description:
+          'Let customers request or book a time without calling or messaging back and forth.',
+      },
+      {
+        id: 'klantaanvragen',
+        title: 'Customer requests',
+        description:
+          'Collect the information you need from a customer in one place instead of searching through emails and WhatsApp messages.',
       },
       {
         id: 'bestellingen',
-        title: 'Orders & administration',
+        title: 'Orders',
         description:
-          'Repetitive steps around orders, information processing and administrative tasks can be simplified.',
+          'Keep orders and customer information organised without copying the same details from one place to another.',
+      },
+      {
+        id: 'planning',
+        title: 'Employee planning',
+        description: 'See who is working where and when in one simple overview.',
       },
     ],
-    cta: 'Discuss what is possible',
+    cta: 'Tell me what takes up your time',
   },
 
   aiAdoption: {
@@ -158,7 +175,7 @@ export const en: Dictionary = {
     eyebrow: 'AI in business',
     headline: 'AI is becoming part of everyday business.',
     intro:
-      'In 2025, 20% of EU businesses with 10 or more employees used at least one AI technology. In 2023, this was still 8.1%. This shows how quickly adoption is growing — and how much room there still is for practical use in everyday processes.',
+      'In 2025, 20% of EU businesses with 10 or more employees used at least one AI technology. In 2023 it was 8.1%. You do not need to understand the technology. The question that matters is where it can save you time or make the work easier.',
     chartLabel:
       'Chart: share of EU enterprises with 10 or more employees using at least one AI technology, from 2021 to 2025.',
     chartTableHeading: 'The data behind the chart',
@@ -172,9 +189,9 @@ export const en: Dictionary = {
   examples: {
     id: 'examples',
     eyebrow: 'Practical examples',
-    headline: 'What could this look like in practice?',
+    headline: 'What does this look like in practice?',
     intro:
-      'Not every solution needs to be complex. In many cases, it starts with one recurring process that is still handled manually today, but could be set up more intelligently.',
+      'It usually starts with one job that comes back every week and is still done by hand.',
     labels: {
       problem: 'Problem',
       solution: 'Solution',
@@ -185,41 +202,41 @@ export const en: Dictionary = {
         id: 'offertes',
         title: 'Preparing quotations',
         problem:
-          'A customer enquiry arrives by email or through the website. Someone has to read the information, structure it, look up pricing and manually start the quotation.',
+          'A customer asks for a price. Someone reads through the email, looks up the prices and types the quotation from scratch.',
         solution:
-          'The enquiry is processed in a structured way, so the right information is immediately available and a first proposal or quotation can be prepared faster.',
+          'The customer sends the information once. It is organised automatically, so the quotation is almost ready to send.',
         result:
-          'Instead of starting from scratch every time, the employee works with prepared information and a clearer process.',
+          'Quotations go out faster and look the same every time, without typing the same details again.',
       },
       {
         id: 'aanvragen',
-        title: 'New customer enquiries',
+        title: 'New customer requests',
         problem:
-          'New enquiries come in through different channels and need to be manually sorted, followed up and answered.',
+          'Requests arrive by phone, by email and through WhatsApp. Some are answered late and some are missed altogether.',
         solution:
-          'A system can categorise the enquiry, collect the key information, prepare a confirmation and set up the correct next step.',
+          'Every request lands in one place, with the details you need already filled in.',
         result:
-          'Each new enquiry has a clearer follow-up and the chance of messages being missed is reduced.',
+          'Nothing gets lost between inboxes and you can reply while the customer is still interested.',
       },
       {
         id: 'bestellingen',
         title: 'Processing orders',
         problem:
-          'Orders come in through different channels and someone then has to manually transfer the information or move it between systems.',
+          'The same order details are typed over again into a list, a document and an invoice.',
         solution:
-          'Order details can be automatically collected, checked and prepared in the structure the business needs for further processing.',
+          'The details are entered once and appear everywhere they are needed.',
         result:
-          'Less manual copying is needed and the process from order intake to further processing becomes more consistent.',
+          'Less typing, fewer mistakes and a clear overview of what is still running.',
       },
       {
         id: 'afspraken',
-        title: 'Service or appointment requests',
+        title: 'Appointments and bookings',
         problem:
-          'Customers call or send messages about appointments, but key information is often missing and has to be requested later.',
+          'Customers call to make an appointment, and afterwards half the information you need is still missing.',
         solution:
-          'The website or a digital form collects the most important information in advance, such as the request type, contact details and preferences.',
+          'Customers pick a moment themselves and fill in beforehand what you need to know.',
         result:
-          'The request is more complete from the start and less back-and-forth communication is needed.',
+          'Fewer phone calls back and forth, and every appointment is complete from the start.',
       },
     ],
   },
@@ -229,7 +246,7 @@ export const en: Dictionary = {
     eyebrow: 'Work',
     headline: 'My work',
     intro:
-      'An overview of projects. Each one clearly states whether it is a concept project or a client project.',
+      'A look at what I have built. Each project says clearly whether it was made for a client or as my own concept.',
     viewWebsite: 'View website',
     viewDetails: 'More about this project',
     status: {
@@ -254,32 +271,32 @@ export const en: Dictionary = {
   process: {
     id: 'how-it-works',
     eyebrow: 'How it works',
-    headline: 'From idea to website in four simple steps',
+    headline: 'From first conversation to finished project, in four steps',
     intro: 'A clear process, without surprises. You always know where we stand.',
     steps: [
       {
         number: '01',
-        title: 'Introduction',
+        title: 'Tell me what you need',
         description:
-          'We discuss your business, your requirements and what the website or digital solution should achieve.',
+          'We talk about your business, what you want to improve and what currently takes too much of your time. You do not need to know which technical solution you need.',
       },
       {
         number: '02',
-        title: 'Proposal',
+        title: 'Clear proposal',
         description:
-          'You receive a clear proposal for the content, structure and approach.',
+          'You receive a clear proposal: what I will build, what it costs and when it will be ready.',
       },
       {
         number: '03',
-        title: 'Development',
+        title: 'I build it',
         description:
-          'The website or solution is built and adjusted based on your feedback.',
+          'I build the website or the tool and show you the work along the way, so you can have things changed while it is being made.',
       },
       {
         number: '04',
-        title: 'Launch',
+        title: 'Live and ready to use',
         description:
-          'After approval, the website is published on your own domain and prepared for use.',
+          'Once you approve it, everything goes online on your own domain and is ready to use.',
       },
     ],
   },
@@ -289,16 +306,17 @@ export const en: Dictionary = {
     eyebrow: 'About me',
     headline: "Hi, I'm Andrej.",
     paragraphs: [
-      'I design and build modern websites and digital solutions for businesses in Belgium and the Netherlands. Since 2022, I have worked in a high-tech environment where technology, processes and problem-solving are part of my daily work.',
-      'In 2025, I started actively exploring artificial intelligence, with a particular interest in how AI systems process information and how they can be applied practically in businesses. This led me to focus not only on websites, but also on automating processes such as customer enquiries, quotations, orders and other repetitive tasks.',
-      'My goal is to use technology in a practical way: creating clear solutions that save time and simplify processes. You work directly with the person designing and building your website or solution.',
+      'I build websites and simple digital tools for businesses in Belgium and the Netherlands.',
+      'My goal is simple: help your business look professional online, get more customers and spend less time on repetitive work.',
+      'You work directly with me, from the first conversation to the finished project — no agency and no complicated process.',
+      'Since 2022 I have also worked in a high-tech environment, where solving problems and making work simpler is part of my daily job.',
     ],
   },
 
   areas: {
     eyebrow: 'Areas served',
     headline: 'Serving businesses in Belgium and the Netherlands',
-    text: 'Websites and digital solutions for businesses across Belgian Limburg, the Kempen region and the south of the Netherlands.',
+    text: 'Websites and simple tools for businesses across Belgian Limburg, the Kempen region and the south of the Netherlands.',
     locations: [
       'Pelt',
       'Lommel',
@@ -325,60 +343,67 @@ export const en: Dictionary = {
         id: 'prijs',
         question: 'How much does a website cost?',
         answer:
-          'The price depends on the size, content and required functionality. After a short introduction, you will receive a clear, no-obligation quotation.',
+          'That depends on how big the website is and what it needs to do. After a short conversation you receive a clear price, with no obligation.',
       },
       {
         id: 'duur',
         question: 'How long does it take to build a website?',
         answer:
-          'This depends on the size and complexity of the project. During the first discussion, we can determine the content, requirements and a realistic timeline.',
+          'That depends on the size of the project. In the first conversation we go through what you need, and you get a realistic date.',
       },
       {
         id: 'aanleveren',
         question: 'What do I need to provide?',
         answer:
-          'This depends on the project. Typical items include business information, services, logo, photos and contact details. If some content is still missing, we can determine together what is needed.',
+          'Usually your company details, your services, a logo, some photos and your contact details. If something is still missing, we work out together what is needed.',
       },
       {
         id: 'redesign',
         question: 'Can my existing website be redesigned?',
-        answer: 'Yes. Existing websites can be redesigned and modernised.',
+        answer:
+          'Yes. An existing website can be given a modern, professional look.',
       },
       {
         id: 'wijzigingen',
         question: 'Can changes be made later?',
         answer:
-          'Yes. Text, images, services, prices and other website content can also be updated after launch.',
+          'Yes. Prices, photos, services and text can also be changed after the website is live.',
       },
       {
         id: 'eigendom',
         question: 'Will the website belong to me after completion?',
         answer:
-          'The arrangements are clearly discussed beforehand and included in the proposal, so you know exactly what is included.',
+          'We agree on this upfront and it is written down in the proposal, so you know exactly what is included.',
       },
       {
         id: 'domein-hosting',
         question: 'Can you help with the domain and hosting?',
         answer:
-          'Yes. If required, I can help with the domain, hosting and publishing the website online.',
+          'Yes. If you want, I take care of the web address, the hosting and putting the website online.',
       },
       {
         id: 'meertalig',
         question: 'Can the website be multilingual?',
-        answer: 'Yes. Websites can be built in multiple languages when required.',
+        answer: 'Yes. A website can be built in more than one language.',
       },
       {
         id: 'automatisering',
-        question: 'What can be automated within my business?',
+        question: 'What can be automated in my business?',
         answer:
-          'This depends on your processes. Examples include processing customer enquiries, automatically preparing quotations, handling orders or simplifying repetitive administrative tasks.',
+          'That depends on how you work. Common examples are preparing quotations, handling customer requests, taking bookings, processing orders and repetitive paperwork.',
+      },
+      {
+        id: 'automatisering-hulp',
+        question: 'I do not know what can be automated. Can you help?',
+        answer:
+          'Yes. You do not need to know what technology you need. Simply tell me how you currently work and which tasks take up your time. I can look for opportunities to make the process simpler.',
       },
       {
         id: 'vrijblijvend',
         question:
           'Can we first discuss what my business needs without obligation?',
         answer:
-          'Yes. The first conversation is intended to understand what your business needs and which solution would be appropriate.',
+          'Yes. The first conversation is there to understand what your business needs and what would help you most.',
       },
     ],
   },
@@ -386,8 +411,8 @@ export const en: Dictionary = {
   contact: {
     id: 'contact',
     eyebrow: 'Contact',
-    headline: "Let's discuss your project",
-    text: 'Do you need a new website, want to modernise your current website or believe certain processes within your business could be more efficient? Feel free to get in touch.',
+    headline: 'Tell me about your business.',
+    text: 'Need a website, or spending too much time on work that repeats every day? Send me a message and tell me how you work today. I will see where I can help.',
     detailsHeading: 'Contact details',
     country: 'Belgium',
     // Deliberately not a promise about response times - see README.
@@ -412,14 +437,14 @@ export const en: Dictionary = {
         ],
       },
       message: {
-        label: 'Tell me briefly about your project',
+        label: 'Tell me briefly what you need',
         placeholder:
-          'Tell me briefly about your business and what you are looking for. A few sentences is enough.',
+          'Tell me briefly what your business does and what takes up too much of your time. A few sentences is enough.',
       },
       optional: 'optional',
       required: 'required',
       requiredNote: 'Fields marked with * are required.',
-      submit: 'Request a free quote',
+      submit: 'Send me a message',
       submitting: 'Sending…',
       privacyNote:
         'Your details are only used to respond to your enquiry and are never shared with third parties.',
@@ -445,7 +470,7 @@ export const en: Dictionary = {
       },
       success: {
         heading: 'Thank you for your message.',
-        text: 'Your enquiry has been sent. I will get back to you as soon as possible.',
+        text: 'Your message has been sent. I will get back to you as soon as possible.',
       },
       failure: {
         heading: 'Your message could not be sent.',
@@ -459,9 +484,9 @@ export const en: Dictionary = {
   },
 
   footer: {
-    tagline: 'Website development & business automation',
+    tagline: 'Websites & business automation',
     description:
-      'Websites and digital solutions for businesses in Belgium and the Netherlands.',
+      'Websites and simple automation for businesses in Belgium and the Netherlands.',
     navHeading: 'Navigation',
     contactHeading: 'Contact',
     languageHeading: 'Language',

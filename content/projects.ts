@@ -174,8 +174,8 @@ export const projects: Project[] = [
     name: 'Automotive Service Website',
     type: { nl: 'Website concept', en: 'Website concept' },
     description: {
-      nl: 'Een conceptwebsite voor een garage- of servicebedrijf. Het concept laat zien hoe diensten, bedrijfsinformatie, locatie en contactmogelijkheden overzichtelijk kunnen worden gepresenteerd, met een indeling die even goed werkt op de telefoon als op de computer.',
-      en: 'A concept website for a garage or service company. It shows how services, company information, location and contact options can be presented clearly, with a layout that works as well on a phone as on a computer.',
+      nl: 'Een conceptwebsite voor een garage- of servicebedrijf. Bezoekers zien meteen welke diensten er zijn, wanneer de zaak open is en hoe ze contact opnemen — op de telefoon net zo goed als op de computer.',
+      en: 'A concept website for a garage or service business. Visitors see straight away which services are offered, when the business is open and how to get in touch — on a phone just as well as on a computer.',
     },
     value: {
       nl: 'Bezoekers zien meteen wat het bedrijf doet en kunnen in één stap contact opnemen.',
@@ -205,24 +205,24 @@ export const projects: Project[] = [
     detail: {
       paragraphs: {
         nl: [
-          'Een conceptwebsite voor een autoservicebedrijf. Dit project laat zien hoe een moderne website diensten, bedrijfsinformatie, locatie en contactmogelijkheden op een duidelijke en professionele manier kan presenteren.',
+          'Een conceptwebsite voor een autoservicebedrijf. Het laat zien hoe een moderne website meteen duidelijk maakt wat een bedrijf doet, welke diensten het aanbiedt, waar het te vinden is en hoe klanten contact opnemen.',
         ],
         en: [
-          'A concept website for an automotive service company. This project demonstrates how a modern website can present services, company information, location and contact options in a clear and professional way.',
+          'A concept website for a car service business. It shows how a modern website makes it immediately clear what a business does, which services it offers, where to find it and how customers get in touch.',
         ],
       },
       highlights: {
         nl: [
-          'Duidelijke presentatie van diensten',
-          'Sterke mobiele gebruikservaring',
-          'Eenvoudige contactmogelijkheden',
-          'Professionele uitstraling voor een lokale dienstverlener',
+          'Diensten in één oogopslag duidelijk',
+          'Werkt vlot op de telefoon',
+          'Bellen of een afspraak vragen in één klik',
+          'Professionele uitstraling voor een lokaal bedrijf',
         ],
         en: [
-          'Clear presentation of services',
-          'Strong mobile experience',
-          'Simple contact options',
-          'Professional online presence for a local service business',
+          'Services clear at a glance',
+          'Works smoothly on a phone',
+          'Call or request an appointment in one click',
+          'A professional look for a local business',
         ],
       },
       gallery: [
@@ -288,8 +288,8 @@ export const projects: Project[] = [
     name: 'Automated Quotation Tool',
     type: { nl: 'Bedrijfsautomatisering', en: 'Business automation' },
     description: {
-      nl: 'Een praktische toepassing waarmee klantgegevens en aanvragen kunnen worden verwerkt om sneller en consistenter offertes voor te bereiden. Het project laat zien hoe terugkerende administratieve processen binnen een bedrijf kunnen worden vereenvoudigd.',
-      en: 'A practical application that processes customer information and enquiries to help prepare quotations faster and more consistently. The project demonstrates how repetitive administrative processes within a business can be simplified.',
+      nl: 'Offertes maken kost tijd: dezelfde klantgegevens worden telkens opnieuw overgetypt. Deze toepassing laat zien hoe die gegevens één keer worden ingevuld, waarna de offerte automatisch wordt opgebouwd.',
+      en: 'Preparing quotations takes time: the same customer details get typed over again every time. This tool shows how those details are filled in once, after which the quotation is built automatically.',
     },
     value: {
       nl: 'Minder handmatig overtypen, minder fouten en offertes die er elke keer hetzelfde uitzien.',
@@ -317,10 +317,10 @@ export const projects: Project[] = [
     detail: {
       paragraphs: {
         nl: [
-          'Een concepttoepassing die laat zien hoe klantaanvragen, evenementgegevens, producten en prijzen op een gestructureerde manier kunnen worden verwerkt om offertes sneller en consistenter voor te bereiden.',
+          'Een concepttoepassing die laat zien hoe een klantaanvraag, de gegevens van het evenement, de producten en de prijzen samenkomen in één offerte — zonder dat iemand alles opnieuw moet intypen.',
         ],
         en: [
-          'A concept application demonstrating how customer enquiries, event information, products and pricing can be processed in a structured way to prepare quotations faster and more consistently.',
+          'A concept tool showing how a customer request, the event details, the products and the prices come together in one quotation — without anyone having to type it all again.',
         ],
       },
       blocks: [
@@ -329,10 +329,10 @@ export const projects: Project[] = [
           heading: { nl: 'Het probleem', en: 'The problem' },
           paragraphs: {
             nl: [
-              'Bij veel bedrijven wordt informatie uit klantaanvragen nog handmatig overgenomen in formulieren, prijslijsten of offertes. Dit kost tijd en vergroot de kans op verschillen of fouten tussen verschillende offertes.',
+              'Bij veel bedrijven worden de gegevens uit een klantaanvraag nog met de hand overgetypt in een formulier, een prijslijst of een offerte. Dat kost tijd en zorgt ervoor dat offertes er niet altijd hetzelfde uitzien.',
             ],
             en: [
-              'In many businesses, information from customer enquiries is still manually transferred into forms, price lists or quotations. This takes time and can lead to inconsistencies or mistakes between different quotations.',
+              'In many businesses, the details from a customer request are still typed over by hand into a form, a price list or a quotation. That takes time, and quotations do not always end up looking the same.',
             ],
           },
         },
@@ -341,12 +341,12 @@ export const projects: Project[] = [
           heading: { nl: 'De oplossing', en: 'The solution' },
           paragraphs: {
             nl: [
-              'De toepassing verzamelt klant- en evenementgegevens in één duidelijke workflow. Diensten, producten en prijzen kunnen worden geselecteerd en de offerte wordt automatisch opgebouwd op basis van de ingevoerde informatie.',
-              'De demo laat zien hoe binnenkomende informatie op een meer gestructureerde manier kan worden verwerkt, zodat dezelfde gegevens niet telkens opnieuw hoeven te worden overgetypt.',
+              'De klant- en evenementgegevens worden één keer ingevuld. Diensten, producten en prijzen worden aangeklikt en de offerte wordt automatisch opgebouwd.',
+              'De demo laat zien hoe dezelfde gegevens niet telkens opnieuw hoeven te worden overgetypt.',
             ],
             en: [
-              'The application brings customer and event information into one clear workflow. Services, products and prices can be selected and the quotation is automatically built based on the information provided.',
-              'The demo shows how incoming information can be processed in a more structured way, so the same details do not have to be re-typed each time.',
+              'The customer and event details are filled in once. Services, products and prices are picked from a list and the quotation is built automatically.',
+              'The demo shows how the same details no longer have to be typed over again each time.',
             ],
           },
         },
@@ -354,10 +354,10 @@ export const projects: Project[] = [
       workflow: {
         heading: { nl: 'Hoe het werkt', en: 'How it works' },
         steps: [
-          { id: 'enquiry', label: { nl: 'Klantaanvraag', en: 'Customer enquiry' } },
-          { id: 'process', label: { nl: 'Gegevens verwerken', en: 'Process information' } },
-          { id: 'pricing', label: { nl: 'Producten & prijzen', en: 'Products & pricing' } },
-          { id: 'quote', label: { nl: 'Offerte voorbereiden', en: 'Prepare quotation' } },
+          { id: 'enquiry', label: { nl: 'Klantaanvraag', en: 'Customer request' } },
+          { id: 'process', label: { nl: 'Gegevens één keer invullen', en: 'Details filled in once' } },
+          { id: 'pricing', label: { nl: 'Producten & prijzen', en: 'Products & prices' } },
+          { id: 'quote', label: { nl: 'Offerte klaar', en: 'Quotation ready' } },
         ],
       },
       gallery: [
@@ -388,8 +388,8 @@ export const projects: Project[] = [
       },
       outcomeHeading: { nl: 'Wat dit laat zien', en: 'What this demonstrates' },
       outcome: {
-        nl: 'Een medewerker hoeft niet elke offerte volledig vanaf nul op te bouwen. De informatie wordt op een consistente manier verwerkt, waardoor het proces overzichtelijker wordt en minder handmatig overtypen nodig is.',
-        en: 'The employee does not need to build every quotation completely from scratch. Information is processed in a consistent way, making the workflow clearer and reducing repetitive manual data entry.',
+        nl: 'Niemand hoeft elke offerte nog vanaf nul op te bouwen. Dezelfde gegevens worden maar één keer ingevuld, waardoor er minder overtypwerk is en elke offerte er hetzelfde uitziet.',
+        en: 'Nobody has to build every quotation from scratch. The same details are filled in only once, so there is less re-typing and every quotation looks the same.',
       },
       note: {
         heading: { nl: 'Demo-opmerking', en: 'Demo note' },
