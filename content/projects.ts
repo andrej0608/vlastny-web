@@ -140,6 +140,16 @@ export interface Project {
   url: string | null;
 
   /**
+   * Invitation shown in place of the "not online yet" note when a project has
+   * no live URL, linking to the contact section.
+   *
+   * Worded per project because the question worth asking differs: a website
+   * concept invites "want one like this?", an automation concept invites
+   * "could this help you?". Falls back to the neutral note when unset.
+   */
+  contactCta?: Record<Locale, string>;
+
+  /**
    * Public source repository, or `null`. Like `url`, the link is only rendered
    * once a real address is set — never as a disabled or dead button.
    */
@@ -186,6 +196,10 @@ export const projects: Project[] = [
     /* Not published, so no link is shown. Never point this at someone
        else's website. */
     url: null,
+    contactCta: {
+      nl: 'Ook zo’n website nodig? Laten we praten.',
+      en: 'Want something like this? Let’s talk.',
+    },
     repositoryUrl: null,
     technologies: ['Next.js'],
     detail: {
@@ -294,6 +308,10 @@ export const projects: Project[] = [
       },
     },
     url: null,
+    contactCta: {
+      nl: 'Kan dit uw bedrijf helpen? Laten we praten.',
+      en: 'Could this help your business? Let’s talk.',
+    },
     repositoryUrl: null,
     technologies: ['Next.js'],
     detail: {

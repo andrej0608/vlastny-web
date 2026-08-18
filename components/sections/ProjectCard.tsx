@@ -3,7 +3,7 @@ import Link from 'next/link';
 import type { Locale } from '@/lib/i18n';
 import type { Dictionary } from '@/content/translations';
 import type { Project } from '@/content/projects';
-import { projectPath } from '@/lib/routes';
+import { projectPath, sectionPath } from '@/lib/routes';
 import styles from './ProjectCard.module.css';
 
 interface ProjectCardProps {
@@ -100,6 +100,31 @@ export function ProjectCard({
                 />
               </svg>
             </a>
+          ) : project.contactCta ? (
+            /* No live URL to show, so the space invites a conversation
+               instead of stating an absence. */
+            <Link
+              href={sectionPath(locale, dict.contact.id)}
+              className={styles.contactCta}
+            >
+              {project.contactCta[locale]}
+              <span className="visually-hidden"> — {project.name}</span>
+              <svg
+                viewBox="0 0 16 16"
+                width="13"
+                height="13"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
           ) : (
             <span className={styles.noUrl}>{dict.work.noLiveUrl}</span>
           )}

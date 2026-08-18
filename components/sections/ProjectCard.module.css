@@ -158,3 +158,38 @@
   font-size: var(--text-sm);
   font-style: italic;
 }
+
+/*
+ * Shown instead of the "not online yet" note when a concept project invites
+ * a conversation. Deliberately styled as a secondary action — the same weight
+ * as the other card links, not a button competing with the card itself.
+ */
+.contactCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-link);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.contactCta svg {
+  transition: transform var(--transition-fast);
+}
+
+.contactCta:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+.contactCta:hover svg {
+  transform: translateX(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contactCta:hover svg {
+    transform: none;
+  }
+}
