@@ -135,6 +135,42 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </section>
         )}
 
+        {/* Titled prose blocks, e.g. the problem and the solution. Each one
+            carries its own heading, since the wording belongs to the project
+            rather than being a label reused across the site. */}
+        {detail.blocks?.map((block) => (
+          <section key={block.id} className={styles.block}>
+            <h2 className={styles.blockHeading}>{block.heading[locale]}</h2>
+            <div className={styles.prose}>
+              {block.paragraphs[locale].map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        {/* The process as connected steps. An ordered list, because the order
+            is the point; the connectors are decorative only. */}
+        {detail.workflow && (
+          <section className={styles.block}>
+            <h2 className={styles.blockHeading}>
+              {detail.workflow.heading[locale]}
+            </h2>
+            <ol className={styles.workflow}>
+              {detail.workflow.steps.map((step, index) => (
+                <li key={step.id} className={styles.workflowStep}>
+                  <span className={styles.workflowIndex} aria-hidden="true">
+                    {index + 1}
+                  </span>
+                  <span className={styles.workflowLabel}>
+                    {step.label[locale]}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
         {/* Screenshots. The first is shown full width and the rest share a
             row, so the gallery has a focal point instead of three equals. */}
         {detail.gallery && detail.gallery.length > 0 && (
@@ -180,16 +216,29 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         */}
         {detail.video && (
           <section className={styles.block}>
-            <h2 className={styles.blockHeading}>{t.videoHeading}</h2>
+            <h2 className={styles.blockHeading}>
+              {detail.videoHeading?.[locale] ?? t.videoHeading}
+            </h2>
             <figure className={styles.videoFigure}>
               <video
                 className={styles.video}
                 controls
                 preload="metadata"
                 playsInline
+                /* Both demos ship without an audio track, so this only makes
+                   the silence explicit in the player controls. */
+                muted
                 poster={detail.video.poster}
                 width={detail.video.width}
                 height={detail.video.height}
+                /* Reserves the exact box before metadata loads. Taken from the
+                   data rather than fixed in CSS, so videos of different shapes
+                   each get the right space and nothing shifts. */
+                style={
+                  {
+                    '--video-ratio': `${detail.video.width} / ${detail.video.height}`,
+                  } as React.CSSProperties
+                }
               >
                 <source src={detail.video.src} type="video/mp4" />
                 {/* Reached only if the browser cannot play MP4 at all. */}
@@ -206,7 +255,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
         {detail.outcome && (
           <section className={[styles.block, styles.outcome].join(' ')}>
-            <h2 className={styles.outcomeHeading}>{t.outcomeHeading}</h2>
+            <h2 className={styles.outcomeHeading}>
+              {detail.outcomeHeading?.[locale] ?? t.outcomeHeading}
+            </h2>
             <p className={styles.outcomeText}>{detail.outcome[locale]}</p>
           </section>
         )}
@@ -231,6 +282,14 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </ButtonLink>
             )}
           </div>
+        )}
+        {/* Kept deliberately quiet: it must be findable and honest without
+            reading as a warning. */}
+        {detail.note && (
+          <aside className={styles.note}>
+            <h2 className={styles.noteHeading}>{detail.note.heading[locale]}</h2>
+            <p className={styles.noteText}>{detail.note.text[locale]}</p>
+          </aside>
         )}
       </Container>
     </article>

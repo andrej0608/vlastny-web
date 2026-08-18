@@ -157,6 +157,18 @@ audio track unless the recording genuinely has narration — the `video.descript
 is what carries the content for anyone who cannot or does not watch it, so keep
 it accurate rather than decorative.
 
+A `detail` block can also carry, all optional:
+
+- `blocks` — titled prose sections such as "The problem" / "The solution".
+  The heading lives with the project, not in the language files, because the
+  wording belongs to that project's story.
+- `workflow` — a short process shown as numbered, connected steps. Reads left
+  to right on a wide screen and stacks on a narrow one.
+- `note` — a quiet notice at the foot of the page. Used on the quotation tool
+  to state that the demo data is fictional.
+- `videoHeading` / `outcomeHeading` — override the generic headings when a
+  project's own wording reads better.
+
 **Optional detail page.** Add a `detail` block to a project and it
 automatically gets its own page at `/nl/werk/<slug>` and `/en/work/<slug>`, a
 link appears on its card, and it is added to the sitemap:

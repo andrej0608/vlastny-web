@@ -57,6 +57,35 @@ export interface ProjectVideo {
   description: Record<Locale, string>;
 }
 
+/**
+ * A titled block of prose on a case-study page, e.g. "The problem".
+ *
+ * The heading lives with the project rather than in the language files because
+ * it is specific to that project's story, not a label reused across the site.
+ */
+export interface ProjectBlock {
+  id: string;
+  heading: Record<Locale, string>;
+  paragraphs: Record<Locale, string[]>;
+}
+
+/** A short left-to-right process shown as connected steps. */
+export interface ProjectWorkflow {
+  heading: Record<Locale, string>;
+  steps: Array<{ id: string; label: Record<Locale, string> }>;
+}
+
+/**
+ * A note about the material being shown, e.g. that demo data is fictional.
+ *
+ * Rendered quietly at the foot of the page: it has to be findable and honest,
+ * not alarming.
+ */
+export interface ProjectNote {
+  heading: Record<Locale, string>;
+  text: Record<Locale, string>;
+}
+
 /** Optional long-form content for a project detail page. */
 export interface ProjectDetail {
   /** One entry per paragraph, per language. */
@@ -69,6 +98,18 @@ export interface ProjectDetail {
   video?: ProjectVideo;
   /** Optional closing line about what the result achieves for a visitor. */
   outcome?: Record<Locale, string>;
+  /** Optional titled prose blocks, rendered after the highlights. */
+  blocks?: ProjectBlock[];
+  /** Optional process diagram, rendered after the blocks. */
+  workflow?: ProjectWorkflow;
+  /**
+   * Optional per-project overrides for the two headings that otherwise come
+   * from the language files. Use when a project's own wording reads better.
+   */
+  videoHeading?: Record<Locale, string>;
+  outcomeHeading?: Record<Locale, string>;
+  /** Optional note about the material shown, e.g. a demo-data disclaimer. */
+  note?: ProjectNote;
 }
 
 export interface Project {
@@ -241,9 +282,105 @@ export const projects: Project[] = [
       en: 'Less manual re-typing, fewer mistakes, and quotations that look the same every time.',
     },
     status: 'concept',
-    image: null,
+    /* Featured image for the card, matching the automotive project's
+       treatment: one screenshot of the running interface. */
+    image: {
+      src: '/projects/quotation-tool/hero.webp',
+      width: 1600,
+      height: 770,
+      alt: {
+        nl: 'Offertetoepassing met velden voor klantgegevens en evenementgegevens, en een offerteoverzicht ernaast.',
+        en: 'Quotation application with fields for customer and event details, and a quotation summary alongside.',
+      },
+    },
     url: null,
+    repositoryUrl: null,
     technologies: ['Next.js'],
+    detail: {
+      paragraphs: {
+        nl: [
+          'Een concepttoepassing die laat zien hoe klantaanvragen, evenementgegevens, producten en prijzen op een gestructureerde manier kunnen worden verwerkt om offertes sneller en consistenter voor te bereiden.',
+        ],
+        en: [
+          'A concept application demonstrating how customer enquiries, event information, products and pricing can be processed in a structured way to prepare quotations faster and more consistently.',
+        ],
+      },
+      blocks: [
+        {
+          id: 'problem',
+          heading: { nl: 'Het probleem', en: 'The problem' },
+          paragraphs: {
+            nl: [
+              'Bij veel bedrijven wordt informatie uit klantaanvragen nog handmatig overgenomen in formulieren, prijslijsten of offertes. Dit kost tijd en vergroot de kans op verschillen of fouten tussen verschillende offertes.',
+            ],
+            en: [
+              'In many businesses, information from customer enquiries is still manually transferred into forms, price lists or quotations. This takes time and can lead to inconsistencies or mistakes between different quotations.',
+            ],
+          },
+        },
+        {
+          id: 'solution',
+          heading: { nl: 'De oplossing', en: 'The solution' },
+          paragraphs: {
+            nl: [
+              'De toepassing verzamelt klant- en evenementgegevens in één duidelijke workflow. Diensten, producten en prijzen kunnen worden geselecteerd en de offerte wordt automatisch opgebouwd op basis van de ingevoerde informatie.',
+              'De demo laat zien hoe binnenkomende informatie op een meer gestructureerde manier kan worden verwerkt, zodat dezelfde gegevens niet telkens opnieuw hoeven te worden overgetypt.',
+            ],
+            en: [
+              'The application brings customer and event information into one clear workflow. Services, products and prices can be selected and the quotation is automatically built based on the information provided.',
+              'The demo shows how incoming information can be processed in a more structured way, so the same details do not have to be re-typed each time.',
+            ],
+          },
+        },
+      ],
+      workflow: {
+        heading: { nl: 'Hoe het werkt', en: 'How it works' },
+        steps: [
+          { id: 'enquiry', label: { nl: 'Klantaanvraag', en: 'Customer enquiry' } },
+          { id: 'process', label: { nl: 'Gegevens verwerken', en: 'Process information' } },
+          { id: 'pricing', label: { nl: 'Producten & prijzen', en: 'Products & pricing' } },
+          { id: 'quote', label: { nl: 'Offerte voorbereiden', en: 'Prepare quotation' } },
+        ],
+      },
+      gallery: [
+        {
+          src: '/projects/quotation-tool/hero.webp',
+          width: 1600,
+          height: 770,
+          alt: {
+            nl: 'Schermafbeelding van de offertetoepassing: bovenaan een blok om een aanvraag te herkennen, daaronder velden voor klantgegevens en evenementgegevens, met rechts een offerteoverzicht.',
+            en: 'Screenshot of the quotation application: a block at the top for recognising an enquiry, fields for customer and event details below it, and a quotation summary on the right.',
+          },
+          caption: {
+            nl: 'Demo-interface voor klantgegevens, evenementinformatie en offertevoorbereiding.',
+            en: 'Demo interface for customer details, event information and quotation preparation.',
+          },
+        },
+      ],
+      videoHeading: { nl: 'Bekijk de demo', en: 'Watch the demo' },
+      video: {
+        src: '/projects/quotation-tool/demo.mp4',
+        poster: '/projects/quotation-tool/demo-poster.webp',
+        width: 1440,
+        height: 810,
+        description: {
+          nl: 'Schermopname zonder geluid: een aanvraag wordt ingevoerd, de gegevens worden verwerkt, producten en prijzen worden gekozen en de offerte wordt opgebouwd.',
+          en: 'Silent screen recording: an enquiry is entered, the details are processed, products and prices are selected and the quotation is built up.',
+        },
+      },
+      outcomeHeading: { nl: 'Wat dit laat zien', en: 'What this demonstrates' },
+      outcome: {
+        nl: 'Een medewerker hoeft niet elke offerte volledig vanaf nul op te bouwen. De informatie wordt op een consistente manier verwerkt, waardoor het proces overzichtelijker wordt en minder handmatig overtypen nodig is.',
+        en: 'The employee does not need to build every quotation completely from scratch. Information is processed in a consistent way, making the workflow clearer and reducing repetitive manual data entry.',
+      },
+      note: {
+        heading: { nl: 'Demo-opmerking', en: 'Demo note' },
+        text: {
+          nl: 'Deze toepassing wordt getoond in een testomgeving. Namen, contactgegevens, bedrijfsgegevens en andere informatie in de screenshots en demo zijn fictief of willekeurig gekozen en vertegenwoordigen geen echte klanten.',
+          en: 'This application is shown in a test environment. Names, contact details, company information and other data visible in the screenshots and demo are fictional or randomly selected and do not represent real customers.',
+        },
+      },
+    },
     order: 2,
   },
 ];
