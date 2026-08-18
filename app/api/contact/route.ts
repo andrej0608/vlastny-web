@@ -9,6 +9,7 @@ import {
 import { isLocale, defaultLocale } from '@/lib/i18n';
 import { getDictionary } from '@/content/translations';
 import { siteConfig } from '@/content/site';
+import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
 
 /**
  * Contact form endpoint.
@@ -26,6 +27,10 @@ export const runtime = 'nodejs';
 
 /** Rejects oversized bodies before doing any work. */
 const MAX_BODY_BYTES = 20_000;
+
+/** A handful of genuine enquiries per address, comfortably above normal use,
+    well below anything a script would bother staying under. */
+const RATE_LIMIT = { limit: 5, windowMs: 10 * 60 * 1000 };
 
 function truncate(value: unknown, max: number): string {
   return typeof value === 'string' ? value.slice(0, max) : '';
@@ -52,6 +57,20 @@ export async function POST(request: Request) {
   const contentLength = Number(request.headers.get('content-length') ?? 0);
   if (contentLength > MAX_BODY_BYTES) {
     return NextResponse.json({ ok: false, reason: 'too-large' }, { status: 413 });
+  }
+
+  // Checked before touching the body: cheap, and it keeps a burst from an
+  // address from spending any more work on parsing or validation.
+  const clientIp = getClientIp(request);
+  const rateLimit = checkRateLimit(`contact:${clientIp}`, RATE_LIMIT);
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { ok: false, reason: 'rate-limited' },
+      {
+        status: 429,
+        headers: { 'Retry-After': String(rateLimit.retryAfterSeconds) },
+      }
+    );
   }
 
   let payload: Record<string, unknown>;
@@ -114,13 +133,10 @@ export async function POST(request: Request) {
   const to = process.env.CONTACT_TO_EMAIL;
 
   if (!apiKey || !from || !to) {
-    // Expected state until the e-mail provider is set up. Logged so a real
-    // enquiry is at least visible in the Vercel runtime logs.
-    console.warn(
-      '[contact] E-mail delivery is not configured. Enquiry received from %s <%s>.',
-      values.name,
-      values.email
-    );
+    // Expected state until the e-mail provider is set up. Logged so the gap
+    // is visible in the Vercel runtime logs - deliberately without the
+    // visitor's name, e-mail or message, which have no place in server logs.
+    console.warn('[contact] E-mail delivery is not configured.');
     return NextResponse.json(
       { ok: false, reason: 'not-configured' },
       { status: 503 }
@@ -188,8 +204,13 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      const detail = await response.text().catch(() => '');
-      console.error('[contact] Provider rejected the message:', detail);
+      // Only the status is logged. The response body can echo back request
+      // fields (e.g. an invalid "to" address), so it is never logged - it
+      // would put visitor-supplied content in server logs.
+      console.error(
+        '[contact] Provider rejected the message. Status: %d',
+        response.status
+      );
       return NextResponse.json(
         { ok: false, reason: 'send-failed' },
         { status: 502 }

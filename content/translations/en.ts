@@ -451,6 +451,8 @@ export const en: Dictionary = {
         heading: 'Your message could not be sent.',
         text: 'Something went wrong while sending. Please try again later.',
         notConfigured: 'Sending through the form is not active yet.',
+        rateLimited:
+          'Too many attempts have been sent recently. Please try again in a few minutes.',
         emailFallback: 'You can send your message directly by email:',
       },
     },

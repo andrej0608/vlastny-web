@@ -367,6 +367,13 @@ Optional, and the site works without it.
 Prefer a different provider? Only one `fetch` call in
 `app/api/contact/route.ts` needs changing — everything around it stays.
 
+**Basic server protection is already in place**, independent of which
+provider you use: a per-IP rate limit (5 submissions per 10 minutes,
+`lib/rate-limit.ts`), a honeypot field, a minimum-fill-time check, request
+size and field-length caps, and header-injection sanitising on every value
+that reaches an e-mail header. Server logs never contain a visitor's name,
+e-mail address or message — only that an enquiry arrived or failed, and why.
+
 Never put these values in the code. `.env.local` is git-ignored; copy
 `.env.example` to start.
 

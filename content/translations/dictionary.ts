@@ -334,6 +334,8 @@ export interface Dictionary {
         text: string;
         /** Shown when no e-mail provider is configured yet. */
         notConfigured: string;
+        /** Shown when too many attempts have come from this visitor recently. */
+        rateLimited: string;
         /**
          * Appended only when an e-mail address is configured in site.ts.
          * Without it the visitor is never pointed at an address that does

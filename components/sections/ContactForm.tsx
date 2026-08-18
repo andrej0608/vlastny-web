@@ -18,7 +18,7 @@ import styles from './ContactForm.module.css';
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 /** Distinguishes "no e-mail provider set up yet" from a genuine failure. */
-type FailureReason = 'generic' | 'not-configured';
+type FailureReason = 'generic' | 'not-configured' | 'rate-limited';
 
 interface ContactFormProps {
   locale: Locale;
@@ -120,9 +120,13 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
       }
 
       const body = await response.json().catch(() => null);
-      setFailureReason(
-        body?.reason === 'not-configured' ? 'not-configured' : 'generic'
-      );
+      const reason: FailureReason =
+        body?.reason === 'not-configured'
+          ? 'not-configured'
+          : body?.reason === 'rate-limited'
+            ? 'rate-limited'
+            : 'generic';
+      setFailureReason(reason);
       setStatus('error');
     } catch {
       // Network failure, offline, request blocked.
@@ -185,10 +189,14 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
             <p className={styles.feedbackText}>
               {failureReason === 'not-configured'
                 ? t.failure.notConfigured
-                : t.failure.text}
+                : failureReason === 'rate-limited'
+                  ? t.failure.rateLimited
+                  : t.failure.text}
               {/* Only offer the e-mail fallback when an address actually
-                  exists, so nobody is sent to a dead mailbox. */}
-              {emailHref && (
+                  exists, so nobody is sent to a dead mailbox. Skipped for a
+                  rate limit: the visitor already knows how to reach the form
+                  and just needs to wait, not switch channels. */}
+              {emailHref && failureReason !== 'rate-limited' && (
                 <>
                   {' '}
                   {t.failure.emailFallback}{' '}

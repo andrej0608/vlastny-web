@@ -452,6 +452,8 @@ export const nl: Dictionary = {
         heading: 'Het bericht kon niet verzonden worden.',
         text: 'Er ging iets mis bij het verzenden. Probeer het later opnieuw.',
         notConfigured: 'Het verzenden via het formulier is nog niet actief.',
+        rateLimited:
+          'Er zijn recent te veel pogingen verzonden. Probeer het over enkele minuten opnieuw.',
         emailFallback: 'U kunt uw bericht rechtstreeks per e-mail sturen:',
       },
     },
