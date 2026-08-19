@@ -163,6 +163,17 @@
   --transition-fast: 140ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 240ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  /* Scroll reveal. Every section reads these, so the page arrives at one
+     rhythm and the whole feel is tuned from here rather than per component.
+     Phone values first: shorter distance, quicker, tighter stagger — nobody
+     should be waiting on a paragraph. Desktop widens them below. */
+  --reveal-duration: 540ms;
+  --reveal-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --reveal-shift: 16px;
+  --reveal-step: 70ms;
+  /* Blur is the one genuinely expensive part; phones do without it. */
+  --reveal-blur: 0px;
+
   /* --- Focus ------------------------------------------------------------ */
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
@@ -171,4 +182,17 @@
   --z-header: 100;
   --z-mobile-nav: 200;
   --z-skip-link: 300;
+}
+
+/*
+ * From tablet up there is both the screen room for a longer travel and the
+ * headroom for the blur. Below this the phone values above stand.
+ */
+@media (min-width: 48rem) {
+  :root {
+    --reveal-duration: 720ms;
+    --reveal-shift: 26px;
+    --reveal-step: 110ms;
+    --reveal-blur: 3px;
+  }
 }

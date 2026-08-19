@@ -3,6 +3,7 @@ import type { Dictionary } from '@/content/translations';
 import { sectionPath } from '@/lib/routes';
 import { Section } from '@/components/ui/Section';
 import { ButtonLink } from '@/components/ui/Button';
+import { Reveal, RevealGroup } from '@/components/ui/Reveal';
 import styles from './Automation.module.css';
 
 interface AutomationProps {
@@ -25,20 +26,20 @@ export function Automation({ locale, dict }: AutomationProps) {
       heading={dict.automation.headline}
       intro={dict.automation.intro}
     >
-      <ul className={styles.grid}>
+      <RevealGroup as="ul" className={styles.grid}>
         {dict.automation.useCases.map((useCase) => (
           <li key={useCase.id} className={styles.card}>
             <h3 className={styles.title}>{useCase.title}</h3>
             <p className={styles.description}>{useCase.description}</p>
           </li>
         ))}
-      </ul>
+      </RevealGroup>
 
-      <div className={styles.actions}>
+      <Reveal className={styles.actions} delay={1}>
         <ButtonLink href={sectionPath(locale, dict.contact.id)} size="lg">
           {dict.automation.cta}
         </ButtonLink>
-      </div>
+      </Reveal>
     </Section>
   );
 }

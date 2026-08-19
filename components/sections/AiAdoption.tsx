@@ -9,6 +9,7 @@ import {
   formatPercentage,
 } from '@/content/ai-adoption';
 import { Section } from '@/components/ui/Section';
+import { Reveal } from '@/components/ui/Reveal';
 import styles from './AiAdoption.module.css';
 
 interface AiAdoptionProps {
@@ -104,7 +105,10 @@ export function AiAdoption({ locale, dict }: AiAdoptionProps) {
       heading={t.headline}
       intro={t.intro}
     >
-      <figure className={styles.figure}>
+      {/* The figure arrives one step behind the heading block. The line
+          drawing inside it is offset by the same amount in CSS, so the two
+          run in sequence instead of over the top of each other. */}
+      <Reveal as="figure" className={styles.figure} delay={1}>
         <div
           ref={chartRef}
           className={styles.chart}
@@ -224,7 +228,7 @@ export function AiAdoption({ locale, dict }: AiAdoptionProps) {
         </div>
 
         <figcaption className={styles.source}>{t.source}</figcaption>
-      </figure>
+      </Reveal>
     </Section>
   );
 }

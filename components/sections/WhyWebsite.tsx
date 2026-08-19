@@ -1,20 +1,21 @@
 import type { Dictionary } from '@/content/translations';
 import { Section } from '@/components/ui/Section';
+import { Reveal, RevealGroup } from '@/components/ui/Reveal';
 import styles from './WhyWebsite.module.css';
 
 export function WhyWebsite({ dict }: { dict: Dictionary }) {
   return (
     <Section tone="subtle">
       <div className={styles.layout}>
-        <div className={styles.intro}>
+        <Reveal className={styles.intro}>
           <p className={styles.eyebrow}>{dict.whyWebsite.eyebrow}</p>
           <h2 className={styles.headline}>{dict.whyWebsite.headline}</h2>
           <p className={styles.text}>{dict.whyWebsite.text}</p>
-        </div>
+        </Reveal>
 
         {/* Each benefit names an outcome and then explains it, rather than
             listing a feature on its own. */}
-        <ul className={styles.benefits}>
+        <RevealGroup as="ul" className={styles.benefits}>
           {dict.whyWebsite.benefits.map((benefit) => (
             <li key={benefit.title} className={styles.benefit}>
               <span className={styles.check} aria-hidden="true">
@@ -34,7 +35,7 @@ export function WhyWebsite({ dict }: { dict: Dictionary }) {
               </div>
             </li>
           ))}
-        </ul>
+        </RevealGroup>
       </div>
     </Section>
   );

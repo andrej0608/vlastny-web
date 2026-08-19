@@ -1,0 +1,118 @@
+/* ===========================================================================
+   Scroll reveal
+   ---------------------------------------------------------------------------
+   Two shapes, one behaviour:
+
+     .reveal  - a single element, revealed on its own.
+     .group   - a container whose children are revealed one after another.
+
+   Both hide with plain `opacity` and animate with a keyframe rather than a
+   transition. That is deliberate: a `transition` shorthand on a card would
+   overwrite the `transition` the card already declares for its hover state,
+   and the two files' order in the bundle decides which wins. An animation sits
+   in its own channel and cannot collide with anything.
+
+   `animation-fill-mode: backwards` matters just as much. It holds the opening
+   frame during the stagger delay, then hands the element back to its ordinary
+   declarative styles once finished - so a card's own `:hover` transform still
+   applies afterwards, which `forwards` would have frozen out.
+   =========================================================================== */
+
+/*
+ * Nothing is hidden here. The hidden state lives inside
+ * `@media (scripting: enabled)` below, so that a browser which cannot run the
+ * observer never hides content it has no way of bringing back. The animation
+ * is decoration; it is never what makes the page readable.
+ */
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    /* Direction defaults to a small lift; left/right override the axis. */
+    transform: translate3d(
+      var(--reveal-x, 0),
+      var(--reveal-y, var(--reveal-shift)),
+      0
+    );
+    filter: blur(var(--reveal-blur));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (scripting: enabled) {
+  .reveal,
+  .group > * {
+    opacity: 0;
+  }
+
+  .visible,
+  .groupVisible > * {
+    opacity: 1;
+    animation: reveal-in var(--reveal-duration) var(--reveal-ease) backwards;
+  }
+
+  /* One element: its place in the sequence comes from the inline index. */
+  .visible {
+    animation-delay: calc(var(--reveal-step) * var(--reveal-index, 0));
+  }
+
+  /*
+   * A group staggers by position, so the cards themselves need no props and
+   * keep exactly the markup they had. Capped at the sixth child: beyond that
+   * the wait stops reading as rhythm and starts reading as lag.
+   */
+  .groupVisible > *:nth-child(1) {
+    animation-delay: 0ms;
+  }
+  .groupVisible > *:nth-child(2) {
+    animation-delay: calc(var(--reveal-step) * 1);
+  }
+  .groupVisible > *:nth-child(3) {
+    animation-delay: calc(var(--reveal-step) * 2);
+  }
+  .groupVisible > *:nth-child(4) {
+    animation-delay: calc(var(--reveal-step) * 3);
+  }
+  .groupVisible > *:nth-child(5) {
+    animation-delay: calc(var(--reveal-step) * 4);
+  }
+  .groupVisible > *:nth-child(n + 6) {
+    animation-delay: calc(var(--reveal-step) * 5);
+  }
+}
+
+/* --- Direction ----------------------------------------------------------
+   Only used where two neighbouring blocks read better arriving from opposite
+   sides, e.g. the portrait and the text in About. The distance is the same
+   token as the lift, so nothing travels further than anything else. */
+
+.fromLeft {
+  --reveal-x: calc(var(--reveal-shift) * -1);
+  --reveal-y: 0;
+}
+
+.fromRight {
+  --reveal-x: var(--reveal-shift);
+  --reveal-y: 0;
+}
+
+/*
+ * Reduced motion: the content is simply present. No movement, no blur, no
+ * fade and nothing to wait for - the page reads identically, it just does not
+ * perform. Same treatment the chart already gives itself.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .group > *,
+  .visible,
+  .groupVisible > * {
+    opacity: 1;
+    animation: none;
+    transform: none;
+    filter: none;
+  }
+}

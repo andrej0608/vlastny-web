@@ -1,5 +1,6 @@
 import type { Dictionary } from '@/content/translations';
 import { Section } from '@/components/ui/Section';
+import { RevealGroup } from '@/components/ui/Reveal';
 import styles from './Process.module.css';
 
 export function Process({ dict }: { dict: Dictionary }) {
@@ -12,7 +13,7 @@ export function Process({ dict }: { dict: Dictionary }) {
       tone="subtle"
     >
       {/* An ordered list: the steps genuinely happen in sequence. */}
-      <ol className={styles.steps}>
+      <RevealGroup as="ol" className={styles.steps}>
         {dict.process.steps.map((step) => (
           <li key={step.number} className={styles.step}>
             <span className={styles.number} aria-hidden="true">
@@ -22,7 +23,7 @@ export function Process({ dict }: { dict: Dictionary }) {
             <p className={styles.description}>{step.description}</p>
           </li>
         ))}
-      </ol>
+      </RevealGroup>
     </Section>
   );
 }

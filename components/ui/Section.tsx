@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Container } from './Container';
+import { Reveal } from './Reveal';
 import styles from './Section.module.css';
 
 interface SectionProps {
@@ -52,13 +53,25 @@ export function Section({
               .filter(Boolean)
               .join(' ')}
           >
-            {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
-            {heading && (
-              <h2 id={headingId} className={styles.heading}>
-                {heading}
-              </h2>
+            {/* Label, then headline, then supporting text — one step apart, so
+                the eye is led down the block rather than meeting all three at
+                once. Every section that uses this header inherits the rhythm;
+                nothing is repeated per section. */}
+            {eyebrow && (
+              <Reveal as="p" className={styles.eyebrow}>
+                {eyebrow}
+              </Reveal>
             )}
-            {intro && <p className={styles.intro}>{intro}</p>}
+            {heading && (
+              <Reveal as="h2" id={headingId} className={styles.heading} delay={1}>
+                {heading}
+              </Reveal>
+            )}
+            {intro && (
+              <Reveal as="p" className={styles.intro} delay={2}>
+                {intro}
+              </Reveal>
+            )}
           </header>
         )}
         {children}

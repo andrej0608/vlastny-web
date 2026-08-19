@@ -3,6 +3,7 @@ import type { Dictionary } from '@/content/translations';
 import { siteConfig } from '@/content/site';
 import { portraitImage } from '@/content/portrait';
 import { Section } from '@/components/ui/Section';
+import { Reveal } from '@/components/ui/Reveal';
 import styles from './About.module.css';
 
 export function About({ dict }: { dict: Dictionary }) {
@@ -11,7 +12,7 @@ export function About({ dict }: { dict: Dictionary }) {
       <div className={styles.layout}>
         {/* Portrait first in the markup so it appears above the text on
             mobile: the face lands before the story rather than after it. */}
-        <div className={styles.portraitColumn}>
+        <Reveal className={styles.portraitColumn} direction="left">
           <figure className={styles.frame}>
             <Image
               src={portraitImage.src}
@@ -27,9 +28,9 @@ export function About({ dict }: { dict: Dictionary }) {
             <span className={styles.captionName}>{siteConfig.name}</span>
             <span className={styles.captionRole}>{dict.meta.tagline}</span>
           </p>
-        </div>
+        </Reveal>
 
-        <div className={styles.textColumn}>
+        <Reveal className={styles.textColumn} direction="right" delay={1}>
           <p className={styles.eyebrow}>{dict.about.eyebrow}</p>
           <h2 className={styles.headline}>{dict.about.headline}</h2>
 
@@ -40,7 +41,7 @@ export function About({ dict }: { dict: Dictionary }) {
               <p key={index}>{paragraph}</p>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </Section>
   );

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import type { Dictionary } from '@/content/translations';
 import { serviceImages } from '@/content/service-images';
 import { Section } from '@/components/ui/Section';
+import { RevealGroup } from '@/components/ui/Reveal';
 import styles from './Services.module.css';
 
 export function Services({ dict }: { dict: Dictionary }) {
@@ -12,7 +13,7 @@ export function Services({ dict }: { dict: Dictionary }) {
       heading={dict.services.headline}
       intro={dict.services.intro}
     >
-      <ul className={styles.grid}>
+      <RevealGroup as="ul" className={styles.grid}>
         {dict.services.items.map((service, index) => {
           const image = serviceImages[service.id];
 
@@ -40,7 +41,7 @@ export function Services({ dict }: { dict: Dictionary }) {
             </li>
           );
         })}
-      </ul>
+      </RevealGroup>
     </Section>
   );
 }

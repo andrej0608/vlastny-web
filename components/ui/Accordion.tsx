@@ -1,4 +1,5 @@
 import styles from './Accordion.module.css';
+import { RevealGroup } from './Reveal';
 
 export interface AccordionItem {
   id: string;
@@ -24,7 +25,7 @@ interface AccordionProps {
  */
 export function Accordion({ items, name = 'faq' }: AccordionProps) {
   return (
-    <div className={styles.accordion}>
+    <RevealGroup className={styles.accordion}>
       {items.map((item) => (
         <details key={item.id} name={name} className={styles.item}>
           <summary className={styles.summary}>
@@ -36,6 +37,6 @@ export function Accordion({ items, name = 'faq' }: AccordionProps) {
           </div>
         </details>
       ))}
-    </div>
+    </RevealGroup>
   );
 }

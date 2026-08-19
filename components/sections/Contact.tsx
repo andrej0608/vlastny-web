@@ -8,6 +8,7 @@ import {
   hasDirectContactChannel,
 } from '@/content/site';
 import { Section } from '@/components/ui/Section';
+import { Reveal } from '@/components/ui/Reveal';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { MailIcon, PhoneIcon, LinkedInIcon } from '@/components/ui/ContactIcons';
 import { ContactForm } from './ContactForm';
@@ -25,7 +26,7 @@ export function Contact({ locale, dict }: ContactProps) {
   return (
     <Section id={dict.contact.id} tone="subtle">
       <div className={styles.layout}>
-        <div className={styles.intro}>
+        <Reveal className={styles.intro}>
           <p className={styles.eyebrow}>{dict.contact.eyebrow}</p>
           <h2 className={styles.headline}>{dict.contact.headline}</h2>
           <p className={styles.text}>{dict.contact.text}</p>
@@ -146,11 +147,11 @@ export function Contact({ locale, dict }: ContactProps) {
 
             <p className={styles.responseNote}>{dict.contact.responseNote}</p>
           </div>
-        </div>
+        </Reveal>
 
-        <div className={styles.formColumn}>
+        <Reveal className={styles.formColumn} delay={1}>
           <ContactForm locale={locale} dict={dict} />
-        </div>
+        </Reveal>
       </div>
     </Section>
   );

@@ -1,5 +1,6 @@
 import type { Dictionary } from '@/content/translations';
 import { Section } from '@/components/ui/Section';
+import { Reveal } from '@/components/ui/Reveal';
 import styles from './Areas.module.css';
 
 /**
@@ -14,14 +15,14 @@ export function Areas({ dict }: { dict: Dictionary }) {
       heading={dict.areas.headline}
       intro={dict.areas.text}
     >
-      <ul className={styles.locations}>
+      <Reveal as="ul" className={styles.locations}>
         {dict.areas.locations.map((location) => (
           <li key={location} className={styles.location}>
             {location}
           </li>
         ))}
         <li className={styles.surrounding}>{dict.areas.surrounding}</li>
-      </ul>
+      </Reveal>
     </Section>
   );
 }

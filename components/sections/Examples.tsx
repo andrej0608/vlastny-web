@@ -1,5 +1,6 @@
 import type { Dictionary } from '@/content/translations';
 import { Section } from '@/components/ui/Section';
+import { RevealGroup } from '@/components/ui/Reveal';
 import styles from './Examples.module.css';
 
 /**
@@ -19,7 +20,7 @@ export function Examples({ dict }: { dict: Dictionary }) {
       heading={t.headline}
       intro={t.intro}
     >
-      <ul className={styles.grid}>
+      <RevealGroup as="ul" className={styles.grid}>
         {t.items.map((example) => (
           <li key={example.id} className={styles.card}>
             <h3 className={styles.title}>{example.title}</h3>
@@ -46,7 +47,7 @@ export function Examples({ dict }: { dict: Dictionary }) {
             </dl>
           </li>
         ))}
-      </ul>
+      </RevealGroup>
     </Section>
   );
 }
