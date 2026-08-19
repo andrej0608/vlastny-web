@@ -28,6 +28,15 @@ export const runtime = 'nodejs';
 /** Rejects oversized bodies before doing any work. */
 const MAX_BODY_BYTES = 20_000;
 
+/**
+ * Give up on the provider rather than holding the request open.
+ *
+ * Without this a hung connection would run until the platform kills the
+ * function, and the visitor would be left watching a spinner instead of being
+ * told, in their own language, that sending failed.
+ */
+const PROVIDER_TIMEOUT_MS = 10_000;
+
 /** A handful of genuine enquiries per address, comfortably above normal use,
     well below anything a script would bother staying under. */
 const RATE_LIMIT = { limit: 5, windowMs: 10 * 60 * 1000 };
@@ -195,12 +204,16 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from: sanitiseHeaderValue(from),
         to: [sanitiseHeaderValue(to)],
-        // Replying in the mail client goes straight back to the enquirer.
-        reply_to: values.email,
+        /* Replying in the mail client goes straight back to the enquirer.
+           Validation already rejects whitespace in an address, so CR/LF cannot
+           get this far; sanitised anyway, because every value that reaches a
+           mail header goes through the same gate. */
+        reply_to: sanitiseHeaderValue(values.email),
         subject,
         text,
         html,
       }),
+      signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
     });
 
     if (!response.ok) {
@@ -219,7 +232,12 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error('[contact] Could not reach the e-mail provider:', error);
+    /* Only the error's class is logged, never the error itself: a fetch
+       failure can carry the request that produced it, and that request body
+       holds the visitor's name, address and message. The name is the part
+       worth having anyway — it separates a timeout from a network failure. */
+    const kind = error instanceof Error ? error.name : 'unknown';
+    console.error('[contact] Could not reach the e-mail provider (%s).', kind);
     return NextResponse.json(
       { ok: false, reason: 'send-failed' },
       { status: 502 }

@@ -113,7 +113,7 @@ export const siteConfig = {
      * you change the notice or how data is handled.
      * Format: YYYY-MM-DD.
      */
-    lastUpdated: '2026-08-16',
+    lastUpdated: '2026-08-19',
 
     /**
      * The company hosting the website, once it is deployed,
@@ -122,14 +122,19 @@ export const siteConfig = {
     hostingProvider: null as string | null,
 
     /**
-     * The service delivering contact-form e-mails, e.g. 'Resend'.
+     * The service delivering contact-form e-mails.
      *
-     * Keep this null until RESEND_API_KEY, CONTACT_FROM_EMAIL and
-     * CONTACT_TO_EMAIL are configured. While it is null the form does not
-     * deliver anywhere, and the privacy notice says so rather than naming a
-     * processor that never receives anything.
+     * This name is what the privacy notice tells visitors about: set to
+     * 'Resend' it states that Resend processes the content of their message in
+     * order to deliver it; set back to `null` it states that no external
+     * delivery service is connected at all.
+     *
+     * It must therefore track reality. Keep it in step with the three
+     * environment variables in Vercel (RESEND_API_KEY, CONTACT_FROM_EMAIL,
+     * CONTACT_TO_EMAIL): if you ever switch delivery off, or move to another
+     * provider, change this at the same time and bump `lastUpdated` above.
      */
-    emailDeliveryProvider: null as string | null,
+    emailDeliveryProvider: 'Resend' as string | null,
   },
 } as const;
 

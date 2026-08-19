@@ -283,10 +283,12 @@ and point `--font-sans` at the generated CSS variable.
 The form works today: it validates, reports errors accessibly, filters spam,
 and shows loading, success and error states.
 
-**E-mail delivery is not configured yet, and no credentials were invented.**
-With no provider set up, a valid submission returns a clear message asking the
-visitor to e-mail directly, and the enquiry is written to the server log. To
-switch delivery on, see *Before deploying* below.
+**Delivery goes through [Resend](https://resend.com), and no credentials live
+in this repository.** Sending switches itself on as soon as `RESEND_API_KEY`,
+`CONTACT_FROM_EMAIL` and `CONTACT_TO_EMAIL` are set — see *Before deploying*
+below. Until then a valid submission is answered, in the visitor's own
+language, with "sending through the form is not active yet" plus the e-mail
+address to use instead. Nothing crashes and nothing is silently lost.
 
 How it is built:
 
@@ -307,6 +309,17 @@ How it is built:
   a normal-looking success response, so a bot learns nothing.
 - **Header injection is blocked** — CR/LF is stripped from anything reaching a
   mail header, and all values are escaped in the HTML body.
+- **Replies go to the visitor.** The notification arrives from your own
+  verified address with the enquirer's address as `reply_to`, so hitting reply
+  in your mail client answers them directly.
+- **The provider is called with `fetch`.** One request to
+  `https://api.resend.com/emails`, no SDK, no dependency, with a 10-second
+  timeout so a hung connection cannot leave the visitor watching a spinner.
+- **Provider failures stay server-side.** A rejection or a network error
+  becomes a plain translated "could not be sent" message; the visitor never
+  sees a status code, an API response or any internal detail. The server log
+  records only the HTTP status, or the error's class for a network failure —
+  never the response body, which can echo back what the visitor typed.
 
 ---
 
@@ -350,22 +363,53 @@ structured data policies.
 
 ### To make the contact form actually deliver mail
 
-Optional, and the site works without it.
+The site works without this; the form just tells visitors to e-mail instead.
 
-1. Create an account at [resend.com](https://resend.com) and verify your
-   sending domain.
-2. Add three environment variables in Vercel:
+**In Resend**
 
-   | Variable             | Example                                            |
-   | -------------------- | -------------------------------------------------- |
-   | `RESEND_API_KEY`     | `re_...`                                            |
-   | `CONTACT_FROM_EMAIL` | `website@yourdomain.be` (on your verified domain)   |
-   | `CONTACT_TO_EMAIL`   | your own inbox                                      |
+1. Create an account at [resend.com](https://resend.com).
+2. **Domains → Add Domain**, enter your sending domain (e.g. `andrejweb.be`).
+   Resend shows the DNS records to add — DKIM, SPF, usually a DMARC
+   suggestion. Add them wherever the domain's DNS is managed, then press
+   **Verify**. Sending fails until the domain reads *Verified*, so do this
+   first.
+3. **API Keys → Create API Key.** *Sending access* is permission enough;
+   scope it to the domain from step 2. Copy the key immediately — Resend
+   displays it exactly once.
 
-3. Redeploy.
+**In Vercel**
+
+4. *Project → Settings → Environment Variables → Add New*, three times:
+
+   | Variable             | Value                                                  | Environments         |
+   | -------------------- | ------------------------------------------------------ | -------------------- |
+   | `RESEND_API_KEY`     | the `re_...` key from step 3                            | Production (+Preview) |
+   | `CONTACT_FROM_EMAIL` | an address **on the verified domain**, e.g. `website@andrejweb.be` | Production (+Preview) |
+   | `CONTACT_TO_EMAIL`   | your own inbox, e.g. `juriga.andrej06@gmail.com`        | Production (+Preview) |
+
+   `CONTACT_FROM_EMAIL` is only the sender. It is not where replies land —
+   the visitor's own address is set as `reply_to`, so replying goes to them.
+   `CONTACT_TO_EMAIL` can be any mailbox and needs no verification.
+
+5. **Redeploy.** Environment variables are read at request time, but a
+   deployment that already exists keeps the values it was created with.
+
+6. Send yourself one test enquiry through the live form. Take more than three
+   seconds over it — a submission completed faster than that is treated as a
+   bot and silently dropped with a success response.
+
+**Keep the privacy notice honest.** `siteConfig.privacy.emailDeliveryProvider`
+is set to `'Resend'`, which is what makes the notice tell visitors that Resend
+processes their message in order to deliver it. If you switch delivery off or
+move to another provider, change that value and `privacy.lastUpdated` in the
+same commit.
 
 Prefer a different provider? Only one `fetch` call in
 `app/api/contact/route.ts` needs changing — everything around it stays.
+
+**Nothing above belongs in the repository.** The API key is a server-side
+secret: never prefix it `NEXT_PUBLIC_`, never read it from a component, never
+commit it. Locally, copy `.env.example` to `.env.local`, which is git-ignored.
 
 **Basic server protection is already in place**, independent of which
 provider you use: a per-IP rate limit (5 submissions per 10 minutes,
