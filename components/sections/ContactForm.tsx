@@ -49,6 +49,18 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
     renderedAt.current = Date.now();
   }, []);
 
+  /*
+   * The duration is measured here and sent as a duration, never as a starting
+   * moment for the server to subtract from its own clock. Both readings then
+   * come from the same clock, so a device set a few minutes fast can no longer
+   * look like it submitted instantly and have a genuine enquiry discarded.
+   *
+   * -1 says the mount effect never ran, which the server treats as suspect
+   * rather than guessing a duration on its behalf.
+   */
+  const elapsedMs = () =>
+    renderedAt.current ? Date.now() - renderedAt.current : -1;
+
   // Move focus to whichever message appeared, so screen-reader and keyboard
   // users are told the outcome instead of being left at the submit button.
   useEffect(() => {
@@ -71,7 +83,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
       phone: get('phone'),
       serviceType: get('serviceType'),
       message: get('message'),
-      website: get('website'),
+      contactReference: get('contact_reference'),
       acknowledgement: data.get('acknowledgement') === 'on',
     };
   }
@@ -107,7 +119,7 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
         body: JSON.stringify({
           ...values,
           locale,
-          renderedAt: renderedAt.current,
+          elapsedMs: elapsedMs(),
         }),
       });
 
@@ -321,17 +333,28 @@ export function ContactForm({ locale, dict }: ContactFormProps) {
         )}
       </div>
 
-      {/* Honeypot. Hidden from sight and from assistive technology, but still
-          a real field that automated submitters tend to fill in. */}
+      {/*
+        Honeypot. Hidden from sight and from assistive technology, but still a
+        real field that automated submitters tend to fill in.
+
+        The name and the label are deliberately meaningless. This was `website`
+        labelled "Website" - which is precisely what a password manager looks
+        for, and it fills such a field without being asked. A filled honeypot
+        discards the enquiry silently, so autofill here costs a real customer.
+        `autocomplete="off"` alone does not settle it: Chrome overrides it for
+        profile data, hence the two vendor opt-outs as well.
+      */}
       <div className={styles.honeypot} aria-hidden="true">
-        <label htmlFor={fieldId('website')}>
-          Website
+        <label htmlFor={fieldId('contact-reference')}>
+          Reference
           <input
-            id={fieldId('website')}
+            id={fieldId('contact-reference')}
             type="text"
-            name="website"
+            name="contact_reference"
             tabIndex={-1}
             autoComplete="off"
+            data-1p-ignore="true"
+            data-lpignore="true"
           />
         </label>
       </div>

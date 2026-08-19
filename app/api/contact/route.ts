@@ -119,7 +119,7 @@ export async function POST(request: Request) {
     phone: truncate(payload.phone, FIELD_MAX_LENGTHS.phone).trim(),
     serviceType: truncate(payload.serviceType, FIELD_MAX_LENGTHS.serviceType).trim(),
     message: truncate(payload.message, FIELD_MAX_LENGTHS.message).trim(),
-    website: truncate(payload.website, 200),
+    contactReference: truncate(payload.contactReference, 200),
     /* Re-checked here: the browser can be bypassed, and the record of having
        shown the privacy notice is only meaningful if the server enforces it. */
     acknowledgement: payload.acknowledgement === true,
@@ -153,13 +153,27 @@ export async function POST(request: Request) {
   debug('Validation passed');
 
   // Spam is dropped silently with a success response, so bots learn nothing.
-  const renderedAt =
-    typeof payload.renderedAt === 'number' ? payload.renderedAt : 0;
+  /*
+   * A tab opened before this deploy is still running the previous bundle and
+   * reports a start time instead of a duration. Falling back to it keeps those
+   * submissions working through the rollover - the alternative is discarding a
+   * real enquiry silently, which is the whole problem being fixed here. The
+   * fallback carries the old two-clock weakness, so drop it once no such tab
+   * can plausibly still be open.
+   */
+  const elapsedMs =
+    typeof payload.elapsedMs === 'number'
+      ? payload.elapsedMs
+      : typeof payload.renderedAt === 'number' && payload.renderedAt > 0
+        ? Date.now() - payload.renderedAt
+        : -1;
 
-  const spam = checkForSpam({ website: values.website, renderedAt });
-  /* The elapsed reading is worth logging even when the check passes: it spans
-     the visitor's clock and the server's, so a skewed device shows up here as
-     a negative or absurd number long before anyone would suspect it. */
+  const spam = checkForSpam({
+    contactReference: values.contactReference,
+    elapsedMs,
+  });
+  /* Logged even when the check passes: it is the reading most likely to
+     explain a submission that vanished. */
   const elapsed = `elapsed ${spam.elapsedSeconds.toFixed(1)}s`;
 
   if (spam.reason) {
@@ -263,7 +277,25 @@ export async function POST(request: Request) {
     debug(`Resend response status: ${response.status}`);
 
     if (!response.ok) {
-      debug('Stopped: Resend rejected the message');
+      /* The provider's error CODE only - `validation_error`,
+         `invalid_from_address` and so on are fixed identifiers. Its `message`
+         is deliberately left alone: that one quotes back the field it
+         objected to, which can be something the visitor typed. */
+      let code = 'unknown';
+      try {
+        const body: unknown = await response.clone().json();
+        if (
+          body !== null &&
+          typeof body === 'object' &&
+          'name' in body &&
+          typeof (body as { name: unknown }).name === 'string'
+        ) {
+          code = (body as { name: string }).name;
+        }
+      } catch {
+        // Body was not JSON. The status alone still says plenty.
+      }
+      debug(`Stopped: Resend rejected the message (${code})`);
       // Only the status is logged. The response body can echo back request
       // fields (e.g. an invalid "to" address), so it is never logged - it
       // would put visitor-supplied content in server logs.

@@ -20,10 +20,25 @@ export interface ContactFormValues {
   message: string;
   /** Whether the privacy-notice acknowledgement box was ticked. */
   acknowledgement: boolean;
-  /** Hidden anti-spam field. Real people never fill this in. */
-  website: string;
-  /** Timestamp (ms) of when the form was rendered. */
-  renderedAt: number;
+  /**
+   * Hidden anti-spam field. Real people never fill this in.
+   *
+   * Named for nothing in particular on purpose. It used to be `website` with a
+   * "Website" label, which is exactly the shape a password manager recognises
+   * and fills - and a filled honeypot silently discards the enquiry.
+   */
+  contactReference: string;
+  /**
+   * How long the form was open before it was submitted, in milliseconds, as
+   * measured by the browser.
+   *
+   * The browser reports the duration rather than the moment it started,
+   * because the moment would then be compared against the server's clock. Two
+   * clocks means a device running a few minutes fast looks like it submitted
+   * instantly - and gets thrown away - no matter how long the person really
+   * took. A duration is measured entirely on one clock and cannot skew.
+   */
+  elapsedMs: number;
 }
 
 /**
@@ -148,14 +163,7 @@ export type SpamReason = 'honeypot' | 'missing-timestamp' | 'too-fast';
 export interface SpamCheckResult {
   /** `null` when the submission looks genuine. */
   reason: SpamReason | null;
-  /**
-   * Seconds between the form rendering and the submission arriving.
-   *
-   * Worth knowing that this spans two different clocks: the visitor's device
-   * stamps the start, the server reads the end. A device whose clock is fast
-   * therefore produces a short - or negative - reading no matter how long the
-   * person actually spent, which is exactly what the timing rule then rejects.
-   */
+  /** How long the form was open, in seconds, as the browser measured it. */
   elapsedSeconds: number;
 }
 
@@ -167,19 +175,18 @@ export interface SpamCheckResult {
  * from the one that actually ran.
  */
 export function checkForSpam(input: {
-  website: string;
-  renderedAt: number;
-  now?: number;
+  contactReference: string;
+  elapsedMs: number;
 }): SpamCheckResult {
-  const now = input.now ?? Date.now();
-  const elapsedSeconds = (now - input.renderedAt) / 1000;
+  const elapsedSeconds = input.elapsedMs / 1000;
 
-  if (input.website.trim().length > 0) {
+  if (input.contactReference.trim().length > 0) {
     return { reason: 'honeypot', elapsedSeconds };
   }
 
-  // A missing or nonsensical timestamp is treated as suspicious.
-  if (!Number.isFinite(input.renderedAt) || input.renderedAt <= 0) {
+  /* A duration that is missing, negative or not a number means the browser
+     never reported one. Treated as suspicious, as before. */
+  if (!Number.isFinite(input.elapsedMs) || input.elapsedMs < 0) {
     return { reason: 'missing-timestamp', elapsedSeconds };
   }
 
@@ -191,9 +198,8 @@ export function checkForSpam(input: {
 }
 
 export function looksLikeSpam(input: {
-  website: string;
-  renderedAt: number;
-  now?: number;
+  contactReference: string;
+  elapsedMs: number;
 }): boolean {
   return checkForSpam(input).reason !== null;
 }
