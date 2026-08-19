@@ -142,18 +142,58 @@ export function hasErrors(errors: ContactErrors): boolean {
  */
 export const MIN_FILL_SECONDS = 3;
 
+/** Which of the two heuristics rejected a submission, if either did. */
+export type SpamReason = 'honeypot' | 'missing-timestamp' | 'too-fast';
+
+export interface SpamCheckResult {
+  /** `null` when the submission looks genuine. */
+  reason: SpamReason | null;
+  /**
+   * Seconds between the form rendering and the submission arriving.
+   *
+   * Worth knowing that this spans two different clocks: the visitor's device
+   * stamps the start, the server reads the end. A device whose clock is fast
+   * therefore produces a short - or negative - reading no matter how long the
+   * person actually spent, which is exactly what the timing rule then rejects.
+   */
+  elapsedSeconds: number;
+}
+
+/**
+ * Runs both heuristics and says which one objected.
+ *
+ * `looksLikeSpam` is this function with the detail thrown away. Keeping one
+ * implementation means a diagnostic log can never describe a different check
+ * from the one that actually ran.
+ */
+export function checkForSpam(input: {
+  website: string;
+  renderedAt: number;
+  now?: number;
+}): SpamCheckResult {
+  const now = input.now ?? Date.now();
+  const elapsedSeconds = (now - input.renderedAt) / 1000;
+
+  if (input.website.trim().length > 0) {
+    return { reason: 'honeypot', elapsedSeconds };
+  }
+
+  // A missing or nonsensical timestamp is treated as suspicious.
+  if (!Number.isFinite(input.renderedAt) || input.renderedAt <= 0) {
+    return { reason: 'missing-timestamp', elapsedSeconds };
+  }
+
+  if (elapsedSeconds < MIN_FILL_SECONDS) {
+    return { reason: 'too-fast', elapsedSeconds };
+  }
+
+  return { reason: null, elapsedSeconds };
+}
+
 export function looksLikeSpam(input: {
   website: string;
   renderedAt: number;
   now?: number;
 }): boolean {
-  if (input.website.trim().length > 0) return true;
-
-  const now = input.now ?? Date.now();
-  const elapsedSeconds = (now - input.renderedAt) / 1000;
-
-  // A missing or nonsensical timestamp is treated as suspicious.
-  if (!Number.isFinite(input.renderedAt) || input.renderedAt <= 0) return true;
-
-  return elapsedSeconds < MIN_FILL_SECONDS;
+  return checkForSpam(input).reason !== null;
 }
