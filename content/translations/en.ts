@@ -526,7 +526,7 @@ export const en: Dictionary = {
         'the content of your message',
       ],
       technical:
-        'This website sets no analytics or marketing cookies and uses no visitor statistics or tracking technology. As with almost any website, technical information such as your IP address may appear temporarily in the server logs needed to deliver and secure the site.',
+        'This website sets no analytics or marketing cookies and uses no tracking technology. Page views are counted without cookies — see the Cookies section below. As with almost any website, technical information such as your IP address may appear temporarily in the server logs needed to deliver and secure the site.',
     },
 
     purposes: {
@@ -588,7 +588,9 @@ export const en: Dictionary = {
       languageCookie:
         'One functional cookie is set, named NEXT_LOCALE. It records only whether you want to view the site in Dutch or English, so that you arrive in the right language on your next visit. It contains nothing but a language code and expires after one year. You can delete cookies at any time through your browser settings.',
       noTracking:
-        'No external scripts, advertising networks, social media widgets or embedded maps and videos are loaded. No use is made of localStorage or similar storage for tracking visitors.',
+        'No advertising networks, social media widgets or embedded maps and videos are loaded. No use is made of localStorage or similar storage for tracking visitors.',
+      analytics:
+        'Page views are counted. That measurement is carried out by Vercel, without cookies and without storing anything on your device. No profile is built about you, and visits are not linked together across days.',
     },
 
     rights: {

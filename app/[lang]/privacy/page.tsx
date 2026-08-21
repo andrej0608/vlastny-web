@@ -185,6 +185,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           <p>{t.cookies.intro}</p>
           <p>{t.cookies.languageCookie}</p>
           <p>{t.cookies.noTracking}</p>
+          <p>{t.cookies.analytics}</p>
         </section>
 
         {/* Rights */}

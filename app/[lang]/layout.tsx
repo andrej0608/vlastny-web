@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getDictionary } from '@/content/translations';
 import { isLocale, locales, localeHtmlLang, type Locale } from '@/lib/i18n';
+import { Analytics } from '@vercel/analytics/next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import styles from './layout.module.css';
@@ -38,6 +39,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           </main>
           <Footer locale={locale} dict={dict} />
         </div>
+
+        {/* Vercel Web Analytics. Renders nothing; it injects the beacon that
+            reports page views. Cookieless - it stores nothing on the device -
+            so it does not add to the single functional cookie the site sets. */}
+        <Analytics />
       </body>
     </html>
   );

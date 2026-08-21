@@ -113,13 +113,13 @@ export const siteConfig = {
      * you change the notice or how data is handled.
      * Format: YYYY-MM-DD.
      */
-    lastUpdated: '2026-08-19',
+    lastUpdated: '2026-08-21',
 
     /**
      * The company hosting the website, once it is deployed,
      * e.g. 'Vercel Inc.'. Leave null until that is actually the case.
      */
-    hostingProvider: null as string | null,
+    hostingProvider: 'Vercel' as string | null,
 
     /**
      * The service delivering contact-form e-mails.

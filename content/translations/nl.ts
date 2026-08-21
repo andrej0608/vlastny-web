@@ -527,7 +527,7 @@ export const nl: Dictionary = {
         'de inhoud van uw bericht',
       ],
       technical:
-        'Deze website plaatst geen analytische of marketingcookies en gebruikt geen bezoekersstatistieken of trackingtechnologie. Zoals bij vrijwel elke website kunnen technische gegevens zoals uw IP-adres wel tijdelijk voorkomen in de serverlogs die nodig zijn om de website te leveren en te beveiligen.',
+        'Deze website plaatst geen analytische of marketingcookies en gebruikt geen trackingtechnologie. Er wordt enkel geteld hoe vaak pagina’s bekeken worden, zonder cookies — zie het onderdeel Cookies hieronder. Zoals bij vrijwel elke website kunnen technische gegevens zoals uw IP-adres wel tijdelijk voorkomen in de serverlogs die nodig zijn om de website te leveren en te beveiligen.',
     },
 
     purposes: {
@@ -588,7 +588,9 @@ export const nl: Dictionary = {
       languageCookie:
         'Er wordt één functionele cookie geplaatst, genaamd NEXT_LOCALE. Die onthoudt uitsluitend of u de website in het Nederlands of het Engels wilt bekijken, zodat u bij een volgend bezoek meteen in de juiste taal terechtkomt. De cookie bevat alleen een taalcode en wordt na een jaar verwijderd. U kunt cookies altijd verwijderen via de instellingen van uw browser.',
       noTracking:
-        'Er worden geen externe scripts, advertentienetwerken, sociale-mediawidgets of ingesloten kaarten en video’s geladen. Er wordt ook geen gebruikgemaakt van localStorage of vergelijkbare opslag voor het volgen van bezoekers.',
+        'Er worden geen advertentienetwerken, sociale-mediawidgets of ingesloten kaarten en video’s geladen. Er wordt ook geen gebruikgemaakt van localStorage of vergelijkbare opslag voor het volgen van bezoekers.',
+      analytics:
+        'Wel wordt geteld hoe vaak pagina’s bekeken worden. Die meting gebeurt door Vercel, zonder cookies en zonder iets op uw toestel op te slaan. Er wordt geen profiel van u opgebouwd en bezoeken worden niet over meerdere dagen aan elkaar gekoppeld.',
     },
 
     rights: {

@@ -51,8 +51,13 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   /**
-   * Skip Next internals, the API routes, and any path with a file extension
-   * (sitemap.xml, robots.txt, favicons, images).
+   * Skip Next internals, Vercel's own endpoints, the API routes, and any
+   * path with a file extension (sitemap.xml, robots.txt, favicons, images).
+   *
+   * `_vercel` earns its place here: the analytics beacon posts to
+   * /_vercel/insights/event, which carries no file extension and no language
+   * prefix. Without the exclusion this proxy would redirect it to
+   * /nl/_vercel/insights/event and every page view would be lost.
    */
-  matcher: ['/((?!_next|api|.*\\..*).*)'],
+  matcher: ['/((?!_next|_vercel|api|.*\\..*).*)'],
 };

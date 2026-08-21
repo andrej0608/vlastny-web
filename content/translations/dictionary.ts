@@ -416,6 +416,12 @@ export interface Dictionary {
       intro: string;
       languageCookie: string;
       noTracking: string;
+      /**
+       * Page-view measurement. Separate from `noTracking` because it is the
+       * one thing on the site that does count something: it has to be stated
+       * plainly rather than hidden inside a sentence about what is absent.
+       */
+      analytics: string;
     };
 
     rights: {
