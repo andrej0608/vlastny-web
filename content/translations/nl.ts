@@ -11,11 +11,10 @@ import type { Dictionary } from './dictionary';
  */
 export const nl: Dictionary = {
   meta: {
-    title:
-      'Andrej Juriga — Websites en slimme automatisering voor bedrijven in België en Nederland',
+    title: 'Website laten maken & Bedrijfsautomatisering | AndrejWeb',
     ogTitle: 'Websites die uw bedrijf helpen groeien',
     description:
-      'Professionele websites en eenvoudige tools voor kleine en middelgrote bedrijven in Belgisch Limburg, de Kempen en Zuid-Nederland. Meer klanten bereiken en minder tijd verliezen aan werk dat elke dag terugkomt.',
+      'Professionele websites, webdesign, maatwerk digitale oplossingen en bedrijfsautomatisering voor bedrijven in België en Nederland.',
     tagline: 'Websites & bedrijfsautomatisering',
   },
 
@@ -50,7 +49,7 @@ export const nl: Dictionary = {
     headlineAccent: 'Slimme automatisering',
     headlineTail: ' die u tijd bespaart.',
     supporting:
-      'Ik bouw professionele websites en eenvoudige tools waarmee bedrijven meer klanten kunnen bereiken en minder tijd kwijt zijn aan terugkerend werk.',
+      'Een nieuwe website laten maken, uw website vernieuwen of terugkerend werk automatiseren? Ik bouw digitale oplossingen op maat voor bedrijven in België en Nederland.',
     primaryCta: 'Vertel wat u nodig heeft',
     secondaryCta: 'Bekijk mijn werk',
     points: [
@@ -65,11 +64,11 @@ export const nl: Dictionary = {
     eyebrow: 'Diensten',
     headline: 'Waarmee ik u kan helpen',
     intro:
-      'Van een volledig nieuwe website tot het overnemen van werk dat u nu nog elke dag met de hand doet.',
+      'Van een nieuwe website en webdesign tot maatwerk oplossingen die werk overnemen dat u nu nog met de hand doet.',
     items: [
       {
         id: 'websites-op-maat',
-        title: 'Websites op maat',
+        title: 'Website laten maken',
         description:
           'Een professionele website waarop klanten meteen zien wat u doet en hoe ze u kunnen bereiken.',
         imageAlt:
@@ -79,7 +78,7 @@ export const nl: Dictionary = {
         id: 'website-redesign',
         title: 'Website redesign',
         description:
-          'Heeft u al een website die er verouderd uitziet of lastig werkt? Ik geef uw website een moderne, professionele uitstraling.',
+          'Uw huidige website vernieuwen? Ik geef uw website een moderne, professionele uitstraling, met behoud van wat nu al goed werkt.',
         imageAlt:
           'Illustratie van een verouderde website naast een vernieuwde, modernere versie.',
       },
@@ -93,7 +92,7 @@ export const nl: Dictionary = {
       },
       {
         id: 'onderhoud',
-        title: 'Onderhoud & aanpassingen',
+        title: 'Website onderhoud',
         description:
           "Later prijzen, foto's, diensten of teksten aanpassen? Dat regel ik voor u.",
         imageAlt:
@@ -135,7 +134,7 @@ export const nl: Dictionary = {
     eyebrow: 'Bedrijfsautomatisering',
     headline: 'Doet u elke dag nog hetzelfde werk handmatig?',
     intro:
-      'Veel terugkerende taken hoeven uw tijd niet te kosten. Ik kan eenvoudige tools maken die een deel van dat werk voor u overnemen.',
+      'Veel terugkerende taken hoeven uw tijd niet te kosten. Ik bouw maatwerk digitale oplossingen — van een offertetool tot een afsprakensysteem — die een deel van dat werk voor u overnemen.',
     useCases: [
       {
         id: 'offertes',

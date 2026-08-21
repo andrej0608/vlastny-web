@@ -11,11 +11,10 @@ import type { Dictionary } from './dictionary';
  */
 export const en: Dictionary = {
   meta: {
-    title:
-      'Andrej Juriga — Websites and simple automation for businesses in Belgium and the Netherlands',
+    title: 'Websites & Business Automation | AndrejWeb',
     ogTitle: 'Websites that help your business grow',
     description:
-      'Professional websites and simple tools for small and medium-sized businesses in Belgian Limburg, the Kempen region and the south of the Netherlands. Get more customers and spend less time on work that repeats every day.',
+      'Professional websites, custom digital solutions and practical business automation for companies in Belgium and the Netherlands.',
     tagline: 'Websites & business automation',
   },
 
@@ -50,7 +49,7 @@ export const en: Dictionary = {
     headlineAccent: 'Simple automation',
     headlineTail: ' that saves you time.',
     supporting:
-      'I build professional websites and simple tools that help businesses get more customers and spend less time on repetitive work.',
+      'Need a new website, a redesign of the one you have, or repetitive work taken off your hands? I build custom digital solutions for businesses in Belgium and the Netherlands.',
     primaryCta: 'Tell me what you need',
     secondaryCta: 'See my work',
     points: [
@@ -65,7 +64,7 @@ export const en: Dictionary = {
     eyebrow: 'Services',
     headline: 'How I can help',
     intro:
-      'From a brand-new website to taking over work you still do by hand every day.',
+      'From a new website and modern web design to custom solutions that take over work you still do by hand.',
     items: [
       {
         id: 'websites-op-maat',
@@ -79,7 +78,7 @@ export const en: Dictionary = {
         id: 'website-redesign',
         title: 'Website redesign',
         description:
-          'Already have a website that looks old or is difficult to use? I can give it a modern, professional look.',
+          'Want to modernise the website you have? I give it a professional, up-to-date look, while keeping what already works.',
         imageAlt:
           'Illustration of an outdated website next to a renewed, more modern version.',
       },
@@ -93,7 +92,7 @@ export const en: Dictionary = {
       },
       {
         id: 'onderhoud',
-        title: 'Maintenance & updates',
+        title: 'Website maintenance',
         description:
           'Need to change prices, photos, services or text later? I can take care of it for you.',
         imageAlt:
@@ -135,7 +134,7 @@ export const en: Dictionary = {
     eyebrow: 'Business automation',
     headline: 'Still doing the same work manually every day?',
     intro:
-      'Many everyday tasks do not need to take up your time. I can build simple tools that handle part of the work for you.',
+      'Many everyday tasks do not need to take up your time. I build custom digital solutions — from a quotation tool to a booking system — that handle part of the work for you.',
     useCases: [
       {
         id: 'offertes',
