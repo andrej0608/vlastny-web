@@ -414,7 +414,12 @@ export interface Dictionary {
     cookies: {
       heading: string;
       intro: string;
-      languageCookie: string;
+      /**
+       * Renamed from `languageCookie` when the language cookie was removed:
+       * the language now lives in the URL, so there is no cookie left to
+       * describe. The key would otherwise promise a cookie that is gone.
+       */
+      noCookies: string;
       noTracking: string;
       /**
        * Page-view measurement. Separate from `noTracking` because it is the

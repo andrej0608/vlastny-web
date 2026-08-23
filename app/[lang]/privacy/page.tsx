@@ -183,7 +183,7 @@ export default async function PrivacyPage({ params }: PageProps) {
         <section className={styles.section}>
           <h2 className={styles.heading}>{t.cookies.heading}</h2>
           <p>{t.cookies.intro}</p>
-          <p>{t.cookies.languageCookie}</p>
+          <p>{t.cookies.noCookies}</p>
           <p>{t.cookies.noTracking}</p>
           <p>{t.cookies.analytics}</p>
         </section>

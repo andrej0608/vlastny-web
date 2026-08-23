@@ -1,18 +1,17 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import {
-  LOCALE_COOKIE,
-  LOCALE_COOKIE_MAX_AGE,
-  isLocale,
-  locales,
-  resolveLocaleFromAcceptLanguage,
-} from '@/lib/i18n';
+import { defaultLocale, locales } from '@/lib/i18n';
 
 /**
  * Every public page lives under /nl or /en. This runs before routing and only
- * handles URLs that have no language prefix yet - typically the bare domain.
+ * handles URLs that carry no language prefix yet - in practice, the bare
+ * domain.
  *
- * Language choice is remembered in a cookie, so a returning visitor who typed
- * the bare domain lands back in the language they picked last time.
+ * The bare domain always opens in Dutch. Not the browser's preferred language,
+ * not whatever was chosen last time: Dutch is the language this business sells
+ * in, and a Belgian customer whose laptop happens to be set to English should
+ * still land on the Dutch site. English is not hidden - /en works whenever it
+ * is asked for, and the language switcher moves between the two - it is simply
+ * never chosen on the visitor's behalf.
  *
  * (In Next.js 16 this file convention is called `proxy`; it replaced the
  * older `middleware` name.)
@@ -26,27 +25,13 @@ export function proxy(request: NextRequest) {
 
   if (hasLocalePrefix) return NextResponse.next();
 
-  const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
-  const locale = isLocale(cookieLocale)
-    ? cookieLocale
-    : resolveLocaleFromAcceptLanguage(request.headers.get('accept-language'));
-
   const url = request.nextUrl.clone();
-  url.pathname = `/${locale}${pathname === '/' ? '' : pathname}`;
+  url.pathname = `/${defaultLocale}${pathname === '/' ? '' : pathname}`;
 
-  // A temporary redirect, not a permanent one: the target depends on the
-  // visitor's cookie and browser language, so it must not be cached forever.
-  const response = NextResponse.redirect(url);
-
-  if (!isLocale(cookieLocale)) {
-    response.cookies.set(LOCALE_COOKIE, locale, {
-      path: '/',
-      maxAge: LOCALE_COOKIE_MAX_AGE,
-      sameSite: 'lax',
-    });
-  }
-
-  return response;
+  /* Temporary rather than permanent. A 308 is cached by the browser more or
+     less forever, which would make ever revisiting this decision painful for
+     everyone who had already visited once. */
+  return NextResponse.redirect(url);
 }
 
 export const config = {

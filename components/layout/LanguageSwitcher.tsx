@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { type Locale, locales, localeLabels } from '@/lib/i18n';
-import { rememberLocale } from '@/lib/locale-cookie';
 import { translatePath } from '@/lib/routes';
 import styles from './LanguageSwitcher.module.css';
 
@@ -21,8 +20,9 @@ interface LanguageSwitcherProps {
  * Search engines can follow both, and the visitor lands on the equivalent page
  * in the other language instead of being sent back to the homepage.
  *
- * The click also writes a cookie so a returning visitor who types the bare
- * domain gets the language they last chose.
+ * Choosing a language stores nothing. It changes the address, and the address
+ * is the whole of it - the bare domain always opens in Dutch, however many
+ * times someone has picked English before.
  */
 export function LanguageSwitcher({
   currentLocale,
@@ -31,11 +31,6 @@ export function LanguageSwitcher({
   onSelect,
 }: LanguageSwitcherProps) {
   const pathname = usePathname();
-
-  function handleSelect(locale: Locale) {
-    rememberLocale(locale);
-    onSelect?.();
-  }
 
   return (
     <nav
@@ -57,7 +52,7 @@ export function LanguageSwitcher({
                   .filter(Boolean)
                   .join(' ')}
                 aria-current={isCurrent ? 'true' : undefined}
-                onClick={() => handleSelect(locale)}
+                onClick={onSelect}
               >
                 <span className={styles.flag} aria-hidden="true">
                   {flag}

@@ -29,38 +29,6 @@ export const localeLabels: Record<Locale, { flag: string; label: string; name: s
   en: { flag: '🇬🇧', label: 'EN', name: 'English' },
 };
 
-/** Cookie that remembers the visitor's language choice between visits. */
-export const LOCALE_COOKIE = 'NEXT_LOCALE';
-export const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // one year
-
 export function isLocale(value: unknown): value is Locale {
   return typeof value === 'string' && (locales as readonly string[]).includes(value);
-}
-
-/**
- * Picks the best language for a visitor who lands on `/` without a cookie.
- * Dutch wins unless the browser clearly prefers English.
- */
-export function resolveLocaleFromAcceptLanguage(header: string | null): Locale {
-  if (!header) return defaultLocale;
-
-  const ranked = header
-    .split(',')
-    .map((part) => {
-      const [tag, ...params] = part.trim().split(';');
-      const q = params
-        .map((p) => p.trim())
-        .find((p) => p.startsWith('q='))
-        ?.slice(2);
-      return { tag: tag.trim().toLowerCase(), quality: q ? Number(q) : 1 };
-    })
-    .filter((entry) => entry.tag.length > 0 && !Number.isNaN(entry.quality))
-    .sort((a, b) => b.quality - a.quality);
-
-  for (const { tag } of ranked) {
-    const base = tag.split('-')[0];
-    if (isLocale(base)) return base;
-  }
-
-  return defaultLocale;
 }

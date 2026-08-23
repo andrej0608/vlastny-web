@@ -585,8 +585,8 @@ export const en: Dictionary = {
       heading: 'Cookies',
       intro:
         'This website uses no cookies for analytics, statistics, advertising or tracking visitors.',
-      languageCookie:
-        'One functional cookie is set, named NEXT_LOCALE. It records only whether you want to view the site in Dutch or English, so that you arrive in the right language on your next visit. It contains nothing but a language code and expires after one year. You can delete cookies at any time through your browser settings.',
+      noCookies:
+        'In fact no cookies are set at all. The language is part of the page address — /nl for Dutch, /en for English — so nothing needs to be stored on your device to show you the right version.',
       noTracking:
         'No advertising networks, social media widgets or embedded maps and videos are loaded. No use is made of localStorage or similar storage for tracking visitors.',
       analytics:
