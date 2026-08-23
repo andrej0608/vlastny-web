@@ -15,7 +15,7 @@ export function getDictionary(locale: Locale): Dictionary {
   return dictionaries[locale];
 }
 
-export type { Dictionary } from './dictionary';
+export type { Dictionary, PageMeta, LocationGroup } from './dictionary';
 export type {
   NavItem,
   ServiceItem,

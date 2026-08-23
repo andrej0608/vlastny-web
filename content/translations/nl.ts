@@ -23,6 +23,8 @@ export const nl: Dictionary = {
     languageSwitcherLabel: 'Taal kiezen',
     openMenu: 'Menu openen',
     closeMenu: 'Menu sluiten',
+    explore: 'Meer',
+    exploreLabel: 'Meer pagina’s',
     menu: 'Menu',
     backToHome: 'Terug naar de homepage',
     email: 'E-mail',
@@ -167,6 +169,7 @@ export const nl: Dictionary = {
       },
     ],
     cta: 'Vertel wat u veel tijd kost',
+    examplesLink: 'Bekijk vier praktijkvoorbeelden',
   },
 
   aiAdoption: {
@@ -186,11 +189,18 @@ export const nl: Dictionary = {
   },
 
   examples: {
-    id: 'voorbeelden',
     eyebrow: 'Praktische voorbeelden',
-    headline: 'Hoe ziet dit er in de praktijk uit?',
-    intro:
-      'Het begint meestal met één klus die elke week terugkomt en nog altijd met de hand gebeurt.',
+    page: {
+      metaTitle: 'Automatisering in de praktijk | AndrejWeb',
+      metaDescription:
+        'Vier praktische voorbeelden van bedrijfsautomatisering: offertes voorbereiden, klantaanvragen opvolgen, bestellingen verwerken en afspraken inplannen.',
+      navLabel: 'Praktijkvoorbeelden',
+      title: 'Automatisering in de praktijk',
+      intro:
+        'Automatisering hoeft niet ingewikkeld te zijn. Vaak begint het met één terugkerende taak die vandaag nog handmatig gebeurt en eenvoudiger kan worden ingericht. Hieronder staan vier praktische voorbeelden.',
+      cta: 'Bespreek wat mogelijk is voor uw bedrijf',
+    },
+    projectLink: 'Bekijk de offertetool uit mijn portfolio',
     labels: {
       problem: 'Probleem',
       solution: 'Oplossing',
@@ -315,29 +325,52 @@ export const nl: Dictionary = {
 
   areas: {
     eyebrow: 'Werkgebied',
-    headline: 'Actief in België en Nederland',
-    text: 'Websites en eenvoudige tools voor bedrijven in Belgisch Limburg, de Kempen en Zuid-Nederland.',
-    locations: [
-      'Pelt',
-      'Lommel',
-      'Hasselt',
-      'Genk',
-      'Turnhout',
-      'Geel',
-      'Antwerpen',
-      'Eindhoven',
-      'Tilburg',
-      'Breda',
-      'Weert',
-      'Venlo',
+    page: {
+      metaTitle:
+        'Website laten maken in Limburg, de Kempen en Zuid-Nederland | AndrejWeb',
+      metaDescription:
+        'Websites en bedrijfsautomatisering voor bedrijven in Belgisch Limburg, de Kempen en Zuid-Nederland. Volledig online, of met persoonlijk contact in de regio.',
+      navLabel: 'Regio',
+      title:
+        'Websites en automatisering voor bedrijven in België en Nederland',
+      intro:
+        'Ik werk met bedrijven in Belgisch Limburg, de Kempen en Zuid-Nederland. De samenwerking kan volledig online verlopen, maar voor bedrijven in de regio blijft persoonlijk contact eenvoudig mogelijk.',
+      cta: 'Bespreek uw project',
+    },
+    groups: [
+      {
+        title: 'Belgisch Limburg',
+        locations: ['Pelt', 'Lommel', 'Hasselt', 'Genk'],
+      },
+      {
+        title: 'Kempen & Antwerpen',
+        locations: ['Turnhout', 'Geel', 'Antwerpen'],
+      },
+      {
+        title: 'Zuid-Nederland',
+        locations: ['Eindhoven', 'Tilburg', 'Breda', 'Weert', 'Venlo'],
+      },
     ],
     surrounding: 'en omgeving',
+    supporting: [
+      'Een website of een automatiseringsproject vraagt geen kantoorbezoek. Het meeste gaat via e-mail, telefoon en een videogesprek, en dat werkt voor een bedrijf in Breda even goed als voor een bedrijf om de hoek.',
+      'Voor bedrijven in de buurt is langskomen wel eenvoudig. Één gesprek aan tafel is soms sneller dan drie mails heen en weer — zeker in het begin, als we nog uitzoeken wat u precies nodig heeft.',
+      'Staat uw gemeente er niet bij? Dat is geen bezwaar. De lijst hierboven laat zien waar ik het vaakst werk, niet waar ik uitsluitend werk.',
+    ],
   },
 
   faq: {
-    eyebrow: 'Veelgestelde vragen',
-    headline: 'Vragen die vaak gesteld worden',
-    intro: 'Staat uw vraag er niet bij? Stuur me gerust een bericht.',
+    eyebrow: 'Vragen & antwoorden',
+    page: {
+      metaTitle: 'Veelgestelde vragen over websites en automatisering | AndrejWeb',
+      metaDescription:
+        'Antwoorden op vragen over een website laten maken, prijzen, planning, onderhoud en bedrijfsautomatisering voor bedrijven in België en Nederland.',
+      navLabel: 'FAQ',
+      title: 'Veelgestelde vragen',
+      intro:
+        'Hier vindt u antwoorden op veelvoorkomende vragen over websites, automatisering, samenwerking en praktische zaken rond een project.',
+      cta: 'Nog een vraag? Neem contact op',
+    },
     items: [
       {
         id: 'prijs',
@@ -488,6 +521,7 @@ export const nl: Dictionary = {
     description:
       'Websites en slimme automatisering voor bedrijven in België en Nederland.',
     navHeading: 'Navigatie',
+    exploreHeading: 'Ontdek',
     contactHeading: 'Contact',
     languageHeading: 'Taal',
     legalHeading: 'Juridisch',

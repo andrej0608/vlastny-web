@@ -1,0 +1,102 @@
+/*
+ * Shell for the three supporting pages. Same tokens, same spacing and the same
+ * card styles as the rest of the site - these are ordinary pages of the site,
+ * not a separate template.
+ */
+
+.page {
+  padding-block: var(--section-padding-y);
+}
+
+.back {
+  display: inline-block;
+  /* Padding rather than plain text: the link is only ~22px tall otherwise,
+     which is an uncomfortably small target on a phone. */
+  padding-block: var(--space-2);
+  margin-bottom: var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--color-link);
+  text-decoration: underline;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  color: var(--color-accent-400);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.5rem;
+  height: 1px;
+  background-color: var(--color-accent-500);
+}
+
+.title {
+  max-width: 24ch;
+  font-size: var(--text-4xl);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+.intro {
+  max-width: 60ch;
+  margin-top: var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  text-wrap: pretty;
+}
+
+.body {
+  margin-top: var(--space-8);
+}
+
+/* Prose between the content and the closing action, e.g. on the region page. */
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 60ch;
+  margin-top: var(--space-7);
+}
+
+.prose p {
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  text-wrap: pretty;
+}
+
+/* --- Closing action ------------------------------------------------------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+  padding-top: var(--space-7);
+  border-top: 1px solid var(--color-border);
+}
+
+.sideLink {
+  color: var(--color-link);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.sideLink:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}

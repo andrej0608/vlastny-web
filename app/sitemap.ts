@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/content/site';
 import { locales, localeHtmlLang, defaultLocale } from '@/lib/i18n';
-import { getSegment, privacyPath } from '@/lib/routes';
+import { getSegment, pagePath, privacyPath, supportingPages } from '@/lib/routes';
 import { getProjectsWithDetail } from '@/content/projects';
 
 /**
@@ -46,6 +46,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   }));
 
+  /* The supporting pages carry the content that used to be on the homepage,
+     so they rank in its place rather than alongside it - hence a priority
+     between the homepage and the project pages. */
+  const supportingPageEntries: MetadataRoute.Sitemap = supportingPages.flatMap(
+    (key) => {
+      const pathByLocale = Object.fromEntries(
+        locales.map((locale) => [locale, pagePath(locale, key)])
+      );
+
+      return locales.map((locale) => ({
+        url: `${siteConfig.url}${pathByLocale[locale]}`,
+        lastModified,
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+        alternates: alternates(pathByLocale),
+      }));
+    }
+  );
+
   const projectPages: MetadataRoute.Sitemap = getProjectsWithDetail().flatMap(
     (project) => {
       const pathByLocale = Object.fromEntries(
@@ -65,5 +84,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   );
 
-  return [...homepages, ...privacyPages, ...projectPages];
+  return [
+    ...homepages,
+    ...supportingPageEntries,
+    ...privacyPages,
+    ...projectPages,
+  ];
 }

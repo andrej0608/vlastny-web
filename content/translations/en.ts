@@ -23,6 +23,8 @@ export const en: Dictionary = {
     languageSwitcherLabel: 'Choose language',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
+    explore: 'Explore',
+    exploreLabel: 'More pages',
     menu: 'Menu',
     backToHome: 'Back to the homepage',
     email: 'Email',
@@ -167,6 +169,7 @@ export const en: Dictionary = {
       },
     ],
     cta: 'Tell me what takes up your time',
+    examplesLink: 'See four practical examples',
   },
 
   aiAdoption: {
@@ -186,11 +189,18 @@ export const en: Dictionary = {
   },
 
   examples: {
-    id: 'examples',
     eyebrow: 'Practical examples',
-    headline: 'What does this look like in practice?',
-    intro:
-      'It usually starts with one job that comes back every week and is still done by hand.',
+    page: {
+      metaTitle: 'Automation in practice | AndrejWeb',
+      metaDescription:
+        'Four practical examples of business automation: preparing quotations, handling customer requests, processing orders and scheduling appointments.',
+      navLabel: 'Practical examples',
+      title: 'Automation in practice',
+      intro:
+        'Automation does not need to be complicated. It often starts with one recurring task that is still handled manually today and could be organised more efficiently. Below are four practical examples.',
+      cta: 'Discuss what could work for your business',
+    },
+    projectLink: 'See the quotation tool in my portfolio',
     labels: {
       problem: 'Problem',
       solution: 'Solution',
@@ -314,29 +324,52 @@ export const en: Dictionary = {
 
   areas: {
     eyebrow: 'Areas served',
-    headline: 'Serving businesses in Belgium and the Netherlands',
-    text: 'Websites and simple tools for businesses across Belgian Limburg, the Kempen region and the south of the Netherlands.',
-    locations: [
-      'Pelt',
-      'Lommel',
-      'Hasselt',
-      'Genk',
-      'Turnhout',
-      'Geel',
-      'Antwerp',
-      'Eindhoven',
-      'Tilburg',
-      'Breda',
-      'Weert',
-      'Venlo',
+    page: {
+      metaTitle: 'Areas served in Belgium and the Netherlands | AndrejWeb',
+      metaDescription:
+        'Websites and business automation for companies across Belgian Limburg, the Kempen region and the south of the Netherlands. Fully online, or in person nearby.',
+      navLabel: 'Areas served',
+      title:
+        'Websites and automation for businesses in Belgium and the Netherlands',
+      intro:
+        'I work with businesses across Belgian Limburg, the Kempen region and the south of the Netherlands. Projects can be handled fully online, while personal contact remains easy for businesses in the region.',
+      cta: 'Discuss your project',
+    },
+    groups: [
+      {
+        title: 'Belgian Limburg',
+        locations: ['Pelt', 'Lommel', 'Hasselt', 'Genk'],
+      },
+      {
+        title: 'Kempen & Antwerp',
+        locations: ['Turnhout', 'Geel', 'Antwerp'],
+      },
+      {
+        title: 'South Netherlands',
+        locations: ['Eindhoven', 'Tilburg', 'Breda', 'Weert', 'Venlo'],
+      },
     ],
     surrounding: 'and surrounding areas',
+    supporting: [
+      'A website or an automation project needs no office visit. Most of it happens over e-mail, the phone and a video call, and that works as well for a business in Breda as for one around the corner.',
+      'For businesses nearby, dropping in is easy enough. One conversation at a table is sometimes quicker than three e-mails back and forth — particularly at the start, while we are still working out what you actually need.',
+      'Your town not listed? No obstacle. The list above shows where I work most often, not where I work exclusively.',
+    ],
   },
 
   faq: {
-    eyebrow: 'Frequently asked questions',
-    headline: 'Questions I am often asked',
-    intro: 'Question not answered here? Feel free to send me a message.',
+    eyebrow: 'Questions & answers',
+    page: {
+      metaTitle:
+        'Frequently asked questions about websites and automation | AndrejWeb',
+      metaDescription:
+        'Answers to questions about having a website built, pricing, timelines, maintenance and business automation for companies in Belgium and the Netherlands.',
+      navLabel: 'FAQ',
+      title: 'Frequently asked questions',
+      intro:
+        'Here you can find answers to common questions about websites, automation, working together and practical aspects of a project.',
+      cta: 'Still have a question? Get in touch',
+    },
     items: [
       {
         id: 'prijs',
@@ -487,6 +520,7 @@ export const en: Dictionary = {
     description:
       'Websites and simple automation for businesses in Belgium and the Netherlands.',
     navHeading: 'Navigation',
+    exploreHeading: 'Explore',
     contactHeading: 'Contact',
     languageHeading: 'Language',
     legalHeading: 'Legal',

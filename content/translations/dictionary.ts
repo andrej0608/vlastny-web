@@ -84,6 +84,30 @@ export interface FaqItem {
   answer: string;
 }
 
+/**
+ * What a supporting page needs on top of the content it already had as a
+ * homepage section: its own title, its own metadata, and a way back to the
+ * contact form.
+ */
+export interface PageMeta {
+  metaTitle: string;
+  metaDescription: string;
+  /** Short label for the side rail and the footer - two words at most. */
+  navLabel: string;
+  /** The page's own <h1>. */
+  title: string;
+  /** Paragraph directly under the heading. */
+  intro: string;
+  /** Closing invitation, linking to the contact section. */
+  cta: string;
+}
+
+/** A named cluster of towns, e.g. "Belgisch Limburg". */
+export interface LocationGroup {
+  title: string;
+  locations: string[];
+}
+
 export interface Dictionary {
   /** Used for <html lang> and the "skip to content" link. */
   meta: {
@@ -102,6 +126,10 @@ export interface Dictionary {
     languageSwitcherLabel: string;
     openMenu: string;
     closeMenu: string;
+    /** Text on the compact button that opens the supporting-page menu. */
+    explore: string;
+    /** Accessible name for that menu, e.g. "More pages". */
+    exploreLabel: string;
     menu: string;
     backToHome: string;
     email: string;
@@ -162,6 +190,8 @@ export interface Dictionary {
     useCases: AutomationUseCase[];
     /** Leads to the contact section. */
     cta: string;
+    /** In-content link through to the worked examples on their own page. */
+    examplesLink: string;
   };
 
   /**
@@ -186,12 +216,15 @@ export interface Dictionary {
     source: string;
   };
 
-  /** Practical worked examples, shown as a grid of problem/solution/result. */
+  /**
+   * Practical worked examples, shown as a grid of problem/solution/result.
+   * Lives on its own page; `page` carries the wrapper around the same items.
+   */
   examples: {
-    id: string;
     eyebrow: string;
-    headline: string;
-    intro: string;
+    page: PageMeta;
+    /** Link through to the quotation tool in the portfolio. */
+    projectLink: string;
     labels: {
       problem: string;
       solution: string;
@@ -250,17 +283,22 @@ export interface Dictionary {
 
   areas: {
     eyebrow: string;
-    headline: string;
-    text: string;
-    locations: string[];
+    page: PageMeta;
+    /** Towns grouped by region, rather than one long undifferentiated list. */
+    groups: LocationGroup[];
     /** e.g. "en omgeving" / "and surrounding areas". */
     surrounding: string;
+    /**
+     * Prose about actually working with businesses in these areas. Present so
+     * the page says something worth reading - a page that is only a list of
+     * town names is a doorway page, and is treated as one.
+     */
+    supporting: string[];
   };
 
   faq: {
     eyebrow: string;
-    headline: string;
-    intro: string;
+    page: PageMeta;
     items: FaqItem[];
   };
 
@@ -350,6 +388,8 @@ export interface Dictionary {
     tagline: string;
     description: string;
     navHeading: string;
+    /** Heading above the links to the supporting pages. */
+    exploreHeading: string;
     contactHeading: string;
     languageHeading: string;
     legalHeading: string;

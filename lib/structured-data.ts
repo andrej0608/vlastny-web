@@ -92,8 +92,25 @@ export function buildStructuredData(locale: Locale, dict: Dictionary) {
     publisher: { '@id': PERSON_ID },
   };
 
-  /* Marks up the real FAQ content already visible on the page. */
-  const faq = {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [person, professionalService, website],
+  };
+}
+
+/**
+ * FAQ markup, for the page that actually shows the questions.
+ *
+ * Emitted from the FAQ page rather than the homepage: structured data has to
+ * describe content the visitor can see, and the homepage no longer shows any
+ * of it. Marking it up there anyway would be exactly the kind of mismatch
+ * Google's guidelines are written against.
+ */
+export function buildFaqStructuredData(locale: Locale, dict: Dictionary) {
+  const localeUrl = `${siteConfig.url}/${locale}`;
+
+  return {
+    '@context': 'https://schema.org',
     '@type': 'FAQPage',
     '@id': `${localeUrl}/#faq`,
     inLanguage: localeHtmlLang[locale],
@@ -105,10 +122,5 @@ export function buildStructuredData(locale: Locale, dict: Dictionary) {
         text: item.answer,
       },
     })),
-  };
-
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [person, professionalService, website, faq],
   };
 }

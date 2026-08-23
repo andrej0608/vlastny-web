@@ -9,7 +9,12 @@ import {
   hasDirectContactChannel,
   hasBusinessIdentification,
 } from '@/content/site';
-import { homePath, sectionPath, privacyPath } from '@/lib/routes';
+import {
+  homePath,
+  sectionPath,
+  privacyPath,
+  supportingPageLinks,
+} from '@/lib/routes';
 import { Container } from '@/components/ui/Container';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import styles from './Footer.module.css';
@@ -45,6 +50,21 @@ export function Footer({ locale, dict }: FooterProps) {
                     className={styles.link}
                   >
                     {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className={styles.column}>
+            <h2 className={styles.columnHeading}>
+              {dict.footer.exploreHeading}
+            </h2>
+            <ul className={styles.linkList}>
+              {supportingPageLinks(locale, dict).map((page) => (
+                <li key={page.key}>
+                  <Link href={page.href} className={styles.link}>
+                    {page.label}
                   </Link>
                 </li>
               ))}

@@ -1,0 +1,218 @@
+/* ===========================================================================
+   Persistent links to the supporting pages.
+
+   Both shapes are `position: fixed` and sit above the page but below the
+   header and the mobile drawer, so neither can ever be covered by this.
+   =========================================================================== */
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-subtle);
+  transition: color var(--transition-base);
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Wide screens: a rail against the right edge -------------------------- */
+
+/*
+ * Hidden by default and switched on at 48rem. At rest the rail is only as wide
+ * as its icons, which keeps it inside the gutter beside the 72rem container;
+ * the labels are always in the DOM for screen readers but clipped until the
+ * visitor hovers or tabs into it.
+ */
+.rail {
+  display: none;
+}
+
+.railList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.railLink {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+}
+
+.railLink:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.railLink:hover .icon {
+  color: var(--color-accent-400);
+}
+
+/*
+ * The label is laid out but clipped to nothing until the rail opens. Width
+ * rather than `display: none`, so it is measurable and animatable, and so it
+ * is never removed from the accessibility tree.
+ */
+.railLabel {
+  max-width: 0;
+  /* Padding rather than a flex gap, so the collapsed rail really is only as
+     wide as its icons - a gap would still occupy space at zero width. */
+  padding-left: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-width var(--transition-base),
+    padding-left var(--transition-base),
+    opacity var(--transition-base);
+}
+
+/*
+ * 78rem, not 48rem. Below roughly 1208px the container is bound by the
+ * viewport rather than its own max-width, so there is no gutter for the rail
+ * to sit in and it would cover the right edge of every card. Narrower screens
+ * get the compact button instead - which is the honest trade: a rail that
+ * covers content is worse than a button that does not.
+ */
+@media (min-width: 78rem) {
+  .rail {
+    position: fixed;
+    top: 50%;
+    right: var(--space-3);
+    z-index: var(--z-explore);
+    display: block;
+    transform: translateY(-50%);
+    padding: var(--space-2);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    transition: border-color var(--transition-base);
+  }
+
+  .rail:hover,
+  .rail:focus-within {
+    border-color: var(--color-accent-900);
+  }
+
+  /* Opened by hover or by tabbing into it, so the keyboard gets the same
+     affordance the mouse does. */
+  .rail:hover .railLabel,
+  .rail:focus-within .railLabel {
+    max-width: 12rem;
+    padding-left: var(--space-3);
+    opacity: 1;
+  }
+}
+
+/* A rail that slides open is decoration; without it the labels are simply
+   always visible, which is the more useful of the two states anyway. */
+@media (prefers-reduced-motion: reduce) {
+  .railLabel {
+    transition: none;
+  }
+}
+
+/* --- Phones: a small button with a short menu above it -------------------- */
+
+.compact {
+  position: fixed;
+  right: var(--space-4);
+  /* Clears the home indicator on iOS rather than sitting under it. */
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  z-index: var(--z-explore);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.trigger:hover {
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-accent-900);
+}
+
+.triggerIcon {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  color: var(--color-accent-400);
+}
+
+.triggerIcon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/*
+ * Sized to its content rather than the viewport: three short links do not
+ * need a full-screen overlay, and covering the page to show them would be
+ * worse than the problem it solves.
+ */
+.menu {
+  min-width: 13rem;
+  padding: var(--space-2);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.menuLink:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+/* The rail takes over from 78rem up; below that the button is the only shape. */
+@media (min-width: 78rem) {
+  .compact {
+    display: none;
+  }
+}

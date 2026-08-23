@@ -33,7 +33,23 @@
 }
 
 .actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
   margin-top: var(--space-6);
+}
+
+/* Secondary to the button beside it: a link, not a second call to action. */
+.moreLink {
+  color: var(--color-link);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+
+.moreLink:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
 }
 
 /*

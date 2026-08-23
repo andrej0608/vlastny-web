@@ -4,18 +4,17 @@ import { getDictionary } from '@/content/translations';
 import { isLocale, type Locale } from '@/lib/i18n';
 import { buildPageMetadata } from '@/lib/seo';
 import { buildStructuredData } from '@/lib/structured-data';
+import { supportingPageLinks } from '@/lib/routes';
 import { Hero } from '@/components/sections/Hero';
 import { Services } from '@/components/sections/Services';
 import { Automation } from '@/components/sections/Automation';
 import { AiAdoption } from '@/components/sections/AiAdoption';
-import { Examples } from '@/components/sections/Examples';
 import { WhyWebsite } from '@/components/sections/WhyWebsite';
 import { Work } from '@/components/sections/Work';
 import { Process } from '@/components/sections/Process';
 import { About } from '@/components/sections/About';
-import { Areas } from '@/components/sections/Areas';
-import { Faq } from '@/components/sections/Faq';
 import { Contact } from '@/components/sections/Contact';
+import { ExploreNav } from '@/components/layout/ExploreNav';
 
 interface PageProps {
   params: Promise<{ lang: string }>;
@@ -64,19 +63,28 @@ export default async function HomePage({ params }: PageProps) {
           why a website matters   -> WhyWebsite
           why automation matters  -> Automation
           that this is happening  -> AiAdoption
-          what it looks like      -> Examples
           what I have built       -> Work
+
+        The worked examples, the FAQ and the areas served used to sit in this
+        run too. They were the three longest blocks and the ones most often
+        scrolled past, so they are pages of their own now - reachable from the
+        rail, from within the automation section, and from the footer.
       */}
       <WhyWebsite dict={dict} />
       <Automation locale={locale} dict={dict} />
       <AiAdoption locale={locale} dict={dict} />
-      <Examples dict={dict} />
       <Work locale={locale} dict={dict} />
       <Process dict={dict} />
       <About dict={dict} />
-      <Areas dict={dict} />
-      <Faq dict={dict} />
       <Contact locale={locale} dict={dict} />
+
+      {/* Fixed to the viewport, so it must stay a direct child here: no
+          ancestor between this and <body> carries a filter or a transform. */}
+      <ExploreNav
+        links={supportingPageLinks(locale, dict)}
+        triggerText={dict.common.explore}
+        label={dict.common.exploreLabel}
+      />
     </>
   );
 }

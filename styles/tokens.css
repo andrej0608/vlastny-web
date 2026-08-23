@@ -179,6 +179,9 @@
   --focus-ring-offset: 2px;
 
   /* --- Stacking --------------------------------------------------------- */
+  /* Below the header, so a rail pinned to the edge of the viewport can never
+     sit on top of the navigation or the mobile drawer. */
+  --z-explore: 90;
   --z-header: 100;
   --z-mobile-nav: 200;
   --z-skip-link: 300;
